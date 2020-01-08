@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
+
+        loadFragment(new ConnectionFragment());
     }
 
     private boolean loadFragment (Fragment fragment){
