@@ -385,6 +385,7 @@
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="HCAXJR1531059VN" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-08T09:55:17.362Z" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
