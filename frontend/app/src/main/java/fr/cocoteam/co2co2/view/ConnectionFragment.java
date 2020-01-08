@@ -26,6 +26,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.EventListener;
+
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.viewmodel.ConnectionViewModel;
 
@@ -39,6 +41,12 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
     public TextView welcomeTextView;
     public ImageButton validateProfilImageButton;
     public Context context;
+
+    OnHeadlineSelectedListener callback;
+
+    public void setOnHeadlineSelectedListener(OnHeadlineSelectedListener callback) {
+        this.callback = callback;
+    }
 
     private GoogleSignInClient googleSignInClient;
 
@@ -54,20 +62,12 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
 
         signInButton = view.findViewById(R.id.sign_in_button);
         connectionTextView = view.findViewById(R.id.connexionTextView);
-        welcomeTextView = view.findViewById(R.id.welcomeTextView);
-        validateProfilImageButton = view.findViewById(R.id.validateProfilImageButton);
-
-        //Hide welcome message
-        welcomeTextView.setVisibility(View.INVISIBLE);
-        validateProfilImageButton.setVisibility(View.INVISIBLE);
 
         //Design Button
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
         //set listeners
         signInButton.setOnClickListener(this);
-        validateProfilImageButton.setOnClickListener(this);
-
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -115,9 +115,6 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
             case R.id.sign_in_button:
                 signIn();
                 break;
-
-            case R.id.validateProfilImageButton:
-                Log.e("OK","Go app !!");
         }
     }
     private void signIn(){
@@ -145,13 +142,16 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
 
     public void updateUI (GoogleSignInAccount googleSignInAccount){
         if (googleSignInAccount != null) {
-            welcomeTextView.setText(getString(R.string.userConnected, googleSignInAccount.getDisplayName()));
-            welcomeTextView.setVisibility(View.VISIBLE);
-            validateProfilImageButton.setVisibility(View.VISIBLE);
             connectionTextView.setVisibility(View.INVISIBLE);
             signInButton.setVisibility(View.INVISIBLE);
+
+            callback.onUserConnected(googleSignInAccount.getDisplayName());
         }
 
+    }
+
+    public interface OnHeadlineSelectedListener {
+        void onUserConnected(String username);
     }
 }
 

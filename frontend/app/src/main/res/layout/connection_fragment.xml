@@ -23,26 +23,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         />
-    <TextView
-        android:id="@+id/welcomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Bonjour Mr. XXXXX"
-        android:text="@string/userConnected"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:textSize="25dp"
-        android:layout_marginHorizontal="40dp"/>
 
-    <ImageButton
-        android:id="@+id/validateProfilImageButton"
-        android:layout_width="107dp"
-        android:layout_height="97dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
-        android:scaleType="fitXY"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/validate_button" />
+
+
 
 
 </RelativeLayout>

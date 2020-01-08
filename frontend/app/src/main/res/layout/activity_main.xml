@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context="fr.cocoteam.co2co2.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/startContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
