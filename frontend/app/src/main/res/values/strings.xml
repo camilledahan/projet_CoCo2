@@ -8,4 +8,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="google_maps_key">AIzaSyBGo7-H0aIO_KTtZGGez8vPxuShRHeV8AA</string>
 </resources>

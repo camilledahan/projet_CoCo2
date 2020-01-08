@@ -1,18 +1,24 @@
 package fr.cocoteam.co2co2;
 
-import android.support.v4.app.Fragment;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
+
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +31,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private boolean loadFragment (Fragment fragment){
         if (fragment != null){
-
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container,fragment)
                     .commit();
+
             return true;
         }
         return false;
