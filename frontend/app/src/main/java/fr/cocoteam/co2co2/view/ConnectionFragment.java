@@ -38,8 +38,6 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
     private ConnectionViewModel mViewModel;
     public SignInButton signInButton;
     public TextView connectionTextView;
-    public TextView welcomeTextView;
-    public ImageButton validateProfilImageButton;
     public Context context;
 
     OnHeadlineSelectedListener callback;
