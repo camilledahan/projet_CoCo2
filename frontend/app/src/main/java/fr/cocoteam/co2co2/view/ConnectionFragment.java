@@ -142,7 +142,6 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
         if (googleSignInAccount != null) {
             connectionTextView.setVisibility(View.INVISIBLE);
             signInButton.setVisibility(View.INVISIBLE);
-
             callback.onUserConnected(googleSignInAccount.getDisplayName());
         }
 
