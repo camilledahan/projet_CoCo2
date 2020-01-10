@@ -2,6 +2,7 @@ package fr.cocoteam.co2co2;
 
 import android.app.Activity;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,6 +26,9 @@ import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
@@ -36,6 +40,17 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Realm.init(this);
+
+        //set realm database
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .name(getResources().getString(R.string.app_name)+".realm")
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(configuration);
+
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
@@ -45,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
         loadFragment(connectionFragment, R.id.startContainer);
+
     }
 
     public void updateMenuVisibility(boolean visibility) {
@@ -62,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         for (MenuItem item : menuItems){
             item.setVisible(visibility);
         }
+    }
+
+    private void initRealm(){
     }
 
     private boolean loadFragment (Fragment fragment, int container){
