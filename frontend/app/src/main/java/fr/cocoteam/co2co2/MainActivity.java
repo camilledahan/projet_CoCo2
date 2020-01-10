@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
             case R.id.nav_contract:
                 fragment = new ContactFragment();
-
                 break;
 
             case R.id.nav_profil:
