@@ -12,30 +12,43 @@ import io.realm.annotations.PrimaryKey;
 public class User extends RealmObject {
 
     @PrimaryKey
-    private int userId;
+    private String _id;
+    private String email;
     private String name;
     private String surname;
-    private Trip trip;
-    private int age;
-    private boolean isDriver;
-    private int telephone;
+    private String phone;
+    private String age;
+    private int is_driver;
     private String description;
+
+    private Trip trip;
     private RealmList<UserMatch> userMatches;
+
+
 
     public User() {
 
     }
 
-    public User(int userId, String name, String surname, Trip trip, int age, boolean isDriver, int telephone, String description, RealmList<UserMatch> userMatches) {
-        this.userId = userId;
+    /*public User(int ID_USER, String login, String description) {
+        this.ID_USER = ID_USER;
+        this.login = login;
+        this.description = description;
+    }*/
+
+
+
+
+    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description) {
+        this._id = _id;
+        this.email = email;
         this.name = name;
         this.surname = surname;
-        this.trip = trip;
+        this.phone = phone;
         this.age = age;
-        this.isDriver = isDriver;
-        this.telephone = telephone;
+        this.is_driver = is_driver;
         this.description = description;
-        this.userMatches = userMatches;
     }
+
 }
 
