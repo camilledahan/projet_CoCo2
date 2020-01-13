@@ -1,11 +1,88 @@
 package fr.cocoteam.co2co2.model;
 
 
-public class UserMatch extends AbstractUser {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
+public class UserMatch extends RealmObject {
 
-    public UserMatch(String name, Trip trip) {
-        super(name, trip);
+    @PrimaryKey
+    private int userId;
+    private String name;
+    private Trip trip;
+    private int age;
+    private boolean isDriver;
+    private int telephone;
+    private String description;
 
+    public UserMatch(){
+
+    }
+
+    public UserMatch(int userId, String name, Trip trip, int age, boolean isDriver, int telephone, String description) {
+        this.userId = userId;
+        this.name = name;
+        this.trip = trip;
+        this.age = age;
+        this.isDriver = isDriver;
+        this.telephone = telephone;
+        this.description = description;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isDriver() {
+        return isDriver;
+    }
+
+    public void setDriver(boolean driver) {
+        isDriver = driver;
+    }
+
+    public int getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(int telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
