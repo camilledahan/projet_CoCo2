@@ -10,10 +10,23 @@ import androidx.lifecycle.ViewModel;
 import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.UserMatch;
+import okhttp3.OkHttpClient;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FindCarViewModel extends ViewModel {
 
 
+    static final String BASE_URL = "test";
+
+    GsonConverterFactory gsonFactory = GsonConverterFactory.create();
+    OkHttpClient okHttpClient = new OkHttpClient();
+
+    /*Retrofit retrofitMatchUser = new Retrofit.Builder()
+            .baseUrl(BASE_URL+":15445454")
+            .client(okHttpClient)
+            .addConverterFactory(gsonFactory)
+            .build();
+*/
     //TODO fais appelle au service pour récuperer tous les matchs
 
     public List<UserMatch> generateRandomUser(int number){
@@ -24,6 +37,9 @@ public class FindCarViewModel extends ViewModel {
         }
         return users;
     }
+
+
+
 
 
 }

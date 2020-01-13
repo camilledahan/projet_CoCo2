@@ -4,9 +4,7 @@ import java.util.List;
 
 public class User extends AbstractUser {
 
-
     private List<UserMatch> userMatches;
-
 
     public User(String name, Trip trip, List<UserMatch> userMatches) {
 
