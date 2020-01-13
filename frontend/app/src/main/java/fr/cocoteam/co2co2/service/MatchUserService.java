@@ -13,8 +13,6 @@ import retrofit2.http.Query;
 
 public interface MatchUserService {
 
-    @GET("matches")
-    @FormUrlEncoded
     //void getAllMatches(@Query("userId"), Callback<UserMatch> callback);
 
 }

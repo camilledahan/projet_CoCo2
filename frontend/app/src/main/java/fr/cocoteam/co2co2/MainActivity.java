@@ -43,13 +43,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
         Realm.init(this);
 
-        //set realm database
-        RealmConfiguration configuration = new RealmConfiguration.Builder()
-                .schemaVersion(1)
-                .name(getResources().getString(R.string.app_name)+".realm")
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+        setRealm();
+
 
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
@@ -61,6 +56,15 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         connectionFragment.setOnHeadlineSelectedListener(this);
         loadFragment(connectionFragment, R.id.startContainer);
 
+    }
+
+    private void setRealm() {
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .name(getResources().getString(R.string.app_name)+".realm")
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(configuration);
     }
 
     public void updateMenuVisibility(boolean visibility) {
