@@ -1,4 +1,4 @@
-package fr.cocoteam.co2co2.Directions;
+package fr.cocoteam.co2co2.service;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -13,15 +13,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cocoteam.co2co2.DirectionModel.Distance;
-import fr.cocoteam.co2co2.DirectionModel.Duration;
-import fr.cocoteam.co2co2.DirectionModel.Route;
-import fr.cocoteam.co2co2.Listener.DirectionsServiceListener;
+import fr.cocoteam.co2co2.model.directionModel.Distance;
+import fr.cocoteam.co2co2.model.directionModel.Duration;
+import fr.cocoteam.co2co2.model.directionModel.Route;
+import fr.cocoteam.co2co2.listener.DirectionsServiceListener;
 
 public class DirectionsWebService  {
 

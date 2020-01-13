@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -12,13 +11,14 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.User;
+import fr.cocoteam.co2co2.model.UserMatch;
 
 public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUserRecyclerViewAdapter.UserMatchViewHolder> {
 
 
-    List<User> matchUsers;
+    List<UserMatch> matchUsers;
 
-    public MatchUserRecyclerViewAdapter(List<User> matchUsers){
+    public MatchUserRecyclerViewAdapter(List<UserMatch> matchUsers){
         this.matchUsers = matchUsers;
     }
 
@@ -41,7 +41,7 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
          */
 
         holder.matchName.setText(matchUsers.get(position).getName());
-        holder.matchTrip.setText(matchUsers.get(position).getTrajet());
+        holder.matchTrip.setText(matchUsers.get(position).getTrip().toString());
     }
 
     @Override

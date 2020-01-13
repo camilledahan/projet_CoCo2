@@ -1,26 +1,16 @@
 package fr.cocoteam.co2co2.model;
 
-public class User {
+import java.util.List;
 
-    private String name;
-    private String depart;
-    private String arrivee;
+public class User extends AbstractUser {
 
-    public User(String name, String depart, String arrivee) {
-        this.name = name;
-        this.depart = depart;
-        this.arrivee = arrivee;
-    }
 
-    public String getTrajet(){
-        return this.depart + " à " + this.arrivee;
-    }
+    private List<UserMatch> userMatches;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
+    public User(String name, Trip trip, List<UserMatch> userMatches) {
+
+        super(name, trip);
+        this.userMatches = userMatches;
     }
 }
