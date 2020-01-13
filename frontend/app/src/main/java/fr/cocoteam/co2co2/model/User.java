@@ -1,37 +1,14 @@
 package fr.cocoteam.co2co2.model;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
+import java.util.List;
 
-public class User extends RealmObject {
+public class User extends AbstractUser {
 
-    @PrimaryKey
-    @Required
-    private Integer userId;
-    private String name;
-    private String depart;
-    private String arrivee;
+    private List<UserMatch> userMatches;
 
-    public User (){
+    public User(String name, Trip trip, List<UserMatch> userMatches) {
 
-    }
-
-    public User(String name, String depart, String arrivee) {
-        this.name = name;
-        this.depart = depart;
-        this.arrivee = arrivee;
-    }
-
-    public String getTrajet(){
-        return this.depart + " à " + this.arrivee;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        super(name, trip);
+        this.userMatches = userMatches;
     }
 }
