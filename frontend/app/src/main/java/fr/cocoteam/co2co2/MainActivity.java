@@ -50,11 +50,12 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
-        updateMenuVisibility(false);
+        //updateMenuVisibility(false);
 
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-        loadFragment(connectionFragment, R.id.startContainer);
+        //loadFragment(connectionFragment, R.id.startContainer);
+        loadFragment(new FindCarFragment(), R.id.fragment_container);
 
     }
 

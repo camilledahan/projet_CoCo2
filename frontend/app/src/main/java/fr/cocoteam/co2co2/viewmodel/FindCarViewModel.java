@@ -19,12 +19,12 @@ public class FindCarViewModel extends ViewModel {
     GsonConverterFactory gsonFactory = GsonConverterFactory.create();
     OkHttpClient okHttpClient = new OkHttpClient();
 
-    Retrofit retrofitMatchUser = new Retrofit.Builder()
+    /*Retrofit retrofitMatchUser = new Retrofit.Builder()
             .baseUrl(BASE_URL+":15445454")
             .client(okHttpClient)
             .addConverterFactory(gsonFactory)
             .build();
-
+*/
     //TODO fais appelle au service pour récuperer tous les matchs
 
     public List<User> generateRandomUser(int number){
