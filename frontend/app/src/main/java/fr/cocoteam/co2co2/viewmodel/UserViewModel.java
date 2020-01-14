@@ -12,6 +12,7 @@ import java.util.List;
 
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.service.RetrofitInterface;
+import fr.cocoteam.co2co2.utils.ViewModelInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,7 +42,7 @@ public class UserViewModel extends ViewModel {
         instantiateRetrofit();
 
         final String[] info = new String[1];
-        Call<String> call = retrofitInterface.executeUser();
+        /*Call<String> call = retrofitInterface.executeUser(1);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -58,7 +59,7 @@ public class UserViewModel extends ViewModel {
 
                 Log.d(TAG, "onFailure: "+t.getMessage());
             }
-        });
+        });*/
         return info[0];
     }
 
