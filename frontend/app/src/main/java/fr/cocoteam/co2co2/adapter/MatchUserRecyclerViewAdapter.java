@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,13 +33,6 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
 
     @Override
     public void onBindViewHolder(UserMatchViewHolder holder, int position) {
-
-        /*
-        // update MyCustomEditTextListener every time we bind a new item
-        // so that it knows what item in mDataset to update
-        holder.myCustomEditTextListener.updatePosition(holder.getAdapterPosition());
-        holder.mEditText.setText(mDataset[holder.getAdapterPosition()]);
-         */
 
         holder.matchName.setText(matchUsers.get(position).getName());
         holder.matchTrip.setText(matchUsers.get(position).getTrip().getDepart() + " à " + matchUsers.get(position).getTrip().getArrivee());

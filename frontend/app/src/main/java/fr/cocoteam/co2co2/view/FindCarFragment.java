@@ -8,12 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
+import fr.cocoteam.co2co2.model.User;
+import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.viewmodel.FindCarViewModel;
 
 /**
@@ -24,9 +32,15 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private FindCarViewModel findCarViewModel;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private MatchUserRecyclerViewAdapter matchUserRecyclerViewAdapter;
+    public List<UserMatch> userMatches;
 
     public FindCarFragment() {
         // Required empty public constructor
+    }
+
+    public List<UserMatch> getUserMatches() {
+        return userMatches;
     }
 
     @Override
@@ -40,17 +54,34 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
         //BIND
         recyclerView = view.findViewById(R.id.matchRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.setAdapter(new MatchUserRecyclerViewAdapter(findCarViewModel.generateRandomUser(40)));
+        matchUserRecyclerViewAdapter = new MatchUserRecyclerViewAdapter(findCarViewModel.getRandomUser(5));
+        recyclerView.setAdapter(matchUserRecyclerViewAdapter);
 
         // SwipeRefreshLayout
         swipeRefreshLayout = view.findViewById(R.id.swipe_container);
         swipeRefreshLayout.setOnRefreshListener(this);
+
+        //observe User mutableLiveData
+        Observer<List<UserMatch>> currentUserMatchObserver = matches -> {
+            userMatches.clear();
+            userMatches.addAll(matches);
+            if (swipeRefreshLayout.isRefreshing()) {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+            matchUserRecyclerViewAdapter.notifyDataSetChanged();
+
+        };
+
+        findCarViewModel.getCurrentUserMatch().observe(this,currentUserMatchObserver);
+
 
         return view;
     }
 
     @Override
     public void onRefresh() {
-        //TODO
+        Random r = new Random();
+        int i1 = r.nextInt(15 - 5) + 15;
+        findCarViewModel.generateRandomUser(i1);
     }
 }
