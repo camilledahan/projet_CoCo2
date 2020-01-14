@@ -18,15 +18,16 @@ public class User extends RealmObject {
     private Trip trip;
     private int age;
     private boolean isDriver;
-    private int telephone;
+    private String telephone;
     private String description;
     private RealmList<UserMatch> userMatches;
+    private String email;
 
     public User() {
 
     }
 
-    public User(int userId, String name, String surname, Trip trip, int age, boolean isDriver, int telephone, String description, RealmList<UserMatch> userMatches) {
+    public User(int userId, String name, String surname, Trip trip, int age, boolean isDriver, String telephone, String description, RealmList<UserMatch> userMatches,String email) {
         this.userId = userId;
         this.name = name;
         this.surname = surname;
@@ -36,6 +37,24 @@ public class User extends RealmObject {
         this.telephone = telephone;
         this.description = description;
         this.userMatches = userMatches;
+        this.email =email;
+    }
+
+    public User(String name, String surname, Trip trip, int age, boolean isDriver, String telephone, String description, RealmList<UserMatch> userMatches, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.trip = trip;
+        this.age = age;
+        this.isDriver = isDriver;
+        this.telephone = telephone;
+        this.description = description;
+        this.userMatches = userMatches;
+        this.email =email;
+
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
 

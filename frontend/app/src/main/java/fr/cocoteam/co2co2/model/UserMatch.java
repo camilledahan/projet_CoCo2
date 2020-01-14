@@ -3,7 +3,6 @@ package fr.cocoteam.co2co2.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class UserMatch extends RealmObject {
 
