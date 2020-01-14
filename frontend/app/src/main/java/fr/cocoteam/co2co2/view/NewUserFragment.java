@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,11 +59,20 @@ public class NewUserFragment extends Fragment {
          isDriverBtn = view.findViewById(R.id.isDriver);
          heureDepart = view.findViewById(R.id.heure_depart);
 
-     //  int age = new Integer(ageField.getText().toString());
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+        emailField.setText(acct.getEmail());
+        nameField.setText(acct.getGivenName());
+        surnameField.setText(acct.getFamilyName());
+        emailField.setEnabled(false);
+        nameField.setEnabled(false);
+        surnameField.setEnabled(false);
+
+
+        //  int age = new Integer(ageField.getText().toString());
 
         validerButton.setOnClickListener(view1 -> {
            if(checkEnteredData()){
-               addNewUser(emailField.getText().toString(),nameField.getText().toString(),surnameField.getText().toString(),originField.getText().toString(),destinationField.getText().toString(),ageField.getText().toString(),phoneField.getText().toString(),
+               addNewUser(acct.getEmail(),acct.getDisplayName(),acct.getFamilyName(),originField.getText().toString(),destinationField.getText().toString(),ageField.getText().toString(),phoneField.getText().toString(),
                        descriptionField.getText().toString(),isDriverBtn.isActivated(),heureDepart.getText().toString());
            }
 
