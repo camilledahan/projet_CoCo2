@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import androidx.lifecycle.Observer;
@@ -33,14 +34,12 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private MatchUserRecyclerViewAdapter matchUserRecyclerViewAdapter;
-    public List<UserMatch> userMatches;
+    public List<UserMatch> userMatches = new ArrayList<>();
+
+    private TextView noMatchFoundTextView;
 
     public FindCarFragment() {
         // Required empty public constructor
-    }
-
-    public List<UserMatch> getUserMatches() {
-        return userMatches;
     }
 
     @Override
@@ -54,8 +53,10 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
         //BIND
         recyclerView = view.findViewById(R.id.matchRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        matchUserRecyclerViewAdapter = new MatchUserRecyclerViewAdapter(findCarViewModel.getRandomUser(5));
+        matchUserRecyclerViewAdapter = new MatchUserRecyclerViewAdapter(userMatches);
         recyclerView.setAdapter(matchUserRecyclerViewAdapter);
+
+        noMatchFoundTextView = view.findViewById(R.id.noMatchFoundTextView);
 
         // SwipeRefreshLayout
         swipeRefreshLayout = view.findViewById(R.id.swipe_container);
@@ -69,11 +70,14 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 swipeRefreshLayout.setRefreshing(false);
             }
             matchUserRecyclerViewAdapter.notifyDataSetChanged();
+            updateUI(matches);
 
         };
 
         findCarViewModel.getCurrentUserMatch().observe(this,currentUserMatchObserver);
 
+        //Get matches
+        findCarViewModel.generateRandomUser(5);
 
         return view;
     }
@@ -81,7 +85,19 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @Override
     public void onRefresh() {
         Random r = new Random();
-        int i1 = r.nextInt(15 - 5) + 15;
+        int i1 = r.nextInt(10 - 1) + 1;
         findCarViewModel.generateRandomUser(i1);
+    }
+
+
+    private void updateUI(List<UserMatch> users){
+        if(users.size()==0){
+            noMatchFoundTextView.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
+        else {
+            noMatchFoundTextView.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }
