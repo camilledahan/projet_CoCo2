@@ -7,15 +7,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+
+
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
@@ -24,14 +31,15 @@ import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
+import fr.cocoteam.co2co2.view.PaymentFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
+import fr.cocoteam.co2co2.view.SettingFragment;
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener {
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, ProfilFragment.OnHeadlineSelectedListener {
 
     public BottomNavigationView navigation;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,35 +48,36 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
-        updateMenuVisibility(false);
+        //updateMenuVisibility(false);
 
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-        loadFragment(connectionFragment, R.id.startContainer);
+        //loadFragment(connectionFragment, R.id.startContainer);
+        loadFragment(new ProfilFragment(), R.id.fragment_container);
     }
 
     public void updateMenuVisibility(boolean visibility) {
         MenuItem map = navigation.getMenu().findItem(R.id.nav_map);
-        MenuItem contact =  navigation.getMenu().findItem(R.id.nav_contact);
-        MenuItem car =  navigation.getMenu().findItem(R.id.nav_find_car);
-        MenuItem contract =  navigation.getMenu().findItem(R.id.nav_contract);
-        MenuItem profil =  navigation.getMenu().findItem(R.id.nav_profil);
+        MenuItem contact = navigation.getMenu().findItem(R.id.nav_contact);
+        MenuItem car = navigation.getMenu().findItem(R.id.nav_find_car);
+        MenuItem contract = navigation.getMenu().findItem(R.id.nav_contract);
+        MenuItem profil = navigation.getMenu().findItem(R.id.nav_profil);
         MenuItem menuItems[] = {map,
                 contact,
                 car,
                 contract,
                 profil};
 
-        for (MenuItem item : menuItems){
+        for (MenuItem item : menuItems) {
             item.setVisible(visibility);
         }
     }
 
-    private boolean loadFragment (Fragment fragment, int container){
-        if (fragment != null){
+    private boolean loadFragment(Fragment fragment, int container) {
+        if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(container,fragment)
+                    .replace(container, fragment)
                     .commit();
 
             return true;
@@ -81,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
         Fragment fragment = null;
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_map:
                 fragment = new MapFragment();
                 break;
@@ -99,21 +108,22 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 break;
 
             case R.id.nav_profil:
-                fragment = new ProfilFragment();
+                ProfilFragment profilFragment = new ProfilFragment();
+                profilFragment.setOnHeadlineSelectedListener(this);
+                fragment = profilFragment;
                 break;
         }
 
-        return  loadFragment(fragment, R.id.fragment_container);
+        return loadFragment(fragment, R.id.fragment_container);
     }
 
-    private void toast(String texte){
+    private void toast(String texte) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, texte, duration);
         toast.show();
 
     }
-
 
     @Override
     public void onUserConnected(String username) {
@@ -123,5 +133,50 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
     }
 
+    @Override
+    public boolean onProfilOptionSelected(String mclass) {
+
+        Fragment fragment = null;
+        switch (mclass) {
+            case "setting":
+                fragment = new SettingFragment();
+                break;
+            case "payment":
+                fragment = new PaymentFragment();
+                break;
+
+            case "logout":
+                fragment = new ConnectionFragment();
+                break;
+        }
+        return loadFragment(fragment, R.id.fragment_container);
+    }
+
+    @Override
+    public boolean onSettingOptionSelected(String nclass) {
+
+        Fragment fragment = null;
+        switch (nclass) {
+            case "back":
+                fragment = new ProfilFragment();
+                break;
+        }
+        return loadFragment(fragment, R.id.fragment_container);
+    }
+
+    @Override
+    public boolean onPaymentOptionSelected(String lclass) {
+
+        Fragment fragment = null;
+        switch (lclass) {
+            case "back":
+                fragment = new ProfilFragment();
+                break;
+        }
+        return loadFragment(fragment, R.id.fragment_container);
+    }
+
 
 }
+
+
