@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         //loadFragment(connectionFragment, R.id.startContainer);
         SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
         splashScreenFragment.setOnHeadlineSelectedListener(this);
-        loadFragment(new NewUserFragment(), R.id.fragment_container);
+        loadFragment(splashScreenFragment, R.id.fragment_container);
 
     }
 
