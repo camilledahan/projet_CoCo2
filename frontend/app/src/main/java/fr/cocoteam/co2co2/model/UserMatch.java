@@ -6,7 +6,6 @@ import io.realm.annotations.PrimaryKey;
 
 public class UserMatch extends RealmObject {
 
-    @PrimaryKey
     private int userId;
     private String mail;
     private String name;

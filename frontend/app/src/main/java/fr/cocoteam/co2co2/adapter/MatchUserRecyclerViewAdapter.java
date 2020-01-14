@@ -1,6 +1,7 @@
 package fr.cocoteam.co2co2.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.user_match_item, parent, false);
+
         return new UserMatchViewHolder(view);
     }
 
@@ -50,13 +52,14 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
 
         public UserMatchViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             this.matchName = itemView.findViewById(R.id.match_name);
             this.matchTrip = itemView.findViewById(R.id.match_trip);
         }
 
         @Override
         public void onClick(View view) {
-
+            Log.i("Match clicked",view.toString());
         }
     }
 }

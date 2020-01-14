@@ -39,11 +39,12 @@ public class FindCarViewModel extends ViewModelInterface {
 
     public void generateRandomUser(int number){
         List<UserMatch> users = new ArrayList<>();
-        for(int i =0;i<=number;i++){
+        for(int i =0;i<number;i++){
 
             UserMatch tmpUser = new UserMatch("paulmea69@gmail.com","Paul",new Trip("Lyon","Paris","paulmea69@gmail.com","8:30"),18,true,063115547,"Salut c'est Paul");
             users.add(tmpUser);
         }
+        saveUserToLocalDb(users);
         currentMatch.postValue(users);
     }
 
@@ -54,6 +55,16 @@ public class FindCarViewModel extends ViewModelInterface {
             users.add(tmpUser);
         }
         return users;
+    }
+
+    private void saveUserToLocalDb(List<UserMatch> matches) {
+        realmInstance.beginTransaction();
+        if (!Realm.getDefaultInstance().isEmpty()){
+            Realm.getDefaultInstance().deleteAll();
+        }
+        Realm.getDefaultInstance().copyToRealm(matches);
+        realmInstance.commitTransaction();
+        Log.i("DB","Saved matches to db");
     }
 
 
