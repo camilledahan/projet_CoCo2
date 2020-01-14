@@ -25,14 +25,16 @@ import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
+import fr.cocoteam.co2co2.view.NewUserFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
+import fr.cocoteam.co2co2.view.SplashScreenFragment;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener {
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener {
 
     public BottomNavigationView navigation;
 
@@ -42,20 +44,20 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         super.onCreate(savedInstanceState);
 
         Realm.init(this);
-
         setRealm();
-
 
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
-        //updateMenuVisibility(false);
+        updateMenuVisibility(false);
 
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
         //loadFragment(connectionFragment, R.id.startContainer);
-        loadFragment(new FindCarFragment(), R.id.fragment_container);
+        SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
+        splashScreenFragment.setOnHeadlineSelectedListener(this);
+        loadFragment(new NewUserFragment(), R.id.fragment_container);
 
     }
 
@@ -141,11 +143,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
     @Override
     public void onUserConnected(String username) {
-        updateMenuVisibility(true);
-        loadFragment(new MapFragment(), R.id.fragment_container);
+        loadFragment(new SplashScreenFragment(), R.id.fragment_container);
         toast("Welcome " + username);
-
     }
 
 
+    @Override
+    public void onDataLoaded() {
+        updateMenuVisibility(true);
+        loadFragment(new MapFragment(), R.id.fragment_container);
+    }
 }

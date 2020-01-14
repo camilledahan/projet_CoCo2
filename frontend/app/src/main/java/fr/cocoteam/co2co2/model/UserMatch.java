@@ -8,6 +8,7 @@ public class UserMatch extends RealmObject {
 
     @PrimaryKey
     private int userId;
+    private String mail;
     private String name;
     private Trip trip;
     private int age;
@@ -17,6 +18,16 @@ public class UserMatch extends RealmObject {
 
     public UserMatch(){
 
+    }
+
+    public UserMatch(String mail, String name, Trip trip, int age, boolean isDriver, int telephone, String description) {
+        this.mail = mail;
+        this.name = name;
+        this.trip = trip;
+        this.age = age;
+        this.isDriver = isDriver;
+        this.telephone = telephone;
+        this.description = description;
     }
 
     public UserMatch(int userId, String name, Trip trip, int age, boolean isDriver, int telephone, String description) {
@@ -83,5 +94,13 @@ public class UserMatch extends RealmObject {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

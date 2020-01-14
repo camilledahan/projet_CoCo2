@@ -60,7 +60,7 @@ public class NewUserFragment extends Fragment {
 
         validerButton.setOnClickListener(view1 -> {
            if(checkEnteredData()){
-               addNewUser(emailField.getText().toString(),nameField.getText().toString(),surnameField.getText().toString(),originField.getText().toString(),destinationField.getText().toString(),10,phoneField.getText().toString(),
+               addNewUser(emailField.getText().toString(),nameField.getText().toString(),surnameField.getText().toString(),originField.getText().toString(),destinationField.getText().toString(),ageField.getText().toString(),phoneField.getText().toString(),
                        descriptionField.getText().toString(),isDriverBtn.isActivated(),heureDepart.getText().toString());
            }
 
@@ -68,7 +68,7 @@ public class NewUserFragment extends Fragment {
         return view;
     }
 
-    public void addNewUser(String email, String name,String surname, String depart, String arrivee, int age,String telephone,String Description, boolean isDriver,String heure_depart){
+    public void addNewUser(String email, String name,String surname, String depart, String arrivee, String age,String telephone,String Description, boolean isDriver,String heure_depart){
 
         User user = new User(name,surname,null,age,isDriver,telephone,Description,null,email);
         Trip trip = new Trip(depart,arrivee,user.getEmail(),heure_depart);

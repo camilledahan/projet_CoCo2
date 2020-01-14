@@ -32,7 +32,9 @@ public class FindCarViewModel extends ViewModel {
     public List<UserMatch> generateRandomUser(int number){
         List<UserMatch> users = new ArrayList<>();
         for(int i =0;i<=number;i++){
-            UserMatch tmpUser = new UserMatch();
+
+            UserMatch tmpUser = new UserMatch("paulmea69@gmail.com","Paul",new Trip("Lyon","Paris","paulmea69@gmail.com","8:30"),18,true,063115547,"Salut c'est Paul");
+
             users.add(tmpUser);
         }
         return users;

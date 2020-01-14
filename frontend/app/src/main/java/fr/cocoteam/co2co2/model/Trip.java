@@ -34,4 +34,12 @@ public class Trip extends RealmObject {
     public void setarrival(String arrival) {
         this.arrival = arrival;
     }
+
+    public String getDepart() {
+        return this.departure;
+    }
+
+    public String getArrivee() {
+        return this.arrival;
+    }
 }

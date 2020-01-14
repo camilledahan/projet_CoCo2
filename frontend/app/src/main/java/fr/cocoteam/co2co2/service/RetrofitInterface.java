@@ -6,10 +6,13 @@ import fr.cocoteam.co2co2.model.User;
 import  retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+
 import retrofit2.http.POST;
+
 import retrofit2.http.Path;
 
 public interface RetrofitInterface {
+
 
     @GET("/user")
     Call<User> executeUser();
@@ -18,6 +21,9 @@ public interface RetrofitInterface {
     Call<User> sendUser(@Body User user);
     @POST("trip/addtrip")
     Call<Trip> sendTrip(@Body Trip trip);
+
+    @GET("/user/{email}/")
+    Call<User> getUser(@Path("email") String mail);
 
 
 }

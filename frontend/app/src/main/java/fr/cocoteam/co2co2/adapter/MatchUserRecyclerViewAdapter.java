@@ -41,7 +41,7 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
          */
 
         holder.matchName.setText(matchUsers.get(position).getName());
-        holder.matchTrip.setText(matchUsers.get(position).getTrip().toString());
+        holder.matchTrip.setText(matchUsers.get(position).getTrip().getDepart() + " à " + matchUsers.get(position).getTrip().getArrivee());
     }
 
     @Override

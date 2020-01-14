@@ -13,6 +13,7 @@ import java.util.List;
 import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.service.RetrofitInterface;
+import fr.cocoteam.co2co2.utils.ViewModelInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,11 +82,10 @@ public void postUser(User user, Trip trip){
 }
 
     public void   getInfo(){
-        instantiateRetrofit();
 
-
-        Call<User> call = retrofitInterface.executeUser();
-        call.enqueue(new Callback<User>() {
+        /*Call<String> call = retrofitInterface.executeUser(1);
+        call.enqueue(new Callback<String>() {
+>>>>>>> origin/develop
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.code() == 200) {
@@ -101,7 +101,8 @@ public void postUser(User user, Trip trip){
 
                 Log.d(TAG, "onFailure: "+t.getMessage());
             }
-        });
+
+        });*/
 
     }
 
