@@ -57,10 +57,10 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
 
-        Button button1 = view.findViewById(R.id.button_setting);
+        android.widget.Button button1 = view.findViewById(R.id.button_setting);
 
-        Button button2 = view.findViewById(R.id.button_payment);
-        Button button3 = view.findViewById(R.id.button_logout);
+        android.widget.Button button2 = view.findViewById(R.id.button_payment);
+        android.widget.Button button3 = view.findViewById(R.id.button_logout);
 
 
 

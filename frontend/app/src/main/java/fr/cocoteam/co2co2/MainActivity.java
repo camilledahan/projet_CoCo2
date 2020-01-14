@@ -32,12 +32,14 @@ import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
 import fr.cocoteam.co2co2.view.PaymentFragment;
+import fr.cocoteam.co2co2.view.PaymentaddcardFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SettingFragment;
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, ProfilFragment.OnHeadlineSelectedListener {
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener,
+        ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener ,PaymentFragment.OnHeadlineSelectedListener{
 
     public BottomNavigationView navigation;
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
         //loadFragment(connectionFragment, R.id.startContainer);
-        loadFragment(new ProfilFragment(), R.id.fragment_container);
+        loadFragment(new MapFragment(), R.id.fragment_container);
     }
 
     public void updateMenuVisibility(boolean visibility) {
@@ -172,6 +174,26 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             case "back":
                 fragment = new ProfilFragment();
                 break;
+            case "addcardpage":
+                fragment = new PaymentaddcardFragment();
+                break;
+
+        }
+        return loadFragment(fragment, R.id.fragment_container);
+    }
+
+    @Override
+    public boolean onPaymentaddcardOptionSelected(String gclass) {
+
+        Fragment fragment = null;
+        switch (gclass) {
+            case "back":
+                fragment = new ProfilFragment();
+                break;
+            case "valideraddcard":
+                fragment = new ProfilFragment();
+                break;
+
         }
         return loadFragment(fragment, R.id.fragment_container);
     }

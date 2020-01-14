@@ -131,7 +131,7 @@
             android:background="@drawable/buttonstyleithgradient"
             android:layout_gravity="center_horizontal"
             android:paddingLeft="15dp"
-            android:text="     SETTING"
+            android:text="  SETTING"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="18sp"/>

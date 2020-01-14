@@ -36,7 +36,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
 
-        Button button1 = view.findViewById(R.id.imageButtonback2);
+        android.widget.Button button1 = view.findViewById(R.id.imageButtonback2);
 
 
         //set listeners
