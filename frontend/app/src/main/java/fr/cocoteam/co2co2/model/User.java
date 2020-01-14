@@ -1,10 +1,5 @@
 package fr.cocoteam.co2co2.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import fr.cocoteam.co2co2.model.UserMatch;
-
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -16,19 +11,21 @@ public class User extends RealmObject {
     private String email;
     private String name;
     private String surname;
-    private String phone;
-    private String age;
-    private int is_driver;
-    private String description;
-
     private Trip trip;
+    private String age;
+    private boolean isDriver;
+    private String telephone;
+    private String phone;
+    private String description;
     private RealmList<UserMatch> userMatches;
+
 
 
 
     public User() {
 
     }
+
 
     /*public User(int ID_USER, String login, String description) {
         this.ID_USER = ID_USER;
@@ -39,16 +36,37 @@ public class User extends RealmObject {
 
 
 
-    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description) {
+    public User(String _id, String email, String name, String surname, String phone, String age, boolean is_driver, String description) {
         this._id = _id;
         this.email = email;
+
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.age = age;
-        this.is_driver = is_driver;
+        this.isDriver = is_driver;
         this.description = description;
+
+        this.userMatches = userMatches;
+        this.email =email;
     }
 
+    public User(String name, String surname, Trip trip, String age, boolean isDriver, String telephone, String description, RealmList<UserMatch> userMatches, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.trip = trip;
+        this.age = age;
+        this.isDriver = isDriver;
+        this.telephone = telephone;
+        this.description = description;
+        this.userMatches = userMatches;
+        this.email =email;
+
+    }
+
+
+    public String getEmail() {
+        return this.email;
+    }
 }
 

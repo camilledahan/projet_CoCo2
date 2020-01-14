@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.service.RetrofitInterface;
 import fr.cocoteam.co2co2.utils.ViewModelInterface;
@@ -26,26 +27,67 @@ public class UserViewModel extends ViewModel {
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://userprojetmajeur.azurewebsites.net/";
 
-    private MutableLiveData<String> user;
+    private MutableLiveData<User> user;
 
-    public LiveData<String> getUsers() {
+    public LiveData<User> getUsers() {
         if (user == null) {
-            user = new MutableLiveData<String>();
+            user = new MutableLiveData<User>();
             getInfo();
         }
         return user;
     }
 
+public void postUser(User user, Trip trip){
+    instantiateRetrofit();
 
 
-    public String getInfo(){
-        instantiateRetrofit();
+    Call<User> call = retrofitInterface.sendUser(user);
+    call.enqueue(new Callback<User>() {
+        @Override
+        public void onResponse(Call<User> call, Response<User> response) {
+            if (response.code() == 200) {
 
-        final String[] info = new String[1];
+                Log.d(TAG, "onResponse: "+response.body());
+
+
+            }
+        }
+
+        @Override
+        public void onFailure(Call<User> call, Throwable t) {
+
+            Log.d(TAG, "onFailure: "+t.getMessage());
+        }
+    });
+
+    Call<Trip> callTrip = retrofitInterface.sendTrip(trip);
+    callTrip.enqueue(new Callback<Trip>() {
+        @Override
+        public void onResponse(Call<Trip> callTrip, Response<Trip> response) {
+            if (response.code() == 200) {
+
+                Log.d(TAG, "onResponse: "+response.body());
+
+
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Trip> callTrip, Throwable t) {
+
+            Log.d(TAG, "onFailure: "+t.getMessage());
+        }
+    });
+
+}
+
+    public void   getInfo(){
+
         /*Call<String> call = retrofitInterface.executeUser(1);
         call.enqueue(new Callback<String>() {
+>>>>>>> origin/develop
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if (response.code() == 200) {
 
                     Log.d(TAG, "onResponse: "+response.body());
@@ -55,12 +97,13 @@ public class UserViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
 
                 Log.d(TAG, "onFailure: "+t.getMessage());
             }
+
         });*/
-        return info[0];
+
     }
 
 

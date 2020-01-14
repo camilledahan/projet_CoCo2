@@ -71,7 +71,6 @@ private LatLng stringToLatLng(String coordString){
                         @Override
                         public boolean onMyLocationButtonClick() {
                             Toast.makeText(getContext(), "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-
                             return true;
                         }
                     });
