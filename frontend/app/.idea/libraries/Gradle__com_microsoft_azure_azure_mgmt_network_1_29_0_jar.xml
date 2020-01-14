@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-network:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-network/1.29.0/3ef349ac92e5abe82e9324cfe3fed7086e84760/azure-mgmt-network-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-network/1.29.0/49e0c2e266ec696bbcbd96efb15a8d25fa9807db/azure-mgmt-network-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-network/1.29.0/2df03d2a1a339000f70eb201e11c93f348053c7f/azure-mgmt-network-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

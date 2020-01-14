@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-servicebus:3.1.4@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-servicebus/3.1.4/5582dc22efc142460d0410ec5f4b582c028f6ad9/azure-servicebus-3.1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-servicebus/3.1.4/92dbe0ce546747c3f624cb4e4b723be6a79b2e0/azure-servicebus-3.1.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-servicebus/3.1.4/fc65323af1ac226d661a09100942da1c991b309a/azure-servicebus-3.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

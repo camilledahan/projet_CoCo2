@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-compute:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-compute/1.29.0/ef811cf825ff051a5a1ffac519400e0ea3669856/azure-mgmt-compute-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-compute/1.29.0/3d42a122a0b640cc268cf82ff119f5b9702e1782/azure-mgmt-compute-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-compute/1.29.0/24b2f1109c2d25a152a2d010492ddf50090bda2/azure-mgmt-compute-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

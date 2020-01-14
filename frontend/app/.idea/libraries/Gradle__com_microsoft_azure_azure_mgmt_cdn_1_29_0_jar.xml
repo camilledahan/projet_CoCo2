@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-cdn:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-cdn/1.29.0/7fa27f0c0e05dd56420c3d71a97eba69f7b8ade/azure-mgmt-cdn-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-cdn/1.29.0/d07566dfa47489bae9f9bd34abfd058f25aa6201/azure-mgmt-cdn-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-cdn/1.29.0/2fc63cc833e631424d994d621080322b45b7ec94/azure-mgmt-cdn-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

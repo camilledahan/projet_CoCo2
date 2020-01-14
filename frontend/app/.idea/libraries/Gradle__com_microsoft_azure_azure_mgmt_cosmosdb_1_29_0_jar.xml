@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-cosmosdb:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-cosmosdb/1.29.0/761e336c32476aaea5efc7087ecc3a828cb8a0d8/azure-mgmt-cosmosdb-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-cosmosdb/1.29.0/73e8b210a0939c80f8a004ddd06e24516dc0010c/azure-mgmt-cosmosdb-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-cosmosdb/1.29.0/e6b975135516f7de29e514ca9b859157344ea594/azure-mgmt-cosmosdb-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

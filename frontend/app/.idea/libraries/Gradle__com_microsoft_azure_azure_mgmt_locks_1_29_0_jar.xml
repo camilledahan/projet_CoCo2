@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-locks:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-locks/1.29.0/758f124602f7557a1eedff0987c8f261a3b8ff72/azure-mgmt-locks-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-locks/1.29.0/9e5e52b343946d66f0827d0d4d22e977f07dd806/azure-mgmt-locks-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-locks/1.29.0/8affda8e1de0b66d031f80140d91fdf89dc72649/azure-mgmt-locks-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

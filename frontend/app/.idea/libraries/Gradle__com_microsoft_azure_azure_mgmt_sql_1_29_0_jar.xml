@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-sql:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-sql/1.29.0/aa52ff4e38ee14be6378730474c28a78dc51fa23/azure-mgmt-sql-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-sql/1.29.0/421ef6b0f6733847a8d6365209f3547d5a86f17b/azure-mgmt-sql-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-sql/1.29.0/c728c939fcf8a61b730640b60734f6beafe08b54/azure-mgmt-sql-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

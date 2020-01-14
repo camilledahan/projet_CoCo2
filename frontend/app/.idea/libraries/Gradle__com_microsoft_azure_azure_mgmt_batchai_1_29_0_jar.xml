@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-batchai:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-batchai/1.29.0/c30455d697a6b0ccda245324778235d36ae3d228/azure-mgmt-batchai-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-batchai/1.29.0/a1ff90de234240a3e885a937bcc63b268c294e50/azure-mgmt-batchai-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-batchai/1.29.0/8fa6bf1f0e50aa6879ce280a92a3bd032c83b506/azure-mgmt-batchai-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

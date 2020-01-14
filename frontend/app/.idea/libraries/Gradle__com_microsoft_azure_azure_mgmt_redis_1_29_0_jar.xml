@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-redis:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-redis/1.29.0/64a2203f867136c391309aa69c21255131768dc1/azure-mgmt-redis-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-redis/1.29.0/7b10a60a60c02e2f883de79ec6bf18b0a2972a34/azure-mgmt-redis-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-redis/1.29.0/c90bdbc0e8eafb122279119be309917b2c1724a1/azure-mgmt-redis-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

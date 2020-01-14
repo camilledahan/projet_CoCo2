@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:qpid-proton-j-extensions:1.2.2@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/qpid-proton-j-extensions/1.2.2/e341b1a49cda6c62d164be52f10c5f17fb49a05f/qpid-proton-j-extensions-1.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/qpid-proton-j-extensions/1.2.2/51b3a1542ac3686e8e41268821d266eb2fb7d106/qpid-proton-j-extensions-1.2.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/qpid-proton-j-extensions/1.2.2/2010c804f7e2aed0528132b57c7de820267f7077/qpid-proton-j-extensions-1.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

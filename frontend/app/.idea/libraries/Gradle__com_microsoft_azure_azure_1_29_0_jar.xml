@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure/1.29.0/7aabf136dd11055979feb83311dce545dd8bf718/azure-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure/1.29.0/55e7444334a81d90aa777261465902b3832091a5/azure-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure/1.29.0/ac64b0561831c7cdc0fd9ce2066660aaf6d4c1c9/azure-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

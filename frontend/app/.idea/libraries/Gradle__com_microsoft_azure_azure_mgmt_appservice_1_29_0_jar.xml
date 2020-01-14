@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-appservice:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-appservice/1.29.0/fc9d3d7a8d0ea5618933b75494eac9ebc9c1ec7e/azure-mgmt-appservice-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-appservice/1.29.0/a4edfbc6283a64bfd19684bddacc52d08f402009/azure-mgmt-appservice-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-appservice/1.29.0/20723e07879ca79545e8071eaa120a4f591dbe86/azure-mgmt-appservice-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-annotations:1.7.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-annotations/1.7.0/a3ce6c40e90b0082254815ebda54f3e071f156b0/azure-annotations-1.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-annotations/1.7.0/4529cd950c2455bb466075001cb67a8b2e15da26/azure-annotations-1.7.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-annotations/1.7.0/87378687ddc003221c52d89f1586fb84e9a9b87e/azure-annotations-1.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

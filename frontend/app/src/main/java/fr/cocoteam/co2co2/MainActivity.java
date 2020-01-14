@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import fr.cocoteam.co2co2.util.MqttHelper;
+import fr.cocoteam.co2co2.service.ServiceBusClient;
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
+
             String[] permissions = {
                     android.Manifest.permission.INTERNET,
                     android.Manifest.permission.ACCESS_NETWORK_STATE,
@@ -65,7 +67,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     android.Manifest.permission.WAKE_LOCK
             };
 
-            ActivityCompat.requestPermissions(this, permissions,0);
+        ServiceBusClient serviceBusClient = new ServiceBusClient();
+        try {
+            serviceBusClient.run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        updateMenuVisibility(false);
+
+
+        ActivityCompat.requestPermissions(this, permissions,0);
 
 
 

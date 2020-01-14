@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-search:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-search/1.29.0/57302085deb7db249178151b85e791ff8dfa8065/azure-mgmt-search-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-search/1.29.0/aab2caf4cdd3c2676693802eeba078cfce064f2d/azure-mgmt-search-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-search/1.29.0/cd68f3f842a25a689c6144944d129e6e359c2b92/azure-mgmt-search-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-client-authentication:1.6.7@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-client-authentication/1.6.7/a7a6bc514099a7b59b8eb2901bbb65f240c343f0/azure-client-authentication-1.6.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-client-authentication/1.6.7/713393314c130d1bfbb4d31656d4a8357e3ba6e8/azure-client-authentication-1.6.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-client-authentication/1.6.7/549aae31991a653e71e3cc36da3db85414e0d37a/azure-client-authentication-1.6.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

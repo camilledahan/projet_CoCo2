@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-eventhub:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-eventhub/1.29.0/3cefe2e0ada234b14e84c58a5909bd0b99020cda/azure-mgmt-eventhub-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-eventhub/1.29.0/29d8812fa0199e402ab472b9bfb8ccaff76d96d9/azure-mgmt-eventhub-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-eventhub/1.29.0/422e0b7805061ad0e7ed87164d0cdda5232f7c5/azure-mgmt-eventhub-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

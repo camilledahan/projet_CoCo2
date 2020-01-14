@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-msi:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-msi/1.29.0/95ba12abbabf982a373d93549ae9ccfa59a99ae3/azure-mgmt-msi-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-msi/1.29.0/cf70a117feacc4a9d7b27e6bb01f7d52b141116b/azure-mgmt-msi-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-msi/1.29.0/97988418ca1f9d284ede3ddb8a5af626db7ff125/azure-mgmt-msi-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

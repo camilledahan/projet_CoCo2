@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-graph-rbac:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-graph-rbac/1.29.0/e3b8e5e7846247463d40e36be02102122b01e500/azure-mgmt-graph-rbac-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-graph-rbac/1.29.0/f77a848101def4667b3dfecf03b9d2af3161beb9/azure-mgmt-graph-rbac-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-graph-rbac/1.29.0/b93cda2d1c5c48963c50da18393f5416f3323371/azure-mgmt-graph-rbac-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

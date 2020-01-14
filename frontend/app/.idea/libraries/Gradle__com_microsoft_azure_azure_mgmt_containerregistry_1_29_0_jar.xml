@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-containerregistry:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-containerregistry/1.29.0/7c46a9ef8f9de177337ef6bda7ff2d04bc311f2d/azure-mgmt-containerregistry-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-containerregistry/1.29.0/310aad6006b94797cd0b43e2da081d0511f7bd72/azure-mgmt-containerregistry-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-containerregistry/1.29.0/8535b7091aca7f0f42d6715378b27350c4506b9f/azure-mgmt-containerregistry-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

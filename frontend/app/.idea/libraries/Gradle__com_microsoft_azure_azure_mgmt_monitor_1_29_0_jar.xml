@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-monitor:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-monitor/1.29.0/26c2e00ca15aa4ca4b029201b3c72a773175191f/azure-mgmt-monitor-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-monitor/1.29.0/28b8068c47dd096d4eafa4a29d3bc53ccb6e16e8/azure-mgmt-monitor-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-monitor/1.29.0/fe69d238931952371b90f5fb4e35be5a4c2915de/azure-mgmt-monitor-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-trafficmanager:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-trafficmanager/1.29.0/c30c5142ac23a0e46202f423cab3c209d9c23cd6/azure-mgmt-trafficmanager-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-trafficmanager/1.29.0/23226c9352eb9c121b5ff9d08ad7cbd83e359644/azure-mgmt-trafficmanager-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-trafficmanager/1.29.0/f1ce7659b8c6e391b72ad7441700a0a8ffc76264/azure-mgmt-trafficmanager-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

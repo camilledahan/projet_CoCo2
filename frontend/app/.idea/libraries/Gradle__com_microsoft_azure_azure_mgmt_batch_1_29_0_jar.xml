@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-batch:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-batch/1.29.0/f2d6336997cd86644975f90d4437cf7142e2111a/azure-mgmt-batch-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-batch/1.29.0/5494ef961ed59016fb11ecd6ee13ca8f8f6ff155/azure-mgmt-batch-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-batch/1.29.0/952ac4d06bc07710780aca8115a93186c65ac7a5/azure-mgmt-batch-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-dns:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-dns/1.29.0/809fa80e0e924d7b5758515ead539dfca9ce4d85/azure-mgmt-dns-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-dns/1.29.0/57487f48537908902aba09500d259b935ec1aa82/azure-mgmt-dns-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-dns/1.29.0/8ced5f53735d898e40c26c1ff80d9797ee5debbc/azure-mgmt-dns-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

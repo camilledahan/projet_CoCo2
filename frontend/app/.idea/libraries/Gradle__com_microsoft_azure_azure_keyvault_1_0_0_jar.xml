@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-keyvault:1.0.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-keyvault/1.0.0/4dda51b3e10d5f5c1c19f7bf5f954af6e69a5177/azure-keyvault-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-keyvault/1.0.0/618593cc196c35a38d18fcfec765e7321150f651/azure-keyvault-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-keyvault/1.0.0/2f579742c7d1e51adf6dbbc84f2a3b9fdc45efed/azure-keyvault-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

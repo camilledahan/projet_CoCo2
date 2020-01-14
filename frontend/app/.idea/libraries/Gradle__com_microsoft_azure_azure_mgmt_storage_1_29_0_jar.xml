@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-mgmt-storage:1.29.0@jar">
+    <CLASSES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-storage/1.29.0/a233eea480c4c126fb9458bf1d7ca0e0ac411c17/azure-mgmt-storage-1.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-storage/1.29.0/482b5c6180fa0854dbe3dadaf0b17980d1c0815b/azure-mgmt-storage-1.29.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///var/tmp/paul.meallet/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-mgmt-storage/1.29.0/6213f806a652a46c6ca3f0680b8332b44cce2e59/azure-mgmt-storage-1.29.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
