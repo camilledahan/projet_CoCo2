@@ -15,6 +15,7 @@ public class UserMatch extends RealmObject {
     private int telephone;
     private String description;
     private Boolean expanded = false;
+    private Boolean added = false;
 
     public UserMatch(){
 
@@ -110,5 +111,13 @@ public class UserMatch extends RealmObject {
 
     public void setExpanded(Boolean expanded) {
         this.expanded = expanded;
+    }
+
+    public Boolean getAdded() {
+        return added;
+    }
+
+    public void setAdded(Boolean added) {
+        this.added = added;
     }
 }

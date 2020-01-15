@@ -14,9 +14,10 @@
             android:id="@+id/noMatchFoundTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:text="No match found, come back later."
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="50dp"
+            android:text="No match found, come back later or pull the page down to refresh."
+            android:textAlignment="center"
             android:visibility="invisible" />
 
         <androidx.recyclerview.widget.RecyclerView

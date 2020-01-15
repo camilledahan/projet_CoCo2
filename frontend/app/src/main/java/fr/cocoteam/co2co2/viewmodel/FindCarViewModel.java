@@ -34,38 +34,30 @@ public class FindCarViewModel extends ViewModelInterface {
     public LiveData<List<UserMatch>> getCurrentUserMatch() {
         if (currentMatch == null) {
             currentMatch = new MutableLiveData<List<UserMatch>>();
+            //allow to notify fragment even when the list is null
+            currentMatch.postValue(new ArrayList<>());
         }
         return currentMatch;
     }
 
-    public void generateRandomUser(int number){
-        List<UserMatch> users = new ArrayList<>();
-        for(int i =0;i<number;i++){
-
-            UserMatch tmpUser = new UserMatch("paulmea69@gmail.com","Paul",new Trip("Lyon","Paris","paulmea69@gmail.com","8:30"),18,true,063115547,"Salut c'est Paul");
-            users.add(tmpUser);
-        }
-        saveUserToLocalDb(users);
-        currentMatch.postValue(users);
+    public void updateMatchStatus(UserMatch match){
+        realmInstance.beginTransaction();
+        realmInstance.copyToRealmOrUpdate(match);
+        realmInstance.commitTransaction();
     }
 
-    public List<UserMatch> getRandomUser(int number){
-        List<UserMatch> users = new ArrayList<>();
-        for(int i =0;i<=number;i++){
-            UserMatch tmpUser = new UserMatch("paulmea69@gmail.com","Paul",new Trip("Lyon","Paris","paulmea69@gmail.com","8:30"),18,true,063115547,"Salut c'est Paul");
-            users.add(tmpUser);
-        }
-        return users;
+
+    public List<UserMatch> getFriends(){
+        realmInstance.beginTransaction();
+        realmInstance.where(UserMatch.class).equalTo("added",true);
+        realmInstance.commitTransaction();
+
+        return
     }
 
     private void saveUserToLocalDb(List<UserMatch> matches) {
         realmInstance.beginTransaction();
-        RealmResults<UserMatch> results = realmInstance.where(UserMatch.class).findAll();
-
-        if ( results != null){
-            //realmInstance.deleteAll(results);
-        }
-        Realm.getDefaultInstance().copyToRealm(matches);
+        Realm.getDefaultInstance().copyToRealmOrUpdate(matches);
         realmInstance.commitTransaction();
         Log.i("DB","Saved matches to db");
     }
@@ -76,15 +68,8 @@ public class FindCarViewModel extends ViewModelInterface {
         call.enqueue(new Callback<List<UserMatch>>() {
             @Override
             public void onResponse(Call<List<UserMatch>> call, Response<List<UserMatch>> response) {
-                /*realmInstance.beginTransaction();
-                if (Realm){
-                    Realm.getDefaultInstance().deleteAll();
-                }
-                Realm.getDefaultInstance().copyToRealm(response.body());
-                realmInstance.commitTransaction();*/
+                saveUserToLocalDb(response.body());
                 currentMatch.postValue(response.body());
-
-
             }
 
             @Override

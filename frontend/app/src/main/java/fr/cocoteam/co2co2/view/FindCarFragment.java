@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.lifecycle.Observer;
@@ -53,7 +54,7 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
         //BIND
         recyclerView = view.findViewById(R.id.matchRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        matchUserRecyclerViewAdapter = new MatchUserRecyclerViewAdapter(userMatches);
+        matchUserRecyclerViewAdapter = new MatchUserRecyclerViewAdapter(userMatches, findCarViewModel);
         recyclerView.setAdapter(matchUserRecyclerViewAdapter);
 
         noMatchFoundTextView = view.findViewById(R.id.noMatchFoundTextView);
@@ -64,20 +65,24 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         //observe User mutableLiveData
         Observer<List<UserMatch>> currentUserMatchObserver = matches -> {
-            userMatches.clear();
-            userMatches.addAll(matches);
+            if (matches!=null){
+                userMatches.clear();
+                userMatches.addAll(matches);
+                matchUserRecyclerViewAdapter.notifyDataSetChanged();
+                updateUI(matches);
+            }
+
             if (swipeRefreshLayout.isRefreshing()) {
                 swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getContext(),"Matches refreshed.",Toast.LENGTH_LONG).show();
             }
-            matchUserRecyclerViewAdapter.notifyDataSetChanged();
-            updateUI(matches);
 
         };
 
         findCarViewModel.getCurrentUserMatch().observe(this,currentUserMatchObserver);
 
         //Get matches
-        findCarViewModel.generateRandomUser(5);
+        findCarViewModel.getAllMatches();
 
         return view;
     }
