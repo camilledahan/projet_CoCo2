@@ -1,26 +1,72 @@
 package fr.cocoteam.co2co2.model;
 
-public class User {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+public class User extends RealmObject {
+
+    @PrimaryKey
+    private String _id;
+    private String email;
     private String name;
-    private String depart;
-    private String arrivee;
+    private String surname;
+    private Trip trip;
+    private String age;
+    private boolean isDriver;
+    private String telephone;
+    private String phone;
+    private String description;
+    private RealmList<UserMatch> userMatches;
 
-    public User(String name, String depart, String arrivee) {
+
+
+
+    public User() {
+
+    }
+
+
+    /*public User(int ID_USER, String login, String description) {
+        this.ID_USER = ID_USER;
+        this.login = login;
+        this.description = description;
+    }*/
+
+
+
+
+    public User(String _id, String email, String name, String surname, String phone, String age, boolean is_driver, String description) {
+        this._id = _id;
+        this.email = email;
+
         this.name = name;
-        this.depart = depart;
-        this.arrivee = arrivee;
+        this.surname = surname;
+        this.phone = phone;
+        this.age = age;
+        this.isDriver = is_driver;
+        this.description = description;
+
+        this.userMatches = userMatches;
+        this.email =email;
     }
 
-    public String getTrajet(){
-        return this.depart + " à " + this.arrivee;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public User(String name, String surname, Trip trip, String age, boolean isDriver, String telephone, String description, RealmList<UserMatch> userMatches, String email) {
         this.name = name;
+        this.surname = surname;
+        this.trip = trip;
+        this.age = age;
+        this.isDriver = isDriver;
+        this.telephone = telephone;
+        this.description = description;
+        this.userMatches = userMatches;
+        this.email =email;
+
+    }
+
+
+    public String getEmail() {
+        return this.email;
     }
 }
+

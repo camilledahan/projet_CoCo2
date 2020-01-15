@@ -1,4 +1,4 @@
-package fr.cocoteam.co2co2.DirectionModel;
+package fr.cocoteam.co2co2.model.directionModel;
 
  public class Distance {
 

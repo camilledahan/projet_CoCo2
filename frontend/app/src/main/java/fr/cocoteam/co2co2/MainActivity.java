@@ -2,6 +2,7 @@ package fr.cocoteam.co2co2;
 
 import android.app.Activity;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,18 +36,28 @@ import fr.cocoteam.co2co2.view.PaymentFragment;
 import fr.cocoteam.co2co2.view.PaymentaddcardFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SettingFragment;
+import fr.cocoteam.co2co2.view.SplashScreenFragment;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
+
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener,
         ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener ,PaymentFragment.OnHeadlineSelectedListener,
         PaymentaddcardFragment.OnHeadlineSelectedListener{
+
+
 
     public BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Realm.init(this);
+        setRealm();
+
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
@@ -56,7 +67,21 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
         //loadFragment(connectionFragment, R.id.startContainer);
-        loadFragment(new MapFragment(), R.id.fragment_container);
+
+        SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
+        splashScreenFragment.setOnHeadlineSelectedListener(this);
+        loadFragment(splashScreenFragment, R.id.fragment_container);
+
+    }
+
+    private void setRealm() {
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .name(getResources().getString(R.string.app_name)+".realm")
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(configuration);
+
     }
 
     public void updateMenuVisibility(boolean visibility) {
@@ -78,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
     private boolean loadFragment(Fragment fragment, int container) {
         if (fragment != null) {
+
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(container, fragment)
@@ -130,10 +156,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
     @Override
     public void onUserConnected(String username) {
-        updateMenuVisibility(true);
-        loadFragment(new MapFragment(), R.id.fragment_container);
+        loadFragment(new SplashScreenFragment(), R.id.fragment_container);
         toast("Welcome " + username);
-
     }
 
     @Override
@@ -207,6 +231,11 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     }
 
 
+    @Override
+    public void onDataLoaded() {
+        updateMenuVisibility(true);
+        loadFragment(new MapFragment(), R.id.fragment_container);
+    }
 }
 
 

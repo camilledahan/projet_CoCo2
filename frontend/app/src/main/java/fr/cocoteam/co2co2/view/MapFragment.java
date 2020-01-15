@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,10 +23,11 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.List;
 
-import fr.cocoteam.co2co2.DirectionModel.Route;
-import fr.cocoteam.co2co2.Directions.DirectionsWebService;
-import fr.cocoteam.co2co2.Listener.DirectionsServiceListener;
+import fr.cocoteam.co2co2.model.directionModel.Route;
+import fr.cocoteam.co2co2.service.DirectionsWebService;
+import fr.cocoteam.co2co2.listener.DirectionsServiceListener;
 import fr.cocoteam.co2co2.R;
+import fr.cocoteam.co2co2.viewmodel.UserViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,8 +53,8 @@ private LatLng stringToLatLng(String coordString){
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-            fetchDirections( origin, destination);
 
+        fetchDirections( origin, destination);
         final LatLng latLngOrigin = stringToLatLng(origin);
 
 
@@ -69,7 +71,6 @@ private LatLng stringToLatLng(String coordString){
                         @Override
                         public boolean onMyLocationButtonClick() {
                             Toast.makeText(getContext(), "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-
                             return true;
                         }
                     });

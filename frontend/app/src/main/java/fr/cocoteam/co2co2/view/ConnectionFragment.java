@@ -40,7 +40,7 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
     public TextView connectionTextView;
     public Context context;
 
-    OnHeadlineSelectedListener callback;
+    public OnHeadlineSelectedListener callback;
 
     public void setOnHeadlineSelectedListener(OnHeadlineSelectedListener callback) {
         this.callback = callback;
