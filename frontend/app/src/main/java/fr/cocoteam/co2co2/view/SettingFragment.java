@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,11 +19,11 @@ import fr.cocoteam.co2co2.R;
 
 public class SettingFragment extends Fragment implements View.OnClickListener {
 
-    public android.widget.Button Button;
+    private ImageButton backButton;
 
-    SettingFragment.OnHeadlineSelectedListener callback;
+    OnHeadlineSelectedListener callback;
 
-    public void setOnHeadlineSelectedListener(SettingFragment.OnHeadlineSelectedListener callback) {
+    public void setOnHeadlineSelectedListener(OnHeadlineSelectedListener callback) {
         this.callback = callback;
     }
 
@@ -35,12 +36,11 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
-
-        android.widget.Button button1 = view.findViewById(R.id.imageButtonback2);
+        backButton = view.findViewById(R.id.imageButtonback2);
 
 
         //set listeners
-        button1.setOnClickListener(this);
+        backButton.setOnClickListener(this);
 
 
 

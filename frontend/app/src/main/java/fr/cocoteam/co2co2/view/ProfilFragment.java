@@ -39,7 +39,7 @@ import static android.content.ContentValues.TAG;
 
 public class ProfilFragment extends Fragment implements View.OnClickListener{
 
-    public android.widget.Button Button;
+    private Button Button;
 
     OnHeadlineSelectedListener callback;
 
@@ -57,13 +57,10 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
 
-        android.widget.Button button1 = view.findViewById(R.id.button_setting);
+        Button button1 = view.findViewById(R.id.button_setting);
 
-        android.widget.Button button2 = view.findViewById(R.id.button_payment);
-        android.widget.Button button3 = view.findViewById(R.id.button_logout);
-
-
-
+        Button button2 = view.findViewById(R.id.button_payment);
+        Button button3 = view.findViewById(R.id.button_logout);
 
         //set listeners
         button1.setOnClickListener(this);

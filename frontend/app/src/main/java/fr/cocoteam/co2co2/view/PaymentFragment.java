@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +15,7 @@ import fr.cocoteam.co2co2.R;
 
 public class PaymentFragment extends Fragment implements View.OnClickListener {
 
-    public android.widget.Button Button;
+    private ImageButton backButton;
 
     PaymentFragment.OnHeadlineSelectedListener callback;
 
@@ -32,10 +33,10 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
 
 
-        android.widget.Button button1 = view.findViewById(R.id.imageButtonback1);
+        backButton = view.findViewById(R.id.imageButtonback1);
 
         //set listeners
-        button1.setOnClickListener(this);
+        backButton.setOnClickListener(this);
 
 
         return view;

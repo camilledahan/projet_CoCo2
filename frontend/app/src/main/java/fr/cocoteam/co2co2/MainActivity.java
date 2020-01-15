@@ -39,7 +39,8 @@ import fr.cocoteam.co2co2.view.SettingFragment;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener,
-        ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener ,PaymentFragment.OnHeadlineSelectedListener{
+        ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener ,PaymentFragment.OnHeadlineSelectedListener,
+        PaymentaddcardFragment.OnHeadlineSelectedListener{
 
     public BottomNavigationView navigation;
 
@@ -141,10 +142,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         Fragment fragment = null;
         switch (mclass) {
             case "setting":
-                fragment = new SettingFragment();
+                SettingFragment frg = new SettingFragment();
+                frg.setOnHeadlineSelectedListener(this);
+                fragment = frg;
                 break;
             case "payment":
-                fragment = new PaymentFragment();
+                PaymentFragment frg1 = new PaymentFragment();
+                frg1.setOnHeadlineSelectedListener(this);
+                fragment = frg1;
                 break;
 
             case "logout":
@@ -160,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         Fragment fragment = null;
         switch (nclass) {
             case "back":
-                fragment = new ProfilFragment();
+                ProfilFragment frg = new ProfilFragment();
+                frg.setOnHeadlineSelectedListener(this);
+                fragment = frg;
                 break;
         }
         return loadFragment(fragment, R.id.fragment_container);
@@ -193,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             case "valideraddcard":
                 fragment = new ProfilFragment();
                 break;
+
 
         }
         return loadFragment(fragment, R.id.fragment_container);
