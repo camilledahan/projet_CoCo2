@@ -21,20 +21,24 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
+import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
+import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
+import fr.cocoteam.co2co2.view.ContractFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
 import fr.cocoteam.co2co2.view.NewUserFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
+import fr.cocoteam.co2co2.view.UserMatchDescriptionFragment;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener {
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener {
 
     public BottomNavigationView navigation;
 
@@ -121,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 break;
 
             case R.id.nav_contract:
-                fragment = new ContactFragment();
+                fragment = new ContractFragment();
                 break;
 
             case R.id.nav_profil:
@@ -152,5 +156,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     public void onDataLoaded() {
         updateMenuVisibility(true);
         loadFragment(new MapFragment(), R.id.fragment_container);
+    }
+
+    @Override
+    public void onItemClicked(UserMatch userMatch) {
+        loadFragment(new UserMatchDescriptionFragment(), R.id.fragment_container);
     }
 }

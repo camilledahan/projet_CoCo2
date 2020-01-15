@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,11 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.UserMatch;
+import fr.cocoteam.co2co2.view.SplashScreenFragment;
 
 public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUserRecyclerViewAdapter.UserMatchViewHolder> {
 
 
     List<UserMatch> matchUsers;
+
+    OnHeadlineSelectedListener callback;
+
+    public void setOnHeadlineSelectedListener(OnHeadlineSelectedListener callback) {
+        this.callback = callback;
+    }
 
     public MatchUserRecyclerViewAdapter(List<UserMatch> matchUsers){
         this.matchUsers = matchUsers;
@@ -36,8 +44,19 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
     @Override
     public void onBindViewHolder(UserMatchViewHolder holder, int position) {
 
+        UserMatch userMatch = matchUsers.get(position);
+        holder.bind(userMatch);
+
         holder.matchName.setText(matchUsers.get(position).getName());
         holder.matchTrip.setText(matchUsers.get(position).getTrip().getDepart() + " à " + matchUsers.get(position).getTrip().getArrivee());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean expanded = userMatch.isExpanded();
+                userMatch.setExpanded(!expanded);
+                notifyItemChanged(position);
+            }
+        });
     }
 
     @Override
@@ -49,12 +68,22 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
 
         private TextView matchName;
         private TextView matchTrip;
+        private LinearLayout subItem;
 
         public UserMatchViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
             this.matchName = itemView.findViewById(R.id.match_name);
             this.matchTrip = itemView.findViewById(R.id.match_trip);
+            this.subItem = itemView.findViewById(R.id.sub_item);
+        }
+
+        private void bind(UserMatch userMatch){
+            boolean expanded = userMatch.isExpanded();
+
+            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
+
+            //genre.setText("Genre: " + movie.getGenre());
+            //year.setText("Year: " + movie.getYear());
         }
 
         @Override
@@ -62,4 +91,9 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
             Log.i("Match clicked",view.toString());
         }
     }
+
+    public interface OnHeadlineSelectedListener {
+        void onItemClicked(UserMatch userMatch);
+    }
+
 }

@@ -16,6 +16,7 @@ import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.service.RetrofitInterface;
 import fr.cocoteam.co2co2.utils.ViewModelInterface;
 import io.realm.Realm;
+import io.realm.RealmResults;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +27,7 @@ public class FindCarViewModel extends ViewModelInterface {
 
 
     MutableLiveData<List<UserMatch>> currentMatch;
-    RetrofitInterface retrofit = instantiateRetrofit();
+    RetrofitInterface retrofit = instantiateRetrofit("http://matchservice.azurewebsites.net");
     Realm realmInstance = Realm.getDefaultInstance();
 
 
@@ -59,8 +60,10 @@ public class FindCarViewModel extends ViewModelInterface {
 
     private void saveUserToLocalDb(List<UserMatch> matches) {
         realmInstance.beginTransaction();
-        if (!Realm.getDefaultInstance().isEmpty()){
-            Realm.getDefaultInstance().deleteAll();
+        RealmResults<UserMatch> results = realmInstance.where(UserMatch.class).findAll();
+
+        if ( results != null){
+            //realmInstance.deleteAll(results);
         }
         Realm.getDefaultInstance().copyToRealm(matches);
         realmInstance.commitTransaction();
@@ -69,17 +72,18 @@ public class FindCarViewModel extends ViewModelInterface {
 
 
     public void getAllMatches(){
-        Call<List<UserMatch>> call = retrofit.getMatches("test");
+        Call<List<UserMatch>> call = retrofit.getMatches("celine@gmail.com");
         call.enqueue(new Callback<List<UserMatch>>() {
             @Override
             public void onResponse(Call<List<UserMatch>> call, Response<List<UserMatch>> response) {
-                realmInstance.beginTransaction();
-                if (!Realm.getDefaultInstance().isEmpty()){
+                /*realmInstance.beginTransaction();
+                if (Realm){
                     Realm.getDefaultInstance().deleteAll();
                 }
                 Realm.getDefaultInstance().copyToRealm(response.body());
-                realmInstance.commitTransaction();
+                realmInstance.commitTransaction();*/
                 currentMatch.postValue(response.body());
+
 
             }
 

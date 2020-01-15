@@ -14,6 +14,7 @@ public class UserMatch extends RealmObject {
     private boolean isDriver;
     private int telephone;
     private String description;
+    private Boolean expanded = false;
 
     public UserMatch(){
 
@@ -101,5 +102,13 @@ public class UserMatch extends RealmObject {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public Boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(Boolean expanded) {
+        this.expanded = expanded;
     }
 }

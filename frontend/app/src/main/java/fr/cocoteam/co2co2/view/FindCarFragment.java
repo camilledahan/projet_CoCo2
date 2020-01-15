@@ -84,9 +84,7 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
-        Random r = new Random();
-        int i1 = r.nextInt(10 - 1) + 1;
-        findCarViewModel.generateRandomUser(i1);
+        findCarViewModel.getAllMatches();
     }
 
 
