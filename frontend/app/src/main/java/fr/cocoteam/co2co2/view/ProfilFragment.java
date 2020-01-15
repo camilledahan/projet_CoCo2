@@ -1,5 +1,7 @@
 package fr.cocoteam.co2co2.view;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
@@ -29,9 +31,12 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONObject;
+
 import java.util.EventListener;
 
 import fr.cocoteam.co2co2.R;
+import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.viewmodel.ConnectionViewModel;
 import fr.cocoteam.co2co2.viewmodel.ProfilViewModel;
 
@@ -39,9 +44,19 @@ import static android.content.ContentValues.TAG;
 
 public class ProfilFragment extends Fragment implements View.OnClickListener{
 
-    private Button Button;
+    private Button Buttonsetting;
+    private Button Buttonpayment;
+    private Button Buttonlogout;
 
     OnHeadlineSelectedListener callback;
+
+    private ProfilViewModel viewModel;
+
+    public String UserName;
+    public String UserEmail;
+    public String UserDescription;
+    private TextView name,phone ,description;
+
 
     public void setOnHeadlineSelectedListener(ProfilFragment.OnHeadlineSelectedListener callback) {
         this.callback = callback;
@@ -56,17 +71,48 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
+        viewModel = ViewModelProviders.of(this).get(ProfilViewModel.class);
+        viewModel.loadData();
 
-        Button button1 = view.findViewById(R.id.button_setting);
 
-        Button button2 = view.findViewById(R.id.button_payment);
-        Button button3 = view.findViewById(R.id.button_logout);
+        Buttonsetting = view.findViewById(R.id.button_setting);
+        Buttonpayment = view.findViewById(R.id.button_payment);
+        Buttonlogout = view.findViewById(R.id.button_logout);
+        name = findViewById(R.id.name );
+        phone = findViewById(R.id.phone );
+
+        description = findViewById(R.id.description );
+
+
 
         //set listeners
-        button1.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
+        Buttonsetting.setOnClickListener(this);
+        Buttonpayment.setOnClickListener(this);
+        Buttonlogout.setOnClickListener(this);
 
+        //observe User mutableLiveData
+        Observer<User> currentUserObserver;
+        currentUserObserver = user -> {
+            try {
+                 JSONObject jsonObject = new JSONObject(response)
+                UserName = (String) User.getString("name");
+                UserEmail = (String) User.getString("email");
+                UserDescription = (String) User.getString("description");
+
+                    public void run(){
+                        Log.v("Profile",""+UserName+"\n"+UserEmail+UserDescription+"\n");
+                        Toast.makeText(getApplicationContext(),
+                                "Name: " + UserName + "\nEmail: " + UserEmail,
+                                Toast.LENGTH_LONG).show();
+                    };
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        };
+
+        ViewModel.getCurrentUser().observe(this,currentUserObserver);
 
         return view;
     }
@@ -86,13 +132,20 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
             case R.id.button_logout:
                 callback.onProfilOptionSelected("logout");
                 break;
-
-
-
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+    }
 
     public interface OnHeadlineSelectedListener {
         boolean onProfilOptionSelected(String classe);

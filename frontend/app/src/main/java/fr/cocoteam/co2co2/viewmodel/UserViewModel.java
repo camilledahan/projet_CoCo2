@@ -48,8 +48,6 @@ public void postUser(User user, Trip trip){
             if (response.code() == 200) {
 
                 Log.d(TAG, "onResponse: "+response.body());
-
-
             }
         }
 

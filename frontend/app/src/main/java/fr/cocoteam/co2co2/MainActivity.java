@@ -45,7 +45,7 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener,
         ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener ,PaymentFragment.OnHeadlineSelectedListener,
-        PaymentaddcardFragment.OnHeadlineSelectedListener{
+        PaymentaddcardFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener{
 
 
 
@@ -203,10 +203,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         Fragment fragment = null;
         switch (lclass) {
             case "back":
-                fragment = new ProfilFragment();
+                ProfilFragment frg3 = new ProfilFragment();
+                frg3.setOnHeadlineSelectedListener(this);
+                fragment = frg3;
                 break;
             case "addcardpage":
-                fragment = new PaymentaddcardFragment();
+                PaymentaddcardFragment frg = new PaymentaddcardFragment();
+                frg.setOnHeadlineSelectedListener(this);
+                fragment = frg;
                 break;
 
         }
@@ -219,10 +223,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         Fragment fragment = null;
         switch (gclass) {
             case "back":
-                fragment = new ProfilFragment();
+                PaymentFragment frg = new PaymentFragment();
+                frg.setOnHeadlineSelectedListener(this);
+                fragment = frg;
                 break;
             case "valideraddcard":
-                fragment = new ProfilFragment();
+                ProfilFragment frg1 = new ProfilFragment();
+                frg1.setOnHeadlineSelectedListener(this);
+                fragment = frg1;;
                 break;
 
 

@@ -65,6 +65,7 @@ public class User extends RealmObject {
     }
 
 
+
     public String getEmail() {
         return this.email;
     }

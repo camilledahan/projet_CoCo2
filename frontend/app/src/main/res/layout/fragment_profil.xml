@@ -67,7 +67,9 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/ic_email_black_24dp"/>
+
             <TextView
+                android:id="@+id/email"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -87,8 +89,10 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/ic_phone_android_black_24dp"/>
+
             <TextView
                 android:textStyle="bold"
+                android:id="@+id/phone"
 
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -110,12 +114,13 @@
                 android:src="@drawable/ic_forum_black_24dp"/>
             <TextView
                 android:textStyle="bold"
+                android:id="@+id/description"
 
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="Show all comments"
+                android:text="Show all description"
                 android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
