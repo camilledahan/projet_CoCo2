@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -33,6 +34,9 @@ dependencies {
     implementation 'androidx.vectordrawable:vectordrawable:1.0.0'
     implementation 'com.android.support:design:28.0.0'
 
+    //real-time database firebase
+    implementation 'com.google.firebase:firebase-database:19.2.0';
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
     //Retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
@@ -45,6 +49,7 @@ dependencies {
     //google services
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation "com.google.android.gms:play-services-location:15.0.1"
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
