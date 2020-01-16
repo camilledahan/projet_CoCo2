@@ -1,5 +1,6 @@
 package fr.cocoteam.co2co2.model;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -27,11 +28,6 @@ public class User extends RealmObject {
     }
 
 
-    /*public User(int ID_USER, String login, String description) {
-        this.ID_USER = ID_USER;
-        this.login = login;
-        this.description = description;
-    }*/
 
 
 
@@ -69,5 +65,18 @@ public class User extends RealmObject {
     public String getEmail() {
         return this.email;
     }
+    public String getName() {
+        return this.name;
+    }
+    public String getSurname() {
+        return this.surname;
+    }
+    public String getPhone() {
+        return this.phone;
+    }
+    public String getDescription() {
+        return this.description;
+    }
+
 }
 

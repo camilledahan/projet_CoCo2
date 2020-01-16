@@ -20,6 +20,7 @@ import fr.cocoteam.co2co2.R;
 public class SettingFragment extends Fragment implements View.OnClickListener {
 
     private ImageButton backButton;
+    private Button button_valider;
 
     OnHeadlineSelectedListener callback;
 
@@ -37,11 +38,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
         backButton = view.findViewById(R.id.imageButtonback2);
-
+        button_valider = view.findViewById(R.id.button_valider);
 
         //set listeners
         backButton.setOnClickListener(this);
 
+        button_valider.setOnClickListener(this);
 
 
         return view;
@@ -51,6 +53,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.imageButtonback2:
                 callback.onSettingOptionSelected("back");
+                break;
+            case R.id.button_valider:
+                callback.onSettingOptionSelected("valider");
                 break;
         }
 

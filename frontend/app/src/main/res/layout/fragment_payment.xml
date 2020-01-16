@@ -18,7 +18,7 @@
             android:background="@drawable/gradientbackground"
             android:orientation="vertical">
             <ImageButton
-                android:id="@+id/imageButtonback1"
+                android:id="@+id/imageButtonback3"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_arrow_back_black_24dp" />
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp"
-                android:text="Mode de Payment:"
+                android:text="Use a new card:"
                 android:textSize="18sp"/>
 
         </LinearLayout>
@@ -93,14 +93,14 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/ic_payment_black_24dp"/>
-            <TextView
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
+
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
-                android:text="............7894"
-                android:textSize="18sp"/>
+                android:ems="10"
+                android:inputType="number" />
 
         </LinearLayout>
 
@@ -117,9 +117,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:text="   Add Card "
+        android:text="  Valider "
         android:textStyle="bold"
         android:textSize="18sp"/>
+
 
 
 

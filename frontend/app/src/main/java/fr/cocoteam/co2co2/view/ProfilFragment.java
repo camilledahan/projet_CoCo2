@@ -39,23 +39,25 @@ import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.viewmodel.ConnectionViewModel;
 import fr.cocoteam.co2co2.viewmodel.ProfilViewModel;
+import fr.cocoteam.co2co2.viewmodel.SplashScreenViewModel;
 
 import static android.content.ContentValues.TAG;
 
 public class ProfilFragment extends Fragment implements View.OnClickListener{
 
-    private Button Buttonsetting;
-    private Button Buttonpayment;
-    private Button Buttonlogout;
+  private ImageButton SettingButton;
+  private Button Buttonlogout;
+    private ProfilViewModel mViewModel;
 
     OnHeadlineSelectedListener callback;
 
-    private ProfilViewModel viewModel;
+    //private ProfilViewModel viewModel;
 
-    public String UserName;
-    public String UserEmail;
-    public String UserDescription;
-    private TextView name,phone ,description;
+    //public String UserName;
+    //public String UserEmail;
+    //public String UserDescription;
+    //private TextView name,phone ,description;
+
 
 
     public void setOnHeadlineSelectedListener(ProfilFragment.OnHeadlineSelectedListener callback) {
@@ -71,26 +73,26 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
-        viewModel = ViewModelProviders.of(this).get(ProfilViewModel.class);
-        viewModel.loadData();
+        mViewModel = ViewModelProviders.of(this).get(ProfilViewModel.class);
+        mViewModel.loadData();
 
 
-        Buttonsetting = view.findViewById(R.id.button_setting);
-        Buttonpayment = view.findViewById(R.id.button_payment);
+        SettingButton = view.findViewById(R.id.imageButtonSetting);
         Buttonlogout = view.findViewById(R.id.button_logout);
+        /*
         name = findViewById(R.id.name );
         phone = findViewById(R.id.phone );
-
         description = findViewById(R.id.description );
 
-
+*/
 
         //set listeners
-        Buttonsetting.setOnClickListener(this);
-        Buttonpayment.setOnClickListener(this);
-        Buttonlogout.setOnClickListener(this);
+        SettingButton.setOnClickListener(this);
 
+        Buttonlogout.setOnClickListener(this);
+/*
         //observe User mutableLiveData
+
         Observer<User> currentUserObserver;
         currentUserObserver = user -> {
             try {
@@ -113,6 +115,8 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
         };
 
         ViewModel.getCurrentUser().observe(this,currentUserObserver);
+        */
+
 
         return view;
     }
@@ -122,13 +126,9 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.button_setting:
+            case R.id.imageButtonSetting:
                 callback.onProfilOptionSelected("setting");
                 break;
-            case R.id.button_payment:
-                callback.onProfilOptionSelected("payment");
-                break;
-
             case R.id.button_logout:
                 callback.onProfilOptionSelected("logout");
                 break;

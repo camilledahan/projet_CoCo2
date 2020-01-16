@@ -18,12 +18,18 @@
             android:background="@drawable/gradientbackground"
             android:orientation="vertical">
 
+            <ImageButton
+                android:id="@+id/imageButtonSetting"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_edit1_black_24dp" />
+
             <ImageView
 
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
                 android:src="@drawable/profile_picture" />
 
             <TextView
@@ -120,51 +126,93 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="Show all description"
+                android:text="Description"
                 android:textSize="18sp"/>
         </LinearLayout>
-    </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_home_black_24dp"/>
 
-        <Button
-            android:id="@+id/button_setting"
-            android:layout_width="145dp"
+            <TextView
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="3 Avenue Albert Einstein"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_security_black_24dp"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="........."
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/buttonstyleithgradient"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="15dp"
-            android:text="  SETTING"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:layout_marginTop="15dp">
 
-        <Button
-             android:id="@+id/button_payment"
-             android:layout_width="145dp"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="15dp"
-             android:background="@drawable/buttonstyleithgradient"
-             android:layout_gravity="center_horizontal"
-             android:paddingLeft="15dp"
-             android:text="    PAYMENT "
-             android:textColor="#fff"
-             android:textStyle="bold"
-             android:textSize="18sp"/>
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_payment_black_24dp"/>
+
+            <TextView
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="30dp"
+                android:text="............7894"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+
+
         <Button
              android:id="@+id/button_logout"
              android:textColor="#fff"
              android:background="@drawable/buttonstyleithgradient"
              android:layout_marginTop="15dp"
              android:layout_gravity="center_horizontal"
-             android:layout_width="145dp"
-             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
              android:text="    LOG  OUT"
              android:textStyle="bold"
              android:textSize="18sp"/>
 
 
-
+    </LinearLayout>
 </LinearLayout>

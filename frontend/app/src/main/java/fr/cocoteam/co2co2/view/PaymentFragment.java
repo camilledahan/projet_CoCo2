@@ -16,6 +16,7 @@ import fr.cocoteam.co2co2.R;
 public class PaymentFragment extends Fragment implements View.OnClickListener {
 
     private ImageButton backButton;
+    private Button addCardButton;
 
     PaymentFragment.OnHeadlineSelectedListener callback;
 
@@ -33,10 +34,13 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
 
 
-        backButton = view.findViewById(R.id.imageButtonback1);
+        backButton = view.findViewById(R.id.imageButtonback3);
+        addCardButton = view.findViewById(R.id.button_AddCard);
+
 
         //set listeners
         backButton.setOnClickListener(this);
+        addCardButton.setOnClickListener(this);
 
 
         return view;
@@ -45,9 +49,13 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.imageButtonback1:
+            case R.id.imageButtonback3:
                 callback.onPaymentOptionSelected("back");
                 break;
+            case R.id.button_AddCard:
+                callback.onPaymentOptionSelected("addcard");
+                break;
+
 
         }
 

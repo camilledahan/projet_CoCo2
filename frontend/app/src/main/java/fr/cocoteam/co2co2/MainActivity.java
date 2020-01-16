@@ -1,39 +1,22 @@
 package fr.cocoteam.co2co2;
 
-import android.app.Activity;
-
-import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 
 
-import android.widget.Button;
-
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.List;
 
 import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
 import fr.cocoteam.co2co2.view.PaymentFragment;
-import fr.cocoteam.co2co2.view.PaymentaddcardFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SettingFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
@@ -44,8 +27,7 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener,
-        ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener ,PaymentFragment.OnHeadlineSelectedListener,
-        PaymentaddcardFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener{
+        ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener,SplashScreenFragment.OnHeadlineSelectedListener{
 
 
 
@@ -69,8 +51,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         //loadFragment(connectionFragment, R.id.startContainer);
 
         SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
-        splashScreenFragment.setOnHeadlineSelectedListener(this);
+       splashScreenFragment.setOnHeadlineSelectedListener(this);
         loadFragment(splashScreenFragment, R.id.fragment_container);
+
 
     }
 
@@ -170,12 +153,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 frg.setOnHeadlineSelectedListener(this);
                 fragment = frg;
                 break;
-            case "payment":
-                PaymentFragment frg1 = new PaymentFragment();
-                frg1.setOnHeadlineSelectedListener(this);
-                fragment = frg1;
-                break;
-
             case "logout":
                 fragment = new ConnectionFragment();
                 break;
@@ -193,11 +170,18 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 frg.setOnHeadlineSelectedListener(this);
                 fragment = frg;
                 break;
+            case "valider":
+                ProfilFragment frg2 = new ProfilFragment();
+                frg2.setOnHeadlineSelectedListener(this);
+                fragment = frg2;
+                break;
         }
         return loadFragment(fragment, R.id.fragment_container);
     }
 
+/*
     @Override
+
     public boolean onPaymentOptionSelected(String lclass) {
 
         Fragment fragment = null;
@@ -208,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 fragment = frg3;
                 break;
             case "addcardpage":
-                PaymentaddcardFragment frg = new PaymentaddcardFragment();
+                ProfilFragment frg = new ProfilFragment();
                 frg.setOnHeadlineSelectedListener(this);
                 fragment = frg;
                 break;
@@ -216,27 +200,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         }
         return loadFragment(fragment, R.id.fragment_container);
     }
-
-    @Override
-    public boolean onPaymentaddcardOptionSelected(String gclass) {
-
-        Fragment fragment = null;
-        switch (gclass) {
-            case "back":
-                PaymentFragment frg = new PaymentFragment();
-                frg.setOnHeadlineSelectedListener(this);
-                fragment = frg;
-                break;
-            case "valideraddcard":
-                ProfilFragment frg1 = new ProfilFragment();
-                frg1.setOnHeadlineSelectedListener(this);
-                fragment = frg1;;
-                break;
+    */
 
 
-        }
-        return loadFragment(fragment, R.id.fragment_container);
-    }
 
 
     @Override
