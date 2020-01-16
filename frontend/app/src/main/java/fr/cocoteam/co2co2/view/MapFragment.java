@@ -93,7 +93,7 @@ public class MapFragment extends Fragment {
                     mMap.addMarker(new MarkerOptions().position(stringToLatLng(origin)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                     mMap.addMarker(new MarkerOptions().position(stringToLatLng(destination)));
                     googleMap.setMyLocationEnabled(true);
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin,15));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin,10));
 
                     //display other user position
                     refOtherUserLocation.addValueEventListener(new ValueEventListener() {

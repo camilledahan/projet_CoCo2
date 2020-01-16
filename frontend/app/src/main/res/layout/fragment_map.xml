@@ -16,13 +16,17 @@
 
     <Switch
         android:id="@+id/startCovoiturage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="258dp"
+        android:layout_height="187dp"
         android:layout_alignTop="@id/map"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="10dp"
+        android:width="400dp"
+        android:height="400dp"
         android:checked="false"
+        android:showText="true"
         android:textOff="Start"
         android:textOn="Stop"
-        tools:checked="false" />
+        tools:checked="false"
+        />
 
 </RelativeLayout>
