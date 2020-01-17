@@ -10,27 +10,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
+import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
+import fr.cocoteam.co2co2.view.ContractFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
+import fr.cocoteam.co2co2.view.NewUserFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SettingFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
+import fr.cocoteam.co2co2.view.UserMatchDescriptionFragment;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener,
-        ProfilFragment.OnHeadlineSelectedListener ,SettingFragment.OnHeadlineSelectedListener,SplashScreenFragment.OnHeadlineSelectedListener{
+
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
+
 
 
 
     public BottomNavigationView navigation;
+    public Fragment mapFragment;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         Realm.init(this);
         setRealm();
 
+        if(savedInstanceState!=null){
+            mapFragment = getSupportFragmentManager().getFragment(savedInstanceState, "mapFragment");
+
+        }
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
@@ -46,16 +62,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
         //updateMenuVisibility(false);
 
-     /*   ConnectionFragment connectionFragment = new ConnectionFragment();
+       ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-       loadFragment(connectionFragment, R.id.startContainer);*/
-
-        SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
-       splashScreenFragment.setOnHeadlineSelectedListener(this);
-        loadFragment(splashScreenFragment, R.id.fragment_container);
-
-
-
+       loadFragment(connectionFragment, R.id.startContainer);
+        mapFragment = new MapFragment();
     }
 
     private void setRealm() {
@@ -105,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
         switch (item.getItemId()) {
             case R.id.nav_map:
-                fragment = new MapFragment();
+                fragment = mapFragment;
                 break;
 
             case R.id.nav_contact:
@@ -117,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 break;
 
             case R.id.nav_contract:
-                fragment = new ContactFragment();
+                fragment = new ContractFragment();
                 break;
 
             case R.id.nav_profil:
@@ -140,7 +150,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
     @Override
     public void onUserConnected(String username) {
-        loadFragment(new SplashScreenFragment(), R.id.fragment_container);
+        SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
+        splashScreenFragment.setOnHeadlineSelectedListener(this);
+        loadFragment( splashScreenFragment, R.id.fragment_container);
         toast("Welcome " + username);
     }
 
@@ -185,7 +197,33 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     @Override
     public void onDataLoaded() {
         updateMenuVisibility(true);
-        loadFragment(new MapFragment(), R.id.fragment_container);
+        loadFragment(mapFragment, R.id.fragment_container);
+    }
+
+    @Override
+    public void openNewUserFragment() {
+        NewUserFragment newUserFragment = new NewUserFragment();
+        newUserFragment.setOnHeadlineSelectedListener(this);
+        loadFragment(newUserFragment, R.id.fragment_container);
+
+    }
+
+    @Override
+    public void openSplashScreen() {
+        SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
+        splashScreenFragment.setOnHeadlineSelectedListener(this);
+        loadFragment( splashScreenFragment, R.id.fragment_container);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    public void onItemClicked(UserMatch userMatch) {
+        loadFragment(new UserMatchDescriptionFragment(), R.id.fragment_container);
     }
 }
 

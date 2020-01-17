@@ -20,10 +20,10 @@ import retrofit2.Response;
 
 public class ProfilViewModel extends ViewModelInterface {
 
-    RetrofitInterface retrofit = instantiateRetrofit();
+
     Realm realmInsance = Realm.getDefaultInstance();
     MutableLiveData<User> currentUser;
-    Realm realm;
+
 
     public LiveData<User> getCurrentUser() {
         if (currentUser == null) {

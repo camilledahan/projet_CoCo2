@@ -6,6 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.service.RetrofitInterface;
 import fr.cocoteam.co2co2.utils.ViewModelInterface;
@@ -17,7 +20,7 @@ import retrofit2.Retrofit;
 
 public class SplashScreenViewModel extends ViewModelInterface {
 
-    RetrofitInterface retrofit = instantiateRetrofit();
+    RetrofitInterface retrofit = instantiateRetrofit("http://userprojetmajeur.azurewebsites.net");
     Realm realmInsance = Realm.getDefaultInstance();
     MutableLiveData<User> currentUser;
 
@@ -29,14 +32,18 @@ public class SplashScreenViewModel extends ViewModelInterface {
     }
 
 
-    public void loadData(){
-        getCurrentUserProfil();
+    public void loadData(String email){
+        getCurrentUserProfil(email);
         getUserMatch();
 
     }
 
-    private void getCurrentUserProfil() {
-        Call<User> call = retrofit.getUser("zhufeng719@gmail.com");
+
+    private void getCurrentUserProfil(String email) {
+
+
+        Call<User> call = retrofit.getUser(email);
+
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -52,6 +59,7 @@ public class SplashScreenViewModel extends ViewModelInterface {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                currentUser.postValue(null);
                 Log.e("Error getting user :", t.getMessage());
             }
         });

@@ -29,11 +29,7 @@ public class ContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 View view = inflater.inflate(R.layout.fragment_contact, container, false);
-        UserViewModel userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        userViewModel.getUsers().observe(this, user -> {
-            Log.e("TEST USER","user :"+user);
 
-        });
 
         return view;
     }
