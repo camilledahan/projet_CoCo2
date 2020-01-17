@@ -67,7 +67,7 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
                  holder.likeMatchSwitcher.setImageResource(R.drawable.like);
                  userMatch.setAdded(true);
             }
-             findCarViewModel.updateMatchStatus(userMatch);
+            findCarViewModel.updateMatchStatus(userMatch);
             findCarViewModel.getFriends();
         });
 

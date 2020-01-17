@@ -18,6 +18,7 @@ import fr.cocoteam.co2co2.utils.ViewModelInterface;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,18 +42,25 @@ public class FindCarViewModel extends ViewModelInterface {
     }
 
     public void updateMatchStatus(UserMatch match){
-        realmInstance.beginTransaction();
-        realmInstance.copyToRealmOrUpdate(match);
-        realmInstance.commitTransaction();
+        Call<ResponseBody> call = retrofit.updateMatch("celine@gmail.com", match);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.i("update user","Response");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+       });
     }
 
 
-    public List<UserMatch> getFriends(){
+    public void getFriends(){
         realmInstance.beginTransaction();
         realmInstance.where(UserMatch.class).equalTo("added",true);
         realmInstance.commitTransaction();
-
-        return
     }
 
     private void saveUserToLocalDb(List<UserMatch> matches) {

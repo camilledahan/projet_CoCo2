@@ -5,6 +5,7 @@ import java.util.List;
 import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.UserMatch;
+import okhttp3.ResponseBody;
 import  retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -29,6 +30,9 @@ public interface RetrofitInterface {
 
     @GET("/match/{email}")
     Call<List<UserMatch>> getMatches(@Path("email") String mail);
+
+    @GET("/match/update/{email}")
+    Call<ResponseBody> updateMatch(@Path("email") String mail, @Body UserMatch userMatch);
 
 
 }
