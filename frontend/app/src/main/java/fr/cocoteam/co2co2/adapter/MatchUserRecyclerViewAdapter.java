@@ -58,19 +58,19 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
         holder.horraireTrip.setText(userMatch.getTrip().getHeure());
         holder.matchDescription.setText(userMatch.getDescription());
         holder.matchAge.setText(String.valueOf(userMatch.getAge()) + " ans");
-        if(userMatch.getUser_has_accepted_me()==1){
+        if(userMatch.getMe_has_accepted_user()==1){
             holder.likeMatchSwitcher.setImageResource(R.drawable.like);
         } else {
             holder.likeMatchSwitcher.setImageResource(R.drawable.add_match_icon);
         }
         holder.likeMatchSwitcher.setOnClickListener(view -> {
-            if(userMatch.getUser_has_accepted_me()==1){
+            if(userMatch.getMe_has_accepted_user()==1){
                  holder.likeMatchSwitcher.setImageResource(R.drawable.add_match_icon);
-                 userMatch.setUser_has_accepted_me(0);
+                 userMatch.setMe_has_accepted_user(0);
 
             } else {
                  holder.likeMatchSwitcher.setImageResource(R.drawable.like);
-                 userMatch.setUser_has_accepted_me(1);
+                 userMatch.setMe_has_accepted_user(1);
             }
             findCarViewModel.updateMatchStatus(userMatch);
             //findCarViewModel.getFriends();
