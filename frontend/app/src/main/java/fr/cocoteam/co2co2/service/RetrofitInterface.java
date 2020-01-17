@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 
 import retrofit2.http.POST;
 
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RetrofitInterface {
@@ -31,7 +32,7 @@ public interface RetrofitInterface {
     @GET("/match/{email}")
     Call<List<UserMatch>> getMatches(@Path("email") String mail);
 
-    @GET("/match/update/{email}")
+    @PUT("/match/updatematch/{email}")
     Call<ResponseBody> updateMatch(@Path("email") String mail, @Body UserMatch userMatch);
 
 

@@ -58,17 +58,22 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
         holder.horraireTrip.setText(userMatch.getTrip().getHeure());
         holder.matchDescription.setText(userMatch.getDescription());
         holder.matchAge.setText(String.valueOf(userMatch.getAge()) + " ans");
+        if(userMatch.getUser_has_accepted_me()==1){
+            holder.likeMatchSwitcher.setImageResource(R.drawable.like);
+        } else {
+            holder.likeMatchSwitcher.setImageResource(R.drawable.add_match_icon);
+        }
         holder.likeMatchSwitcher.setOnClickListener(view -> {
-            if(userMatch.getAdded()){
+            if(userMatch.getUser_has_accepted_me()==1){
                  holder.likeMatchSwitcher.setImageResource(R.drawable.add_match_icon);
-                 userMatch.setAdded(false);
+                 userMatch.setUser_has_accepted_me(0);
 
             } else {
                  holder.likeMatchSwitcher.setImageResource(R.drawable.like);
-                 userMatch.setAdded(true);
+                 userMatch.setUser_has_accepted_me(1);
             }
             findCarViewModel.updateMatchStatus(userMatch);
-            findCarViewModel.getFriends();
+            //findCarViewModel.getFriends();
         });
 
         holder.itemView.setOnClickListener(view -> {
@@ -118,9 +123,6 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
 
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
-
-            //genre.setText("Genre: " + movie.getGenre());
-            //year.setText("Year: " + movie.getYear());
         }
 
         @Override

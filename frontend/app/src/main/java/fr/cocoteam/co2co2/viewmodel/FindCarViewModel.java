@@ -47,11 +47,12 @@ public class FindCarViewModel extends ViewModelInterface {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.i("update user","Response");
+                getAllMatches();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.e("update user","Error");
             }
        });
     }
