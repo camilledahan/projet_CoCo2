@@ -64,7 +64,7 @@ public class MapFragment extends Fragment {
    private  Marker markerOtherLocation;
     private DatabaseReference myRefState;
     private DatabaseReference refOtherUserState;
-
+private     Switch startSwitch;
 
     public MapFragment() {
         // Required empty public constructor
@@ -79,7 +79,12 @@ public class MapFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         fetchDirections( origin, destination);
         final LatLng latLngOrigin = stringToLatLng(origin);
+         startSwitch = view.findViewById(R.id.startCovoiturage);
+        if (savedInstanceState != null) {
+                requestingLocationUpdates = savedInstanceState.getBoolean("requestingLocationUpdates")   ;
+                startSwitch.setChecked(savedInstanceState.getBoolean("startSwitch"));
 
+        }
         //handle start and sotp covoiturage
         startAndStop(view);
         //write in firebase database
@@ -147,12 +152,15 @@ public class MapFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        stopLocationUpdate();
+        if(locationCallback!=null){
+           // stopLocationUpdate();
+        }
+
     }
 
 
     private void startAndStop(View view) {
-        Switch startSwitch = view.findViewById(R.id.startCovoiturage);
+
         startSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -271,6 +279,10 @@ public class MapFragment extends Fragment {
         return locationRequest;
     }
 
-
-
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("requestingLocationUpdates",requestingLocationUpdates);
+        outState.putBoolean("switchState",startSwitch.isActivated());
+    }
 }

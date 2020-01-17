@@ -16,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.viewmodel.SplashScreenViewModel;
@@ -39,14 +42,14 @@ public class SplashScreenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_splash_screen, container, false);
-
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
         //bind view
         progressBar = view.findViewById(R.id.progressBar);
         progressBar.setProgress(0);
 
         //viewmodel
         mViewModel = ViewModelProviders.of(this).get(SplashScreenViewModel.class);
-        mViewModel.loadData();
+        mViewModel.loadData(acct.getEmail());
 
 
         //observe User mutableLiveData
@@ -59,7 +62,13 @@ public class SplashScreenFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            callback.onDataLoaded();
+            if (user== null){
+                callback.openNewUserFragment();
+            }
+            else {
+                callback.onDataLoaded();
+
+            }
         };
 
         mViewModel.getCurrentUser().observe(this,currentUserObserver);
@@ -82,6 +91,9 @@ public class SplashScreenFragment extends Fragment {
 
     public interface OnHeadlineSelectedListener {
         void onDataLoaded();
+        void openNewUserFragment();
+
+
     }
 
 

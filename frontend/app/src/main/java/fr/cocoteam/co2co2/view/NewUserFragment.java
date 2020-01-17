@@ -6,15 +6,19 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,6 +26,7 @@ import java.util.regex.Pattern;
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
+import fr.cocoteam.co2co2.viewmodel.SplashScreenViewModel;
 import fr.cocoteam.co2co2.viewmodel.UserViewModel;
 
 public class NewUserFragment extends Fragment {
@@ -38,9 +43,17 @@ public class NewUserFragment extends Fragment {
     Button isDriverBtn ;
     EditText heureDepart;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+    private UserViewModel mViewModel;
+
     public NewUserFragment() {
     }
 
+    public NewUserFragment.OnHeadlineSelectedListener callback;
+
+    public void setOnHeadlineSelectedListener(NewUserFragment.OnHeadlineSelectedListener callback) {
+        this.callback = callback;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +80,8 @@ public class NewUserFragment extends Fragment {
         nameField.setEnabled(false);
         surnameField.setEnabled(false);
 
+        mViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
 
         //  int age = new Integer(ageField.getText().toString());
 
@@ -74,9 +89,19 @@ public class NewUserFragment extends Fragment {
            if(checkEnteredData()){
                addNewUser(acct.getEmail(),acct.getDisplayName(),acct.getFamilyName(),originField.getText().toString(),destinationField.getText().toString(),ageField.getText().toString(),phoneField.getText().toString(),
                        descriptionField.getText().toString(),isDriverBtn.isActivated(),heureDepart.getText().toString());
+
            }
 
         });
+        Observer<Boolean> currentUserPostObserver = isUserPost ->{
+            if(isUserPost){
+                callback.openSplashScreen();
+            }
+        };
+
+
+        mViewModel.isUserPost().observe(this,currentUserPostObserver);
+
         return view;
     }
 
@@ -105,7 +130,7 @@ public class NewUserFragment extends Fragment {
 
             return false;
         }
-        if (phoneField.getText().toString().isEmpty()){
+        if (phoneField.getText().toString().isEmpty() && phoneField.getText().length()==10){
             Toast.makeText(getContext(),"Please enter you phone number", Toast.LENGTH_SHORT).show();
 
             return false;
@@ -114,6 +139,10 @@ public class NewUserFragment extends Fragment {
             return true;
 
 
+    }
+
+    public interface OnHeadlineSelectedListener {
+        void openSplashScreen();
     }
 
 
