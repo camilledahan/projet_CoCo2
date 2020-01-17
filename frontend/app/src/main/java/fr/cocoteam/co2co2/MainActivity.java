@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -21,19 +23,26 @@ import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
 import fr.cocoteam.co2co2.view.NewUserFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
+import fr.cocoteam.co2co2.view.SettingFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
 import fr.cocoteam.co2co2.view.UserMatchDescriptionFragment;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener,NewUserFragment.OnHeadlineSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
+
+
+
 
     public BottomNavigationView navigation;
-public Fragment mapFragment;
+    public Fragment mapFragment;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +59,10 @@ public Fragment mapFragment;
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
-        updateMenuVisibility(false);
 
+        //updateMenuVisibility(false);
 
-        ConnectionFragment connectionFragment = new ConnectionFragment();
+       ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
        loadFragment(connectionFragment, R.id.startContainer);
         mapFragment = new MapFragment();
@@ -66,33 +75,32 @@ public Fragment mapFragment;
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(configuration);
+
     }
 
     public void updateMenuVisibility(boolean visibility) {
         MenuItem map = navigation.getMenu().findItem(R.id.nav_map);
-        MenuItem contact =  navigation.getMenu().findItem(R.id.nav_contact);
-        MenuItem car =  navigation.getMenu().findItem(R.id.nav_find_car);
-        MenuItem contract =  navigation.getMenu().findItem(R.id.nav_contract);
-        MenuItem profil =  navigation.getMenu().findItem(R.id.nav_profil);
+        MenuItem contact = navigation.getMenu().findItem(R.id.nav_contact);
+        MenuItem car = navigation.getMenu().findItem(R.id.nav_find_car);
+        MenuItem contract = navigation.getMenu().findItem(R.id.nav_contract);
+        MenuItem profil = navigation.getMenu().findItem(R.id.nav_profil);
         MenuItem menuItems[] = {map,
                 contact,
                 car,
                 contract,
                 profil};
 
-        for (MenuItem item : menuItems){
+        for (MenuItem item : menuItems) {
             item.setVisible(visibility);
         }
     }
 
-    private void initRealm(){
-    }
+    private boolean loadFragment(Fragment fragment, int container) {
+        if (fragment != null) {
 
-    private boolean loadFragment (Fragment fragment, int container){
-        if (fragment != null){
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(container,fragment)
+                    .replace(container, fragment)
                     .commit();
 
             return true;
@@ -105,7 +113,7 @@ public Fragment mapFragment;
 
         Fragment fragment = null;
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_map:
                 fragment = mapFragment;
                 break;
@@ -123,21 +131,22 @@ public Fragment mapFragment;
                 break;
 
             case R.id.nav_profil:
-                fragment = new ProfilFragment();
+                ProfilFragment profilFragment = new ProfilFragment();
+                profilFragment.setOnHeadlineSelectedListener(this);
+                fragment = profilFragment;
                 break;
         }
 
-        return  loadFragment(fragment, R.id.fragment_container);
+        return loadFragment(fragment, R.id.fragment_container);
     }
 
-    private void toast(String texte){
+    private void toast(String texte) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, texte, duration);
         toast.show();
 
     }
-
 
     @Override
     public void onUserConnected(String username) {
@@ -146,6 +155,43 @@ public Fragment mapFragment;
         loadFragment( splashScreenFragment, R.id.fragment_container);
         toast("Welcome " + username);
     }
+
+    @Override
+    public boolean onProfilOptionSelected(String mclass) {
+
+        Fragment fragment = null;
+        switch (mclass) {
+            case "setting":
+                SettingFragment frg = new SettingFragment();
+                frg.setOnHeadlineSelectedListener(this);
+                fragment = frg;
+                break;
+            case "logout":
+                fragment = new ConnectionFragment();
+                break;
+        }
+        return loadFragment(fragment, R.id.fragment_container);
+    }
+
+    @Override
+    public boolean onSettingOptionSelected(String nclass) {
+
+        Fragment fragment = null;
+        switch (nclass) {
+            case "back":
+                ProfilFragment frg = new ProfilFragment();
+                frg.setOnHeadlineSelectedListener(this);
+                fragment = frg;
+                break;
+            case "valider":
+                ProfilFragment frg2 = new ProfilFragment();
+                frg2.setOnHeadlineSelectedListener(this);
+                fragment = frg2;
+                break;
+        }
+        return loadFragment(fragment, R.id.fragment_container);
+    }
+
 
 
     @Override
@@ -180,3 +226,5 @@ public Fragment mapFragment;
         loadFragment(new UserMatchDescriptionFragment(), R.id.fragment_container);
     }
 }
+
+
