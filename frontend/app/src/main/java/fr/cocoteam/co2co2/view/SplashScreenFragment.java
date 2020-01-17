@@ -62,13 +62,16 @@ public class SplashScreenFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (user== null){
-                callback.openNewUserFragment();
-            }
-            else {
-                callback.onDataLoaded();
+            if(user!=null){
+                if (user.getEmail().isEmpty()){
+                    callback.openNewUserFragment();
+                }
+                else {
+                    callback.onDataLoaded();
 
+                }
             }
+
         };
 
         mViewModel.getCurrentUser().observe(this,currentUserObserver);
