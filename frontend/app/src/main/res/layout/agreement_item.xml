@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/carPoolTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Carpool with ... from ... to ..." />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/checkBoxMonday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="monday"
+                android:onClick="onCheckBoxClicked"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxTueday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="tuesday"
+                android:onClick="onCheckBoxClicked"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxWednesday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="wednesday"
+                android:onClick="onCheckBoxClicked"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <CheckBox
+                android:id="@+id/checkBoxThursday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="thursday"
+                android:onClick="onCheckBoxClicked"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxFriday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="friday"
+                android:onClick="onCheckBoxClicked"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/carpool_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waiting for confirmation"/>
+
+
+
+    </LinearLayout>
+
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+
+</LinearLayout>

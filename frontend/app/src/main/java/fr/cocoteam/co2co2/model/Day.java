@@ -7,6 +7,10 @@ public class Day extends RealmObject {
     private String dayName;
     private String isSelected;
 
+    public Day(){
+
+    }
+
     public Day(String dayName, String isSelected) {
         this.dayName = dayName;
         this.isSelected = isSelected;

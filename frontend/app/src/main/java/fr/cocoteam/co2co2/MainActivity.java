@@ -1,25 +1,15 @@
 package fr.cocoteam.co2co2;
 
-import android.app.Activity;
-
-import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.List;
 
 import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
 import fr.cocoteam.co2co2.model.UserMatch;
@@ -28,7 +18,6 @@ import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.ContractFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
-import fr.cocoteam.co2co2.view.NewUserFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
 import fr.cocoteam.co2co2.view.UserMatchDescriptionFragment;

@@ -3,6 +3,7 @@ package fr.cocoteam.co2co2.model;
 import java.util.List;
 
 import fr.cocoteam.co2co2.model.Trip;
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class Agreement extends RealmObject {
@@ -10,11 +11,15 @@ public class Agreement extends RealmObject {
     private String _id;
     private Trip trip;
     private String status;
-    private List<Day> days;
+    private RealmList<Day> days;
     private int currentWeek;
 
+    public Agreement(){
 
-    public Agreement(String _id, Trip trip, String status, List<Day> days, int currentWeek) {
+    }
+
+
+    public Agreement(String _id, Trip trip, String status, RealmList<Day> days, int currentWeek) {
         this._id = _id;
         this.trip = trip;
         this.status = status;
@@ -34,7 +39,7 @@ public class Agreement extends RealmObject {
         return days;
     }
 
-    public void setDays(List<Day> days) {
+    public void setDays(RealmList<Day> days) {
         this.days = days;
     }
 
