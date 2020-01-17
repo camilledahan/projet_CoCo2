@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
+import fr.cocoteam.co2co2.view.AddTripFragment;
 import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
@@ -58,7 +59,7 @@ public Fragment mapFragment;
 
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-       loadFragment(connectionFragment, R.id.startContainer);
+       loadFragment(new NewUserFragment(), R.id.startContainer);
      /*  SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
         splashScreenFragment.setOnHeadlineSelectedListener(this);
        loadFragment(new SplashScreenFragment(), R.id.fragment_container);*/

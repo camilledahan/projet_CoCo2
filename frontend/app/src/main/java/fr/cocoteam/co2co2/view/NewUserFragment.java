@@ -1,8 +1,10 @@
 package fr.cocoteam.co2co2.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,18 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,8 +40,11 @@ import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.viewmodel.SplashScreenViewModel;
 import fr.cocoteam.co2co2.viewmodel.UserViewModel;
 
+import static android.app.Activity.RESULT_CANCELED;
+
 public class NewUserFragment extends Fragment {
 
+    private static final int RESULT_OK = 2;
     Button validerButton ;
     EditText nameField ;
     EditText surnameField ;
@@ -43,6 +57,8 @@ public class NewUserFragment extends Fragment {
     Button isDriverBtn ;
     EditText heureDepart;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+  private static  final  int AUTOCOMPLETE_REQUEST_CODE = 1;
+
 
     private UserViewModel mViewModel;
 
@@ -60,6 +76,22 @@ public class NewUserFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view= inflater.inflate(R.layout.fragment_new_user, container, false);
+
+        // Initialize the SDK
+        Places.initialize(getContext(), "AIzaSyBGo7-H0aIO_KTtZGGez8vPxuShRHeV8AA");
+
+        // Create a new Places client instance
+        PlacesClient placesClient = Places.createClient(getContext());
+
+// Set the fields to specify which types of place data to
+// return after the user has made a selection.
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+
+// Start the autocomplete intent.
+
+
+
+
           validerButton = view.findViewById(R.id.valider);
          nameField = view.findViewById(R.id.name);
          surnameField = view.findViewById(R.id.surname);
@@ -83,6 +115,13 @@ public class NewUserFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
 
+        destinationField.setOnClickListener(view12 -> {
+            Intent intent = new Autocomplete.IntentBuilder(
+                    AutocompleteActivityMode.OVERLAY, fields)
+                    .build(getContext());
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+        });
+        onActivityResult(AUTOCOMPLETE_REQUEST_CODE,RESULT_OK,intent);
         //  int age = new Integer(ageField.getText().toString());
 
         validerButton.setOnClickListener(view1 -> {
@@ -143,6 +182,23 @@ public class NewUserFragment extends Fragment {
 
     public interface OnHeadlineSelectedListener {
         void openSplashScreen();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                destinationField.setText(place.getAddress());
+                Log.i("NEW USER", "Place: " + place.getName() + ", " + place.getId());
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // TODO: Handle the error.
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Log.i("NEW USER", status.getStatusMessage());
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
     }
 
 
