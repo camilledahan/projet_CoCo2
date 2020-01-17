@@ -27,10 +27,14 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public void setOnHeadlineSelectedListener(OnHeadlineSelectedListener callback) {
         this.callback = callback;
     }
+    public SettingFragment() {
+        // Required empty public constructor
+    }
 
     public static SettingFragment newInstance() {
         return new SettingFragment();
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

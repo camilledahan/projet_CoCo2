@@ -43,7 +43,7 @@
                 android:src="@drawable/ic_edit1_black_24dp" />
 
             <EditText
-
+                android:id="@+id/EditTextname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -59,7 +59,7 @@
 
 
             <EditText
-
+                android:id="@+id/EditTextage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -95,6 +95,8 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_email_black_24dp" />
         <EditText
+            android:id="@+id/EditTextemail"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Change Your Email"
@@ -120,6 +122,8 @@
             android:src="@drawable/ic_phone_android_black_24dp"/>
 
         <EditText
+            android:id="@+id/EditTextphone"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Change your Phone Number"
@@ -142,6 +146,8 @@
             android:src="@drawable/ic_forum_black_24dp"/>
 
         <EditText
+            android:id="@+id/EditTextdescription"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Change Your Description"
@@ -164,6 +170,8 @@
             android:src="@drawable/ic_home_black_24dp"/>
 
         <EditText
+            android:id="@+id/EditTextadress"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Change Your Adress"
@@ -187,6 +195,8 @@
             android:src="@drawable/ic_payment_black_24dp"/>
 
         <EditText
+            android:id="@+id/EditTextbankcard"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Add Your Bank Card"
@@ -215,5 +225,5 @@
         android:textStyle="bold"
         android:textSize="18sp"/>
 
-    </LinearLayout>
+</LinearLayout>
 

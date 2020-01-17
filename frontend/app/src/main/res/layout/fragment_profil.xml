@@ -30,30 +30,37 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/profile_picture" />
+                android:src="@drawable/profile_picture"
+                android:layout_marginTop="-15dp"/>
 
             <TextView
-
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#fff"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/user_surname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="DAVID "
+                android:layout_marginTop="5dp"
                 android:textColor="#fff"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
-
+                android:id="@+id/user_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="Lyon , France "
+                android:layout_marginTop="5dp"
                 android:textColor="#fff"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
     </RelativeLayout>
@@ -75,13 +82,13 @@
                 android:src="@drawable/ic_email_black_24dp"/>
 
             <TextView
-                android:id="@+id/email"
+                android:id="@+id/user_email"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="David@gmail.com"
+
                 android:textSize="18sp"/>
 
         </LinearLayout>
@@ -98,13 +105,12 @@
 
             <TextView
                 android:textStyle="bold"
-                android:id="@+id/phone"
-
+                android:id="@+id/user_phone"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="+0637151515"
+
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -120,13 +126,13 @@
                 android:src="@drawable/ic_forum_black_24dp"/>
             <TextView
                 android:textStyle="bold"
-                android:id="@+id/description"
+                android:id="@+id/user_description"
 
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="Description"
+
                 android:textSize="18sp"/>
         </LinearLayout>
 
@@ -141,71 +147,27 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/ic_home_black_24dp"/>
+                android:src="@drawable/ic_directions_car_black_24dp"/>
 
             <TextView
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
+                android:id="@+id/user_trip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="3 Avenue Albert Einstein"
-                android:textSize="18sp"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_security_black_24dp"/>
-
-            <TextView
-                android:textStyle="bold"
                 android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="........."
-                android:textSize="18sp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_payment_black_24dp"/>
-
-            <TextView
-                android:layout_width="255dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="30dp"
-                android:text="............7894"
                 android:textSize="18sp"
+
                 android:textStyle="bold" />
 
-
-
         </LinearLayout>
+
 
 
         <Button
              android:id="@+id/button_logout"
              android:textColor="#fff"
              android:background="@drawable/buttonstyleithgradient"
-             android:layout_marginTop="15dp"
+             android:layout_marginTop="35dp"
              android:layout_gravity="center_horizontal"
              android:layout_width="match_parent"
              android:layout_height="match_parent"

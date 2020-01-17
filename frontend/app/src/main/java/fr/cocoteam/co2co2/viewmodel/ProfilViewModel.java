@@ -10,6 +10,10 @@ import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.service.RetrofitInterface;
 import fr.cocoteam.co2co2.utils.ViewModelInterface;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmModel;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,6 +23,7 @@ public class ProfilViewModel extends ViewModelInterface {
     RetrofitInterface retrofit = instantiateRetrofit();
     Realm realmInsance = Realm.getDefaultInstance();
     MutableLiveData<User> currentUser;
+    Realm realm;
 
     public LiveData<User> getCurrentUser() {
         if (currentUser == null) {
@@ -31,27 +36,12 @@ public class ProfilViewModel extends ViewModelInterface {
         getCurrentUserProfil();
     }
 
-    private void getCurrentUserProfil() {
-        Call<User> call = retrofit.getUser("cam2@yahoo.fr");
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                realmInsance.beginTransaction();
-                if (!Realm.getDefaultInstance().isEmpty()){
-                    Realm.getDefaultInstance().deleteAll();
-                }
-                Realm.getDefaultInstance().copyToRealm(response.body());
+    public void getCurrentUserProfil() {
 
-                realmInsance.commitTransaction();
-                currentUser.postValue(response.body());
+        realmInsance.beginTransaction();
+        currentUser.postValue(realmInsance.where(User.class).findFirst());
+        realmInsance.commitTransaction();
 
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.e("Error getting user :", t.getMessage());
-            }
-        });
 
     }
 

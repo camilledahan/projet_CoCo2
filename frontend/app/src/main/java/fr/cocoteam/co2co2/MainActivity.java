@@ -16,7 +16,6 @@ import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
-import fr.cocoteam.co2co2.view.PaymentFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SettingFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
@@ -44,15 +43,17 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
+
         //updateMenuVisibility(false);
 
-        ConnectionFragment connectionFragment = new ConnectionFragment();
+     /*   ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-        //loadFragment(connectionFragment, R.id.startContainer);
+       loadFragment(connectionFragment, R.id.startContainer);*/
 
         SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
        splashScreenFragment.setOnHeadlineSelectedListener(this);
         loadFragment(splashScreenFragment, R.id.fragment_container);
+
 
 
     }
@@ -178,30 +179,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         }
         return loadFragment(fragment, R.id.fragment_container);
     }
-
-/*
-    @Override
-
-    public boolean onPaymentOptionSelected(String lclass) {
-
-        Fragment fragment = null;
-        switch (lclass) {
-            case "back":
-                ProfilFragment frg3 = new ProfilFragment();
-                frg3.setOnHeadlineSelectedListener(this);
-                fragment = frg3;
-                break;
-            case "addcardpage":
-                ProfilFragment frg = new ProfilFragment();
-                frg.setOnHeadlineSelectedListener(this);
-                fragment = frg;
-                break;
-
-        }
-        return loadFragment(fragment, R.id.fragment_container);
-    }
-    */
-
 
 
 

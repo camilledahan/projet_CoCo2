@@ -36,7 +36,7 @@ public class SplashScreenViewModel extends ViewModelInterface {
     }
 
     private void getCurrentUserProfil() {
-        Call<User> call = retrofit.getUser("cam2@yahoo.fr");
+        Call<User> call = retrofit.getUser("zhufeng719@gmail.com");
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

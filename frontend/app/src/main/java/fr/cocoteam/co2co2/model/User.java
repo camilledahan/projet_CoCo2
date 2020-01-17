@@ -63,20 +63,25 @@ public class User extends RealmObject {
 
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
+    public void setEmail(String email) {this.email = email;}
+
     public String getName() {
-        return this.name;
+        return name;
     }
+    public void setName(String name) {this.name = name;}
+
     public String getSurname() {
-        return this.surname;
+        return surname;
     }
-    public String getPhone() {
-        return this.phone;
-    }
-    public String getDescription() {
-        return this.description;
-    }
+    public void setSurname(String surname) {this.surname = surname;}
+
+
+    public String getPhone() { return this.phone; }
+    public String getAge() { return this.age; }
+    public String getDescription() { return this.description; }
+    public Trip getTrip() {return trip; }
 
 }
 
