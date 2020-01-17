@@ -20,7 +20,7 @@ import retrofit2.Retrofit;
 
 public class SplashScreenViewModel extends ViewModelInterface {
 
-    RetrofitInterface retrofit = instantiateRetrofit();
+    RetrofitInterface retrofit = instantiateRetrofit("http://userprojetmajeur.azurewebsites.net");
     Realm realmInsance = Realm.getDefaultInstance();
     MutableLiveData<User> currentUser;
 

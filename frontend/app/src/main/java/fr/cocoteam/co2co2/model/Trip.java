@@ -42,4 +42,12 @@ public class Trip extends RealmObject {
     public String getArrivee() {
         return this.arrival;
     }
+
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
+    }
 }

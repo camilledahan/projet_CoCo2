@@ -1,71 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginVertical="5dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="15dp">
 
-        <TextView
-            android:id="@+id/match_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="18sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/match_trip"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_marginLeft="20dp"
-            android:text="Trip" />
 
-        <TextView
-            android:id="@+id/trip_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_marginLeft="20dp"
-            android:text="15Km" />
+            <TextView
+                android:id="@+id/match_name"
+                android:gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Name"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/match_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                tools:text="Tri eazezaeap"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/match_horraire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="7h30 - 8h"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
 
         <Space
             android:layout_width="400dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
+
+
         <ImageView
             android:id="@+id/like_image_switcher"
-            android:layout_width="63dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/like"
+            android:src="@drawable/add_match_icon"
             android:gravity="right"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/sub_item"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp">
 
         <ImageView
             android:id="@+id/profile_img"
-            android:layout_width="63dp"
-            android:layout_height="match_parent"
-            android:gravity="right"
-            android:src="@drawable/profile_tmp"/>
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/profil_img" />
 
         <TextView
-            android:id="@+id/match_horraire"
+            android:id="@+id/match_age"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="18 ans" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="7h30 - 8h"
-            android:textStyle="bold" />
+            android:layout_gravity="center"
+            android:stepSize="0.1"
+            android:numStars="3"
+            android:rating="3"/>
+
+        <TextView
+            android:id="@+id/match_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold|italic"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a imperdiet sem. Sed eget mattis magna, eget porta ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sit amet eleifend turpis. Ut quis sem tellus. Integer sagittis tellus ac lacus scelerisque lacinia. " />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/smoke_false_icon"
+                android:scaleType="fitCenter"
+                />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/detour_icon"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/driver_icon"
+                android:scaleType="fitCenter"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>
+
+
 </LinearLayout>

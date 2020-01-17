@@ -14,13 +14,13 @@ public class ViewModelInterface extends ViewModel {
     private String BASE_URL = "http://userprojetmajeur.azurewebsites.net";
 
 
-    public RetrofitInterface instantiateRetrofit(){
+    public RetrofitInterface instantiateRetrofit(String baseUrl){
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         return retrofit.create(RetrofitInterface.class);

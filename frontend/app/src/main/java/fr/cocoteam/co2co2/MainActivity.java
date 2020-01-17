@@ -11,20 +11,26 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
+import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.view.ConnectionFragment;
 import fr.cocoteam.co2co2.view.ContactFragment;
+import fr.cocoteam.co2co2.view.ContractFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
 import fr.cocoteam.co2co2.view.NewUserFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
+import fr.cocoteam.co2co2.view.UserMatchDescriptionFragment;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener,NewUserFragment.OnHeadlineSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener,NewUserFragment.OnHeadlineSelectedListener {
 
     public BottomNavigationView navigation;
 public Fragment mapFragment;
@@ -44,16 +50,13 @@ public Fragment mapFragment;
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
-        updateMenuVisibility(true);
+        updateMenuVisibility(false);
+
 
         ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
        loadFragment(connectionFragment, R.id.startContainer);
-     /*  SplashScreenFragment splashScreenFragment = new SplashScreenFragment();
-        splashScreenFragment.setOnHeadlineSelectedListener(this);
-       loadFragment(new SplashScreenFragment(), R.id.fragment_container);*/
         mapFragment = new MapFragment();
-
     }
 
     private void setRealm() {
@@ -116,7 +119,7 @@ public Fragment mapFragment;
                 break;
 
             case R.id.nav_contract:
-                fragment = new ContactFragment();
+                fragment = new ContractFragment();
                 break;
 
             case R.id.nav_profil:
@@ -170,5 +173,10 @@ public Fragment mapFragment;
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+    }
+
+    @Override
+    public void onItemClicked(UserMatch userMatch) {
+        loadFragment(new UserMatchDescriptionFragment(), R.id.fragment_container);
     }
 }

@@ -2,14 +2,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe_container"
     tools:context="fr.cocoteam.co2co2.view.FindCarFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/matchRecycleView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/user_match_item"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/noMatchFoundTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="50dp"
+            android:text="No match found, come back later or pull the page down to refresh."
+            android:textAlignment="center"
+            android:visibility="invisible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/matchRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/user_match_item"
+            android:layout_gravity="center"/>
+
+
+
+    </RelativeLayout>
+
+
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
