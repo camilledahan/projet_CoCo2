@@ -9,16 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-<<<<<<< HEAD
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-=======
-
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
->>>>>>> 924e437817f1a2f7d0f4fa344192fa58f85aca21
 import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
 import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.view.ConnectionFragment;
@@ -26,6 +19,7 @@ import fr.cocoteam.co2co2.view.ContactFragment;
 import fr.cocoteam.co2co2.view.ContractFragment;
 import fr.cocoteam.co2co2.view.FindCarFragment;
 import fr.cocoteam.co2co2.view.MapFragment;
+import fr.cocoteam.co2co2.view.NewUserFragment;
 import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.view.SettingFragment;
 import fr.cocoteam.co2co2.view.SplashScreenFragment;
