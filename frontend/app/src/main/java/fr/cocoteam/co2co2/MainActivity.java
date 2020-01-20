@@ -1,12 +1,16 @@
 package fr.cocoteam.co2co2;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,14 +36,20 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
+    
 
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
+    private Boolean permissionsAccepted;
     public BottomNavigationView navigation;
     public Fragment mapFragment;
+    private ConnectionFragment connectionFragment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        askPermissions();
         Realm.init(this);
         setRealm();
 
@@ -50,16 +60,56 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
-
-
-        //updateMenuVisibility(false);
-
-        ConnectionFragment connectionFragment = new ConnectionFragment();
+        updateMenuVisibility(false);
+        connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-        //loadFragment(connectionFragment, R.id.startContainer);
-        loadFragment(new ContractFragment(), R.id.fragment_container);
-        mapFragment = new MapFragment();
+        loadFragment(connectionFragment, R.id.startContainer);
+
+
     }
+
+    private void askPermissions() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CONTACTS)) {
+
+            } else {
+                // No explanation needed; request the permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mapFragment = new MapFragment();
+                    permissionsAccepted=true;
+
+
+
+                } else {
+                    permissionsAccepted=false;
+
+                    askPermissions();
+                }
+                return;
+            }
+        }
+    }
+
+
 
     private void setRealm() {
         RealmConfiguration configuration = new RealmConfiguration.Builder()
@@ -160,7 +210,11 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 fragment = frg;
                 break;
             case "logout":
-                fragment = new ConnectionFragment();
+                connectionFragment.signOut();
+                updateMenuVisibility(false);
+               connectionFragment = new ConnectionFragment();
+               connectionFragment.setOnHeadlineSelectedListener(this);
+                fragment =connectionFragment;
                 break;
         }
         return loadFragment(fragment, R.id.fragment_container);
@@ -189,8 +243,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
     @Override
     public void onDataLoaded() {
-        updateMenuVisibility(true);
-        loadFragment(mapFragment, R.id.fragment_container);
+        if(permissionsAccepted){
+            updateMenuVisibility(true);
+            loadFragment(mapFragment, R.id.fragment_container);
+        }
+        else {
+            askPermissions();
+        }
+
     }
 
     @Override
