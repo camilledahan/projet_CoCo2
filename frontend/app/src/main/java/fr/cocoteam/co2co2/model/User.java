@@ -1,6 +1,5 @@
 package fr.cocoteam.co2co2.model;
 
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -81,6 +80,9 @@ public class User extends RealmObject {
     public String getAge() { return this.age; }
     public String getDescription() { return this.description; }
     public Trip getTrip() {return trip; }
+    public void   setTrip(Trip trip){this.trip= trip;}
 
+    public int getIsDriver() { return is_driver;
+    }
 }
 
