@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
+    private Boolean permissionsAccepted;
     public BottomNavigationView navigation;
     public Fragment mapFragment;
 
@@ -62,10 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
         updateMenuVisibility(false);
-       ConnectionFragment connectionFragment = new ConnectionFragment();
-        connectionFragment.setOnHeadlineSelectedListener(this);
-       loadFragment(connectionFragment, R.id.startContainer);
-        mapFragment = new MapFragment();
+
 
     }
 
@@ -95,8 +93,16 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mapFragment = new MapFragment();
+                    permissionsAccepted=true;
+                    ConnectionFragment connectionFragment = new ConnectionFragment();
+                    connectionFragment.setOnHeadlineSelectedListener(this);
+                    loadFragment(connectionFragment, R.id.startContainer);
+
 
                 } else {
+                    permissionsAccepted=false;
+
                     askPermissions();
                 }
                 return;
@@ -234,8 +240,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
     @Override
     public void onDataLoaded() {
-        updateMenuVisibility(true);
-        loadFragment(mapFragment, R.id.fragment_container);
+        if(permissionsAccepted){
+            updateMenuVisibility(true);
+            loadFragment(mapFragment, R.id.fragment_container);
+        }
+        else {
+            askPermissions();
+        }
+
     }
 
     @Override
