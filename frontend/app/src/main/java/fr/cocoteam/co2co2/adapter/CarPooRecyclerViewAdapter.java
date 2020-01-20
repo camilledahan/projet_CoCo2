@@ -28,6 +28,7 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
     List<Agreement> agreements;
     ContractViewModel viewmodel;
+    Agreement agreement;
 
 
     public CarPooRecyclerViewAdapter(List<Agreement> agreements, ContractViewModel contractViewModel){
@@ -49,7 +50,7 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
     @Override
     public void onBindViewHolder(@NonNull CarPoolViewHolder holder, int position) {
 
-        Agreement agreement = agreements.get(position);
+        agreement = agreements.get(position);
 
         holder.startTime.setText(agreement.getTrip().getHeure());
         holder.startLocation.setText(agreement.getTrip().getDepart());
@@ -66,6 +67,7 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         holder.startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewmodel.updateCurrentAgreement(agreement);
                 //TODO viewmodel.yourmethod()
             }
         });

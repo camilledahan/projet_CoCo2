@@ -9,6 +9,7 @@ import io.realm.RealmObject;
 public class Agreement extends RealmObject {
 
     private String _id;
+    private User passager;
     private Trip trip;
     private String status;
     private RealmList<Day> days;

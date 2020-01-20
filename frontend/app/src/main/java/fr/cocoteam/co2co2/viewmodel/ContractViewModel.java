@@ -10,6 +10,7 @@ import java.util.List;
 import fr.cocoteam.co2co2.model.Agreement;
 import fr.cocoteam.co2co2.model.Day;
 import fr.cocoteam.co2co2.model.Trip;
+import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.utils.EnumContractStatus;
 import fr.cocoteam.co2co2.utils.ViewModelInterface;
@@ -20,6 +21,7 @@ public class ContractViewModel extends ViewModelInterface {
     // TODO: Implement the ViewModel
 
     MutableLiveData<List<Agreement>> currentAgreements;
+    MutableLiveData<Agreement> currentAgreement= new MutableLiveData<>();
 
     public LiveData<List<Agreement>> getCurrentAgreements() {
         if (currentAgreements == null) {
@@ -30,6 +32,15 @@ public class ContractViewModel extends ViewModelInterface {
         return currentAgreements;
     }
 
+    public LiveData<Agreement> getCurrentAgreement() {
+        if (currentAgreement == null) {
+            currentAgreement = new MutableLiveData<Agreement>();
+
+        }
+        return currentAgreement;
+    }
+
+
     public void createFakeAgreements(int nb){
         List<Agreement> agreements = new ArrayList<>();
         for(int i=0;i<nb; i++){
@@ -39,10 +50,9 @@ public class ContractViewModel extends ViewModelInterface {
             days.add(new Day("Wednesday",false));
             days.add(new Day("Thurday",false));
             days.add(new Day("Friday",true));
-            
             Agreement tmpAgr = new Agreement(
                     Integer.toString(nb),
-                    new Trip("Marseille","Lyon","0","15:20"),
+                    new Trip("paul","45.804418, 4.853231","45.781730,4.872297","Marseille","Lyon","15:20"),
                     EnumContractStatus.TODO.toString(),
                     days,
                     54
@@ -51,7 +61,10 @@ public class ContractViewModel extends ViewModelInterface {
         }
         currentAgreements.postValue(agreements);
     }
+//to start covoiturage
+    public void updateCurrentAgreement(Agreement agreement) {
 
+        currentAgreement.postValue(agreement);
+    }
 
-    //TODO crete ur method to start covoiturage bang bang
 }

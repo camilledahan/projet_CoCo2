@@ -97,11 +97,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                     mapFragment = new MapFragment();
                     permissionsAccepted=true;
 
-
-
                 } else {
                     permissionsAccepted=false;
-
                     askPermissions();
                 }
                 return;

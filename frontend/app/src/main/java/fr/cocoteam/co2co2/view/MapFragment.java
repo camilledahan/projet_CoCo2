@@ -1,6 +1,7 @@
 package fr.cocoteam.co2co2.view;
 
 
+import android.app.AlertDialog;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -9,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,6 +26,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -37,10 +42,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import fr.cocoteam.co2co2.model.Agreement;
+import fr.cocoteam.co2co2.model.Trip;
+import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.directionModel.Route;
 import fr.cocoteam.co2co2.service.DirectionsWebService;
 import fr.cocoteam.co2co2.listener.DirectionsServiceListener;
 import fr.cocoteam.co2co2.R;
+import fr.cocoteam.co2co2.viewmodel.ContractViewModel;
+import fr.cocoteam.co2co2.viewmodel.ProfilViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,9 +58,10 @@ import fr.cocoteam.co2co2.R;
 public class MapFragment extends Fragment {
     private SupportMapFragment mapFragment;
    private  List<Route> direction;
-   private String origin ="45.75,4.7";
-   private String destination = "45.73,4.9";
+   private String origin;
+   private String destination;
    private GoogleMap mMap;
+
 
     private FusedLocationProviderClient fusedLocationClient;
     //True si user a accepté de partager se position
@@ -64,7 +75,8 @@ public class MapFragment extends Fragment {
    private  Marker markerOtherLocation;
     private DatabaseReference myRefState;
     private DatabaseReference refOtherUserState;
-private     Switch startSwitch;
+    private     Switch startSwitch;
+    private ContractViewModel contractViewModel;
 
     public MapFragment() {
         // Required empty public constructor
@@ -77,8 +89,13 @@ private     Switch startSwitch;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-        fetchDirections( origin, destination);
-        final LatLng latLngOrigin = stringToLatLng(origin);
+        MapsInitializer.initialize(getContext());
+        contractViewModel= ViewModelProviders.of(getActivity()).get(ContractViewModel.class);
+        Observer<Agreement> currentAgreementObserver;
+        currentAgreementObserver = agreement -> {
+            updateMap(agreement);
+        };
+        contractViewModel.getCurrentAgreement().observe(this,currentAgreementObserver);
          startSwitch = view.findViewById(R.id.startCovoiturage);
         if (savedInstanceState != null) {
                 requestingLocationUpdates = savedInstanceState.getBoolean("requestingLocationUpdates")   ;
@@ -86,69 +103,25 @@ private     Switch startSwitch;
 
         }
         //handle start and sotp covoiturage
-        startAndStop(view);
-        //write in firebase database
-        getFBref();
-
-            mapFragment = SupportMapFragment.newInstance();
-            mapFragment.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(final GoogleMap googleMap) {
-                    mMap =googleMap;
-                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(origin)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(destination)));
-                    googleMap.setMyLocationEnabled(true);
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin,10));
-
-                    //display other user position
-                    refOtherUserLocation.addValueEventListener(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            otherLastKnownLocation = dataSnapshot.getValue().toString();
-                            if(markerOtherLocation != null) {
-                                markerOtherLocation.remove();}
-                            if(requestingLocationUpdates){
-                                markerOtherLocation = mMap.addMarker(new MarkerOptions().position(stringToLatLng(otherLastKnownLocation)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    refOtherUserState.addValueEventListener(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if( dataSnapshot.getValue()!=null) {
-                                if(dataSnapshot.getValue().toString().equals("false")&& markerOtherLocation!=null){
-                                    markerOtherLocation.remove();
-                                }
-                              }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-
-
-                }
-
-
-
-
-            });
-        // R.id.map is a FrameLayout, not a Fragment
-        getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
+        startAndStop();
         return view;
     }
+
+    private void updateMap(Agreement agreement) {
+        createMap(agreement.getTrip());
+        if(agreement.getTrip()!=null){
+            origin=agreement.getTrip().getCoords_dep();
+            destination=agreement.getTrip().getCoords_arr();
+            fetchDirections( origin, destination);
+            getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
+            getFireBaseref();
+        }
+        else {
+            Toast.makeText(getContext()," vous n'avez pas de covoiturage , allez dans vos contrats pour commencer un covoiturage",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -158,8 +131,63 @@ private     Switch startSwitch;
 
     }
 
+    private void createMap(Trip trip){
 
-    private void startAndStop(View view) {
+        mapFragment = SupportMapFragment.newInstance();
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(final GoogleMap googleMap) {
+                mMap =googleMap;
+                googleMap.setMyLocationEnabled(true);
+                if(trip!=null){
+                    final LatLng latLngOrigin = stringToLatLng(trip.getCoords_dep());
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin,10));
+                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(trip.getCoords_dep())).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(trip.getCoords_arr())));
+                }
+
+                //display other user position
+                refOtherUserLocation.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        otherLastKnownLocation = dataSnapshot.getValue().toString();
+                        if(markerOtherLocation != null) {
+                            markerOtherLocation.remove();}
+                        if(requestingLocationUpdates){
+                            markerOtherLocation = mMap.addMarker(new MarkerOptions().position(stringToLatLng(otherLastKnownLocation)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                refOtherUserState.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if( dataSnapshot.getValue()!=null) {
+                            if(dataSnapshot.getValue().toString().equals("false")&& markerOtherLocation!=null){
+                                markerOtherLocation.remove();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+    }
+
+
+    private void startAndStop() {
 
         startSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -192,17 +220,13 @@ private     Switch startSwitch;
         Double longitude= new Double(lat[1]);
         return new LatLng(latitude,longitude);
     }
-    private void getFBref() {
+    private void getFireBaseref() {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
-
-
         String id = acct.getId();
         String otherId;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRefLocation = database.getReference(id+"/Location");
         myRefState= database.getReference(id+"/State");
-
-
         if(id.equals("114280628950980724360")) {
             otherId = "108799991002058225966";
         }
