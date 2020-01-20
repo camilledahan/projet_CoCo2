@@ -36,7 +36,7 @@ public class Trip extends RealmObject {
     }
 
     public String getDepart() {
-        return this.address_arr;
+        return this.address_dep;
     }
 
     public String getArrivee() {
