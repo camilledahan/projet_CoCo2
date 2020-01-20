@@ -24,9 +24,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.EventListener;
+import java.util.concurrent.Executor;
 
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.viewmodel.ConnectionViewModel;
@@ -118,6 +120,10 @@ public class ConnectionFragment extends Fragment implements View.OnClickListener
     private void signIn(){
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, 1);
+    }
+
+    public void signOut(){
+        googleSignInClient.signOut();
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> task) {

@@ -195,11 +195,13 @@ private     Switch startSwitch;
     private void getFBref() {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
 
+
         String id = acct.getId();
         String otherId;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRefLocation = database.getReference(id+"/Location");
         myRefState= database.getReference(id+"/State");
+
 
         if(id.equals("114280628950980724360")) {
             otherId = "108799991002058225966";
