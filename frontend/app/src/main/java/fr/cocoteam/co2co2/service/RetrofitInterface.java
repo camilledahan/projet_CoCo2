@@ -23,8 +23,9 @@ public interface RetrofitInterface {
 
     @POST("user/adduser")
     Call<User> sendUser(@Body User user);
-    @POST("trip/addtrip")
-    Call<Trip> sendTrip(@Body Trip trip);
+
+    @GET("trip/{email}")
+    Call<Trip> getTrip(@Path("email") String email);
 
     @GET("/user/{email}/")
     Call<User> getUser(@Path("email") String mail);

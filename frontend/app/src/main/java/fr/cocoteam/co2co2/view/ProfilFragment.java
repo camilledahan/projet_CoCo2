@@ -143,6 +143,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
         email.setText(user.getEmail());
         phone.setText(user.getPhone());
         description.setText(user.getDescription());
+   //     trip.setText(user.getTrip().getDepart()+ "to "+ user.getTrip().getArrivee());
 
     }
 

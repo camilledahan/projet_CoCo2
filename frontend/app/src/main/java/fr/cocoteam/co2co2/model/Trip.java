@@ -3,44 +3,44 @@ package fr.cocoteam.co2co2.model;
 import io.realm.RealmObject;
 
 public class Trip extends RealmObject {
-    private String id_user;
-    private String departure;
-    private String arrival;
+    private String email;
+    private String address_arr;
+    private String address_dep;
     private String heure;
 
     public Trip(){}
 
-    public Trip(String departure, String arrival,String id_user,String heure) {
-        this.id_user =id_user;
-        this.departure = departure;
-        this.arrival = arrival;
+    public Trip(String address_dep, String address_arr,String email,String heure) {
+        this.email =email;
+        this.address_arr = address_dep;
+        this.address_dep = address_arr;
         this.heure=heure;
 
 
     }
 
     public String getDeparture() {
-        return departure;
+        return address_arr;
     }
 
     public void setDeparture(String departure) {
-        this.departure = departure;
+        this.address_arr = departure;
     }
 
     public String getarrival() {
-        return arrival;
+        return address_arr;
     }
 
     public void setarrival(String arrival) {
-        this.arrival = arrival;
+        this.address_arr = arrival;
     }
 
     public String getDepart() {
-        return this.departure;
+        return this.address_arr;
     }
 
     public String getArrivee() {
-        return this.arrival;
+        return this.address_arr;
     }
 
     public String getHeure() {
