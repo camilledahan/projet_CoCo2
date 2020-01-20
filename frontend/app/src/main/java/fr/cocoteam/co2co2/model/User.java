@@ -1,5 +1,6 @@
 package fr.cocoteam.co2co2.model;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -13,11 +14,11 @@ public class User extends RealmObject {
     private String surname;
     private Trip trip;
     private String age;
-    private boolean isDriver;
-    private String telephone;
+    private int is_driver;
     private String phone;
     private String description;
     private RealmList<UserMatch> userMatches;
+
 
 
 
@@ -27,16 +28,11 @@ public class User extends RealmObject {
     }
 
 
-    /*public User(int ID_USER, String login, String description) {
-        this.ID_USER = ID_USER;
-        this.login = login;
-        this.description = description;
-    }*/
 
 
 
 
-    public User(String _id, String email, String name, String surname, String phone, String age, boolean is_driver, String description) {
+    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description) {
         this._id = _id;
         this.email = email;
 
@@ -44,20 +40,19 @@ public class User extends RealmObject {
         this.surname = surname;
         this.phone = phone;
         this.age = age;
-        this.isDriver = is_driver;
+        this.is_driver = is_driver;
         this.description = description;
-
         this.userMatches = userMatches;
         this.email =email;
     }
 
-    public User(String name, String surname, Trip trip, String age, boolean isDriver, String telephone, String description, RealmList<UserMatch> userMatches, String email) {
+    public User(String name, String surname, Trip trip, String age, int isDriver, String telephone, String description, RealmList<UserMatch> userMatches, String email) {
         this.name = name;
         this.surname = surname;
         this.trip = trip;
         this.age = age;
-        this.isDriver = isDriver;
-        this.telephone = telephone;
+        this.is_driver = isDriver;
+        this.phone = telephone;
         this.description = description;
         this.userMatches = userMatches;
         this.email =email;
@@ -65,8 +60,27 @@ public class User extends RealmObject {
     }
 
 
+
     public String getEmail() {
-        return this.email;
+        return email;
     }
+    public void setEmail(String email) {this.email = email;}
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {this.name = name;}
+
+    public String getSurname() {
+        return surname;
+    }
+    public void setSurname(String surname) {this.surname = surname;}
+
+
+    public String getPhone() { return this.phone; }
+    public String getAge() { return this.age; }
+    public String getDescription() { return this.description; }
+    public Trip getTrip() {return trip; }
+
 }
 

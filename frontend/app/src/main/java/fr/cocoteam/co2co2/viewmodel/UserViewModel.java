@@ -27,14 +27,14 @@ public class UserViewModel extends ViewModel {
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://userprojetmajeur.azurewebsites.net/";
 
-    private MutableLiveData<User> user;
+    private MutableLiveData<Boolean> isUserPost;
 
-    public LiveData<User> getUsers() {
-        if (user == null) {
-            user = new MutableLiveData<User>();
-            getInfo();
+    public LiveData<Boolean> isUserPost() {
+        if (isUserPost == null) {
+            isUserPost = new MutableLiveData<Boolean>();
+
         }
-        return user;
+        return isUserPost;
     }
 
 public void postUser(User user, Trip trip){
@@ -46,15 +46,14 @@ public void postUser(User user, Trip trip){
         @Override
         public void onResponse(Call<User> call, Response<User> response) {
             if (response.code() == 200) {
-
+                isUserPost.postValue(true);
                 Log.d(TAG, "onResponse: "+response.body());
-
-
             }
         }
 
         @Override
         public void onFailure(Call<User> call, Throwable t) {
+            isUserPost.postValue(false);
 
             Log.d(TAG, "onFailure: "+t.getMessage());
         }
@@ -81,33 +80,6 @@ public void postUser(User user, Trip trip){
 
 }
 
-    public void   getInfo(){
-
-        /*Call<String> call = retrofitInterface.executeUser(1);
-        call.enqueue(new Callback<String>() {
->>>>>>> origin/develop
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.code() == 200) {
-
-                    Log.d(TAG, "onResponse: "+response.body());
-                    user.postValue(response.body());
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-                Log.d(TAG, "onFailure: "+t.getMessage());
-            }
-
-        });*/
-
-    }
-
-
-
     public void instantiateRetrofit(){
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -118,7 +90,6 @@ public void postUser(User user, Trip trip){
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         retrofitInterface = retrofit.create(RetrofitInterface.class);
-
 
     }
 
