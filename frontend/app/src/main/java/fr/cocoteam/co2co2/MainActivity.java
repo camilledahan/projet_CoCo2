@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     private Boolean permissionsAccepted;
     public BottomNavigationView navigation;
     public Fragment mapFragment;
-
+private ConnectionFragment connectionFragment;
 
 
 
@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
         updateMenuVisibility(false);
+        connectionFragment = new ConnectionFragment();
+        connectionFragment.setOnHeadlineSelectedListener(this);
+        loadFragment(connectionFragment, R.id.startContainer);
 
 
     }
@@ -95,9 +98,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mapFragment = new MapFragment();
                     permissionsAccepted=true;
-                    ConnectionFragment connectionFragment = new ConnectionFragment();
-                    connectionFragment.setOnHeadlineSelectedListener(this);
-                    loadFragment(connectionFragment, R.id.startContainer);
+
 
 
                 } else {
@@ -211,7 +212,11 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 fragment = frg;
                 break;
             case "logout":
-                fragment = new ConnectionFragment();
+                connectionFragment.signOut();
+                updateMenuVisibility(false);
+               connectionFragment = new ConnectionFragment();
+               connectionFragment.setOnHeadlineSelectedListener(this);
+                fragment =connectionFragment;
                 break;
         }
         return loadFragment(fragment, R.id.fragment_container);
