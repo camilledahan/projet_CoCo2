@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,7 +43,7 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.agreement_item, parent, false);
 
-        return new CarPoolViewHolder(view);
+        return new CarPoolViewHolder(view,viewmodel);
     }
 
     @Override
@@ -50,10 +51,24 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
         Agreement agreement = agreements.get(position);
 
-        holder.startTime
-
-        holder.title.setText(agreement.getTrip().getDepart());
+        holder.startTime.setText(agreement.getTrip().getHeure());
+        holder.startLocation.setText(agreement.getTrip().getDepart());
+        holder.endLocation.setText(agreement.getTrip().getArrivee());
         holder.status.setText(agreement.getStatus());
+
+        holder.cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        holder.startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO viewmodel.yourmethod()
+            }
+        });
 
     }
 
@@ -68,6 +83,8 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         private TextView endTime;
         private TextView startLocation;
         private TextView endLocation;
+        private Button startButton;
+        private Button cancelButton;
 
         /*private CheckBox checkMonday;
         private CheckBox checkTusday;
@@ -78,14 +95,19 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
 
 
-        public CarPoolViewHolder(View itemView) {
+        public CarPoolViewHolder(View itemView, ContractViewModel contractViewModel) {
             super(itemView);
 
-            this.c = itemView.findViewById(R.id.startTime);
+            this.startTime = itemView.findViewById(R.id.startTime);
             this.startLocation = itemView.findViewById(R.id.startLocation);
             this.endLocation = itemView.findViewById(R.id.endLocation);
             this.endTime = itemView.findViewById(R.id.endTime);
 
+            this.startButton = itemView.findViewById(R.id.validateButton);
+            this.cancelButton = itemView.findViewById(R.id.cancelButton);
+
+            startButton.setOnClickListener(this);
+            cancelButton.setOnClickListener(this);
 
             /*this.checkMonday = itemView.findViewById(R.id.checkBoxMonday);
             this.checkTusday = itemView.findViewById(R.id.checkBoxTueday);
@@ -99,7 +121,8 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
         @Override
         public void onClick(View view) {
-            Log.i("Match clicked",view.toString());
+
+
         }
     }
 
