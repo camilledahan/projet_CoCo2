@@ -14,6 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 
 
 import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCenter.start(getApplication(), "8f2bcd67-cd15-49df-85d8-050481b8a107",
+                Analytics.class, Crashes.class);
         askPermissions();
         Realm.init(this);
         setRealm();

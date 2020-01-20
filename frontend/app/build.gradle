@@ -35,6 +35,10 @@ dependencies {
     implementation 'androidx.vectordrawable:vectordrawable:1.0.0'
     implementation 'com.android.support:design:28.0.0'
 
+    //app center
+    implementation "com.microsoft.appcenter:appcenter-analytics:2.5.1"
+    implementation "com.microsoft.appcenter:appcenter-crashes:2.5.1"
+
     //real-time database firebase
     implementation 'com.google.firebase:firebase-database:19.2.0';
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
