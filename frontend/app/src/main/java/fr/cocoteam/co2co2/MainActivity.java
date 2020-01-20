@@ -36,7 +36,7 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
-    
+
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private Boolean permissionsAccepted;
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
-        updateMenuVisibility(false);
+        //updateMenuVisibility(false);
         connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-        loadFragment(connectionFragment, R.id.startContainer);
+        loadFragment(new ContractFragment(), R.id.fragment_container);
 
 
     }
