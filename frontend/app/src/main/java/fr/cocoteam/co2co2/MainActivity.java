@@ -33,14 +33,8 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
 
-
-
-
     public BottomNavigationView navigation;
     public Fragment mapFragment;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +54,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
         //updateMenuVisibility(false);
 
-       ConnectionFragment connectionFragment = new ConnectionFragment();
+        ConnectionFragment connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-       loadFragment(connectionFragment, R.id.startContainer);
+        //loadFragment(connectionFragment, R.id.startContainer);
+        loadFragment(new ContractFragment(), R.id.fragment_container);
         mapFragment = new MapFragment();
     }
 

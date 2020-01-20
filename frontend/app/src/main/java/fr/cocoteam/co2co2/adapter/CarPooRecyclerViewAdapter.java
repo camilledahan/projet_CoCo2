@@ -20,12 +20,19 @@ import java.util.List;
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.Agreement;
 import fr.cocoteam.co2co2.model.UserMatch;
+import fr.cocoteam.co2co2.viewmodel.ContractViewModel;
+import fr.cocoteam.co2co2.viewmodel.FindCarViewModel;
 
 public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecyclerViewAdapter.CarPoolViewHolder>{
 
     List<Agreement> agreements;
+    ContractViewModel viewmodel;
 
 
+    public CarPooRecyclerViewAdapter(List<Agreement> agreements, ContractViewModel contractViewModel){
+        this.agreements = agreements;
+        this.viewmodel = contractViewModel;
+    }
 
 
     @NonNull
@@ -35,12 +42,15 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.agreement_item, parent, false);
 
-        return new CarPoolViewHolder(view);    }
+        return new CarPoolViewHolder(view);
+    }
 
     @Override
     public void onBindViewHolder(@NonNull CarPoolViewHolder holder, int position) {
 
         Agreement agreement = agreements.get(position);
+
+        holder.startTime
 
         holder.title.setText(agreement.getTrip().getDepart());
         holder.status.setText(agreement.getStatus());
@@ -49,31 +59,41 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
     @Override
     public int getItemCount() {
-        return 0;
+        return agreements.size();
     }
 
     public static class CarPoolViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView title;
-        private CheckBox checkMonday;
+        private TextView startTime;
+        private TextView endTime;
+        private TextView startLocation;
+        private TextView endLocation;
+
+        /*private CheckBox checkMonday;
         private CheckBox checkTusday;
         private CheckBox checkWednesday;
         private CheckBox checkThursday;
-        private CheckBox checkFriday;
+        private CheckBox checkFriday;*/
         private TextView status;
-        private MapView mapview;
+
 
 
         public CarPoolViewHolder(View itemView) {
             super(itemView);
-            this.title = itemView.findViewById(R.id.carPoolTextView);
-            this.checkMonday = itemView.findViewById(R.id.checkBoxMonday);
+
+            this.c = itemView.findViewById(R.id.startTime);
+            this.startLocation = itemView.findViewById(R.id.startLocation);
+            this.endLocation = itemView.findViewById(R.id.endLocation);
+            this.endTime = itemView.findViewById(R.id.endTime);
+
+
+            /*this.checkMonday = itemView.findViewById(R.id.checkBoxMonday);
             this.checkTusday = itemView.findViewById(R.id.checkBoxTueday);
             this.checkWednesday = itemView.findViewById(R.id.checkBoxWednesday);
             this.checkThursday = itemView.findViewById(R.id.checkBoxThursday);
             this.checkFriday = itemView.findViewById(R.id.checkBoxFriday);
+            */
             this.status = itemView.findViewById(R.id.carpool_status);
-            this.mapview = itemView.findViewById(R.id.mapView);
 
         }
 

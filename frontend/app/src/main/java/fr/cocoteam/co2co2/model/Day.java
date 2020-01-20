@@ -5,13 +5,13 @@ import io.realm.RealmObject;
 public class Day extends RealmObject {
 
     private String dayName;
-    private String isSelected;
+    private boolean isSelected;
 
     public Day(){
 
     }
 
-    public Day(String dayName, String isSelected) {
+    public Day(String dayName, boolean isSelected) {
         this.dayName = dayName;
         this.isSelected = isSelected;
     }
@@ -24,11 +24,11 @@ public class Day extends RealmObject {
         this.dayName = dayName;
     }
 
-    public String getIsSelected() {
+    public boolean getIsSelected() {
         return isSelected;
     }
 
-    public void setIsSelected(String isSelected) {
+    public void setIsSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
 }

@@ -36,7 +36,6 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private SwipeRefreshLayout swipeRefreshLayout;
     private MatchUserRecyclerViewAdapter matchUserRecyclerViewAdapter;
     public List<UserMatch> userMatches = new ArrayList<>();
-
     private TextView noMatchFoundTextView;
 
     public FindCarFragment() {
