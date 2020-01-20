@@ -13,8 +13,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -38,13 +36,13 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 
 
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
-
+    
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private Boolean permissionsAccepted;
     public BottomNavigationView navigation;
     public Fragment mapFragment;
-private ConnectionFragment connectionFragment;
+    private ConnectionFragment connectionFragment;
 
 
 
