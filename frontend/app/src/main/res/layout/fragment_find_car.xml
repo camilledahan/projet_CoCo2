@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tool="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe_container"
     tools:context="fr.cocoteam.co2co2.view.FindCarFragment">
 
@@ -25,12 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/user_match_item"
+            android:visibility="visible"
             android:layout_gravity="center"/>
 
 
-
     </RelativeLayout>
-
 
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
