@@ -54,14 +54,14 @@ public class SplashScreenFragment extends Fragment {
 
         //observe User mutableLiveData
         Observer<User> currentUserObserver = user -> {
-           /* try {
+            try {
                 for(int i=0;i<5;i++){
                     progressBar.setProgress(i*20);
                     Thread.sleep(500);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }
             if(user!=null){
                 if (user.getEmail().isEmpty()){
                     callback.openNewUserFragment();
