@@ -1,17 +1,17 @@
 package fr.cocoteam.co2co2.view;
 
 
-import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -30,7 +30,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -43,10 +42,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.List;
 
 import fr.cocoteam.co2co2.model.Agreement;
-import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.directionModel.Route;
 import fr.cocoteam.co2co2.service.DirectionsWebService;
@@ -81,7 +80,9 @@ public class MapFragment extends Fragment {
     private     Switch startSwitch;
     private ContractViewModel contractViewModel;
     private Button callButton;
-
+    private ProfilViewModel mViewModel;
+    private User currentUser;
+    private Agreement currentAgreement;
     public MapFragment() {
         // Required empty public constructor
     }
@@ -95,123 +96,104 @@ public class MapFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         MapsInitializer.initialize(getContext());
         contractViewModel= ViewModelProviders.of(getActivity()).get(ContractViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ProfilViewModel.class);
+        Observer<User> currentUserObserver;
+        currentUserObserver = user -> {
+            currentUser=user;
+                createMap();
+                if(user.getTrip()!=null){
+                    fetchDirections(user.getTrip().getCoords_dep(),user.getTrip().getCoords_arr(),Color.BLUE);
+
+                }
+
+
+
+        };
+        mViewModel.getCurrentUser().observe(this,currentUserObserver);
+
+
+
+
+
         Observer<Agreement> currentAgreementObserver;
         currentAgreementObserver = agreement -> {
-            updateMap(agreement);
+            if(agreement ==null) {
+                Toast.makeText(getContext()," vous n'avez pas de covoiturage , allez dans vos contrats pour commencer un covoiturage",Toast.LENGTH_LONG).show();
+            }else {
+                currentAgreement=agreement;
+                getFireBaseRef();
+                updateMap(agreement);
+
+            }
+
+
         };
         contractViewModel.getCurrentAgreement().observe(this,currentAgreementObserver);
+
+
+        mViewModel.getCurrentUserProfil();
          startSwitch = view.findViewById(R.id.startCovoiturage);
          callButton = view.findViewById(R.id.call_button);
         if (savedInstanceState != null) {
                 requestingLocationUpdates = savedInstanceState.getBoolean("requestingLocationUpdates")   ;
                 startSwitch.setChecked(savedInstanceState.getBoolean("startSwitch"));
-
         }
+
         //handle start and sotp covoiturage
         startAndStop();
         return view;
     }
 
     private void updateMap(Agreement agreement) {
-        createMap(agreement.getTrip());
+
+
         if(agreement.getTrip()!=null){
             origin=agreement.getTrip().getCoords_dep();
             destination=agreement.getTrip().getCoords_arr();
-            fetchDirections( origin, destination);
-            getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
-            getFireBaseref();
+            fetchDirections( origin, destination,Color.BLACK);
             callButton.setVisibility(View.VISIBLE);
-            callButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    callPhoneNumber(agreement.getPassager().getPhone());
-                }
-            });
-        }
-        else {
-            Toast.makeText(getContext()," vous n'avez pas de covoiturage , allez dans vos contrats pour commencer un covoiturage",Toast.LENGTH_LONG).show();
+            callButton.setOnClickListener(view -> callPhoneNumber(agreement.getPassager().getPhone()));
         }
 
     }
 
 
-    private void createMap(Trip trip){
+    private void createMap(){
 
         mapFragment = SupportMapFragment.newInstance();
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(final GoogleMap googleMap) {
-                mMap =googleMap;
-                googleMap.setMyLocationEnabled(true);
-                if(trip!=null){
-                    final LatLng latLngOrigin = stringToLatLng(trip.getCoords_dep());
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin,10));
-                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(trip.getCoords_dep())).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(trip.getCoords_arr())));
-                }
-
-                //display other user position
-                refOtherUserLocation.addValueEventListener(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        otherLastKnownLocation = dataSnapshot.getValue().toString();
-                        if(markerOtherLocation != null) {
-                            markerOtherLocation.remove();}
-                        if(requestingLocationUpdates){
-                            markerOtherLocation = mMap.addMarker(new MarkerOptions().position(stringToLatLng(otherLastKnownLocation)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                refOtherUserState.addValueEventListener(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if( dataSnapshot.getValue()!=null) {
-                            if(dataSnapshot.getValue().toString().equals("false")&& markerOtherLocation!=null){
-                                markerOtherLocation.remove();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+        mapFragment.getMapAsync(googleMap -> {
+            mMap = googleMap;
+            googleMap.setMyLocationEnabled(true);
+            if(currentUser!=null){
+                final LatLng latLngOrigin = MapFragment.this.stringToLatLng(currentUser.getTrip().getCoords_dep());
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin, 13));
             }
+
         });
+        getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
+
     }
 
 
     private void startAndStop() {
 
-        startSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    startLocationUpdates();
-                    requestingLocationUpdates=true;
-                    myRefState.setValue(requestingLocationUpdates);
+        startSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if(isChecked){
+                startLocationUpdates();
+                requestingLocationUpdates=true;
+                myRefState.setValue(requestingLocationUpdates);
+                showUsersLocation();
+            }
+            else
+            {
+                requestingLocationUpdates=false;
+                stopLocationUpdate();
+                if(markerOtherLocation !=null){
+                    markerOtherLocation.remove();
                 }
-                else
-                {
-                    requestingLocationUpdates=false;
-                    stopLocationUpdate();
-                    if(markerOtherLocation !=null){
-                        markerOtherLocation.remove();
-                    }
-                    myRefState.setValue(requestingLocationUpdates);
+                myRefState.setValue(requestingLocationUpdates);
 
 
-                }
             }
         });
     }
@@ -224,21 +206,12 @@ public class MapFragment extends Fragment {
         Double longitude= new Double(lat[1]);
         return new LatLng(latitude,longitude);
     }
-    private void getFireBaseref() {
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
-        String id = acct.getId();
-        String otherId;
+    private void getFireBaseRef() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRefLocation = database.getReference(id+"/Location");
-        myRefState= database.getReference(id+"/State");
-        if(id.equals("114280628950980724360")) {
-            otherId = "108799991002058225966";
-        }
-        else{
-            otherId="114280628950980724360";
-        }
-        refOtherUserLocation =database.getReference(otherId+"/Location");
-        refOtherUserState= database.getReference(otherId+"/State");
+        myRefLocation = database.getReference(currentUser.get_id()+"/Location");
+        myRefState= database.getReference(currentUser.get_id()+"/State");
+        refOtherUserLocation =database.getReference(currentAgreement.getPassager().get_id()+"/Location");
+        refOtherUserState= database.getReference(currentAgreement.getPassager().get_id()+"/State");
         myRefState.setValue(requestingLocationUpdates);
 
     }
@@ -252,12 +225,16 @@ public class MapFragment extends Fragment {
     }
 
 
-    private void fetchDirections(String origin, String destination) {
+    private void fetchDirections(String origin, String destination, int color) {
         DirectionsServiceListener directionsServiceListener = route -> {
             try {
                 for (Route routes : route) {
 
-                    mMap.addPolyline(new PolylineOptions().addAll(routes.points));
+                    mMap.addPolyline(new PolylineOptions().addAll(routes.points).color(color));
+                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(origin)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(destination)));
+
+
                 }
             } catch (Exception e) {
             }
@@ -297,7 +274,50 @@ public class MapFragment extends Fragment {
                 locationCallback,
                 Looper.getMainLooper());
     }
+    private void showUsersLocation(){
 
+
+
+    //Location state
+        refOtherUserState.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    if (dataSnapshot.getValue().toString().equals("false") && markerOtherLocation != null) {
+                        markerOtherLocation.remove();
+                    }
+                    if(dataSnapshot.getValue().toString().equals("true")) {
+                        //display other user position
+                        refOtherUserLocation.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                if (markerOtherLocation != null) {
+                                    markerOtherLocation.remove();
+                                }
+                                if (requestingLocationUpdates) {
+                                    otherLastKnownLocation = dataSnapshot.getValue().toString();
+                                    markerOtherLocation = mMap.addMarker(new MarkerOptions().position(stringToLatLng(otherLastKnownLocation)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+}
 
     private void stopLocationUpdate(){
         fusedLocationClient.removeLocationUpdates(locationCallback);
@@ -322,5 +342,7 @@ public class MapFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putBoolean("requestingLocationUpdates",requestingLocationUpdates);
         outState.putBoolean("switchState",startSwitch.isActivated());
+
+
     }
 }

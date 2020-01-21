@@ -97,7 +97,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
 
         Observer<User> currentUserObserver;
         currentUserObserver = user -> {
-            updateUI(user);
+             updateUI(user);
         };
 
         mViewModel.getCurrentUser().observe(this,currentUserObserver);
