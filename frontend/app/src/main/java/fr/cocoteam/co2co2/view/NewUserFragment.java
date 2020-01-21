@@ -149,7 +149,7 @@ public class NewUserFragment extends Fragment {
         if(isDriver==true){
         is_driver=1;
         }
-        User user = new User(name,surname,null,age,is_driver,telephone,Description,null,email);
+        User user = new User(email,name,surname,age,is_driver,telephone,Description,null,null);
         Trip trip = new Trip(depart,arrivee,user.getEmail(),heure_depart);
         UserViewModel userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         userViewModel.postUser(user,trip);

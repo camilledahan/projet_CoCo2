@@ -29,12 +29,21 @@ public class User extends RealmObject {
 
 
 
-
-
-    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description) {
+    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description ) {
         this._id = _id;
         this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.age = age;
+        this.is_driver = is_driver;
+        this.description = description;
 
+    }
+
+    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description,UserMatch userMatch) {
+        this._id = _id;
+        this.email = email;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
@@ -42,10 +51,10 @@ public class User extends RealmObject {
         this.is_driver = is_driver;
         this.description = description;
         this.userMatches = userMatches;
-        this.email =email;
+
     }
 
-    public User(String name, String surname, Trip trip, String age, int isDriver, String telephone, String description, RealmList<UserMatch> userMatches, String email) {
+    public User(String email,String name, String surname, String age, int isDriver, String telephone, String description, RealmList<UserMatch> userMatches, Trip trip) {
         this.name = name;
         this.surname = surname;
         this.trip = trip;
