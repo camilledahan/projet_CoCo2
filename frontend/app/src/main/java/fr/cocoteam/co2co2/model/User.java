@@ -1,10 +1,13 @@
 package fr.cocoteam.co2co2.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class User extends RealmObject {
+public class User extends RealmObject  {
 
     @PrimaryKey
     private String _id;
@@ -41,7 +44,9 @@ public class User extends RealmObject {
 
     }
 
-    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description,UserMatch userMatch) {
+
+
+    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description, UserMatch userMatch) {
         this._id = _id;
         this.email = email;
         this.name = name;
@@ -90,8 +95,11 @@ public class User extends RealmObject {
     public String getDescription() { return this.description; }
     public Trip getTrip() {return trip; }
     public void   setTrip(Trip trip){this.trip= trip;}
-
+    public String get_id() {
+        return this._id;
+    }
     public int getIsDriver() { return is_driver;
     }
+
 }
 
