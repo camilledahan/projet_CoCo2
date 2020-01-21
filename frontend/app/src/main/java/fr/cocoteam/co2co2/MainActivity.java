@@ -6,17 +6,18 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+<<<<<<< HEAD
 
 
 import fr.cocoteam.co2co2.adapter.CarPooRecyclerViewAdapter;
+=======
+>>>>>>> origin/develop
 import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
 import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.view.ConnectionFragment;
@@ -31,13 +32,12 @@ import fr.cocoteam.co2co2.view.SplashScreenFragment;
 import fr.cocoteam.co2co2.view.UserMatchDescriptionFragment;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
 
 
+
 public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, ContractFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
-    
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private Boolean permissionsAccepted;
@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     public Fragment mapFragment;
     private ConnectionFragment connectionFragment;
     ContractFragment contractFragment;
-
 
 
     @Override
@@ -67,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         connectionFragment.setOnHeadlineSelectedListener(this);
         loadFragment(connectionFragment, R.id.startContainer);
         contractFragment = new ContractFragment();
-
-
     }
 
     private void askPermissions() {
@@ -84,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE},
                         MY_PERMISSIONS_REQUEST_LOCATION);
-
             }
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -108,8 +105,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             }
         }
     }
-
-
 
     private void setRealm() {
         RealmConfiguration configuration = new RealmConfiguration.Builder()
@@ -132,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 car,
                 contract,
                 profil};
-
         for (MenuItem item : menuItems) {
             item.setVisible(visibility);
         }
@@ -145,11 +139,11 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                     .beginTransaction()
                     .replace(container, fragment)
                     .commit();
-
             return true;
         }
         return false;
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -182,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 fragment = profilFragment;
                 break;
         }
-
         return loadFragment(fragment, R.id.fragment_container);
     }
 
@@ -191,8 +184,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, texte, duration);
         toast.show();
-
     }
+
 
     @Override
     public void onUserConnected(String username) {
@@ -201,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         loadFragment( splashScreenFragment, R.id.fragment_container);
         toast("Welcome " + username);
     }
+
 
     @Override
     public boolean onProfilOptionSelected(String mclass) {
@@ -212,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 frg.setOnHeadlineSelectedListener(this);
                 fragment = frg;
                 break;
+
             case "logout":
                 connectionFragment.signOut();
                 updateMenuVisibility(false);
@@ -223,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         return loadFragment(fragment, R.id.fragment_container);
     }
 
+
     @Override
     public boolean onSettingOptionSelected(String nclass) {
 
@@ -233,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 frg.setOnHeadlineSelectedListener(this);
                 fragment = frg;
                 break;
+
             case "valider":
                 ProfilFragment frg2 = new ProfilFragment();
                 frg2.setOnHeadlineSelectedListener(this);
@@ -241,7 +238,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         }
         return loadFragment(fragment, R.id.fragment_container);
     }
-
 
 
     @Override
@@ -253,16 +249,16 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         else {
             askPermissions();
         }
-
     }
+
 
     @Override
     public void openNewUserFragment() {
         NewUserFragment newUserFragment = new NewUserFragment();
         newUserFragment.setOnHeadlineSelectedListener(this);
         loadFragment(newUserFragment, R.id.fragment_container);
-
     }
+
 
     @Override
     public void openSplashScreen() {
@@ -271,11 +267,12 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         loadFragment( splashScreenFragment, R.id.fragment_container);
     }
 
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
     }
+
 
     @Override
     public void onItemClicked(UserMatch userMatch) {
