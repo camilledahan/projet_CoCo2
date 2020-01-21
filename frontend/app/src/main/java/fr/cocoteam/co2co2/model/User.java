@@ -1,6 +1,5 @@
 package fr.cocoteam.co2co2.model;
 
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -30,12 +29,21 @@ public class User extends RealmObject {
 
 
 
-
-
-    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description) {
+    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description ) {
         this._id = _id;
         this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.age = age;
+        this.is_driver = is_driver;
+        this.description = description;
 
+    }
+
+    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description,UserMatch userMatch) {
+        this._id = _id;
+        this.email = email;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
@@ -43,10 +51,10 @@ public class User extends RealmObject {
         this.is_driver = is_driver;
         this.description = description;
         this.userMatches = userMatches;
-        this.email =email;
+
     }
 
-    public User(String name, String surname, Trip trip, String age, int isDriver, String telephone, String description, RealmList<UserMatch> userMatches, String email) {
+    public User(String email,String name, String surname, String age, int isDriver, String telephone, String description, RealmList<UserMatch> userMatches, Trip trip) {
         this.name = name;
         this.surname = surname;
         this.trip = trip;
@@ -81,6 +89,9 @@ public class User extends RealmObject {
     public String getAge() { return this.age; }
     public String getDescription() { return this.description; }
     public Trip getTrip() {return trip; }
+    public void   setTrip(Trip trip){this.trip= trip;}
 
+    public int getIsDriver() { return is_driver;
+    }
 }
 

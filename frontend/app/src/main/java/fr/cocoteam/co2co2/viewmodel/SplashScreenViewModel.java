@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
+import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.service.RetrofitInterface;
 import fr.cocoteam.co2co2.utils.ViewModelInterface;
@@ -47,14 +48,16 @@ public class SplashScreenViewModel extends ViewModelInterface {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                realmInsance.beginTransaction();
-                if (!Realm.getDefaultInstance().isEmpty()){
-                    Realm.getDefaultInstance().deleteAll();
-                }
-                Realm.getDefaultInstance().copyToRealm(response.body());
-                realmInsance.commitTransaction();
-                currentUser.postValue(response.body());
+                if (response.code() == 200) {
+                    realmInsance.beginTransaction();
+                    if (!Realm.getDefaultInstance().isEmpty()) {
+                        Realm.getDefaultInstance().deleteAll();
+                    }
 
+                    Realm.getDefaultInstance().copyToRealm(response.body());
+                    realmInsance.commitTransaction();
+                    currentUser.postValue(response.body());
+                }
             }
 
             @Override
@@ -63,6 +66,7 @@ public class SplashScreenViewModel extends ViewModelInterface {
                 Log.e("Error getting user :", t.getMessage());
             }
         });
+
 
     }
 
