@@ -21,6 +21,7 @@ import java.util.List;
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.Agreement;
 import fr.cocoteam.co2co2.model.UserMatch;
+import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.viewmodel.ContractViewModel;
 import fr.cocoteam.co2co2.viewmodel.FindCarViewModel;
 
@@ -29,6 +30,11 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
     List<Agreement> agreements;
     ContractViewModel viewmodel;
     Agreement agreement;
+    CarPooRecyclerViewAdapter.OnHeadlineSelectedListener callback;
+
+    public void setOnHeadlineSelectedListener(CarPooRecyclerViewAdapter.OnHeadlineSelectedListener callback) {
+        this.callback = callback;
+    }
 
 
     public CarPooRecyclerViewAdapter(List<Agreement> agreements, ContractViewModel contractViewModel){
@@ -93,21 +99,18 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
 
 
-        holder.cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.cancelButton.setOnClickListener(view -> {
 
-            }
         });
 
-        holder.startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewmodel.updateCurrentAgreement(agreement);
-                //TODO viewmodel.yourmethod()
-            }
+        holder.startButton.setOnClickListener(view -> {
+            viewmodel.updateCurrentAgreement(agreement);
+            callback.onAgreementSelected();
         });
 
+    }
+    public interface OnHeadlineSelectedListener {
+       void  onAgreementSelected();
     }
 
     @Override

@@ -58,7 +58,7 @@ public class ContractViewModel extends ViewModelInterface {
             days.add(new Day("Wednesday", false));
             days.add(new Day("Thurday", false));
             days.add(new Day("Friday", true));
-            User userPassager = new User("5e26b6ef85ad6a0046e51818", "celine.dechandon@gmail.com", "Céline Déchandon", "Déchandon", "0626060981", "23", 1, "cc");
+            User userPassager = new User("5e2700804d1d12004ddb5780", "celine.dechandon@gmail.com", "Céline Déchandon", "Déchandon", "0626060981", "23", 1, "cc");
 
             Agreement tmpAgr = new Agreement(
                     Integer.toString(nb),
