@@ -48,15 +48,16 @@ public class SplashScreenViewModel extends ViewModelInterface {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                realmInsance.beginTransaction();
-                if (!Realm.getDefaultInstance().isEmpty()){
-                    Realm.getDefaultInstance().deleteAll();
+                if (response.code() == 200) {
+                    realmInsance.beginTransaction();
+                    if (!Realm.getDefaultInstance().isEmpty()) {
+                        Realm.getDefaultInstance().deleteAll();
+                    }
+
+                    Realm.getDefaultInstance().copyToRealm(response.body());
+                    realmInsance.commitTransaction();
+                    currentUser.postValue(response.body());
                 }
-
-                Realm.getDefaultInstance().copyToRealm(response.body());
-                realmInsance.commitTransaction();
-                currentUser.postValue(response.body());
-
             }
 
             @Override
