@@ -97,8 +97,6 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         holder.checkThursday.setOnClickListener(clickListener);
         holder.checkFriday.setOnClickListener(clickListener);
 
-
-
         holder.cancelButton.setOnClickListener(view -> {
 
         });
