@@ -12,12 +12,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-<<<<<<< HEAD
-
-
-import fr.cocoteam.co2co2.adapter.CarPooRecyclerViewAdapter;
-=======
->>>>>>> origin/develop
 import fr.cocoteam.co2co2.adapter.MatchUserRecyclerViewAdapter;
 import fr.cocoteam.co2co2.model.UserMatch;
 import fr.cocoteam.co2co2.view.ConnectionFragment;
