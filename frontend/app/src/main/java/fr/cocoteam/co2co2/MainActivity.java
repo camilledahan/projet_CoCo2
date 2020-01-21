@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         //updateMenuVisibility(false);
         connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-        loadFragment(connectionFragment, R.id.startContainer);
+        //loadFragment(connectionFragment, R.id.startContainer);
+        loadFragment(new ContractFragment(),R.id.fragment_container);
     }
 
     private void askPermissions() {

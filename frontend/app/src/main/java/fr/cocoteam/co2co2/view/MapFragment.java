@@ -101,7 +101,7 @@ public class MapFragment extends Fragment {
         };
         contractViewModel.getCurrentAgreement().observe(this,currentAgreementObserver);
          startSwitch = view.findViewById(R.id.startCovoiturage);
-         callButton = view.findViewById(R.id.call_button);
+         callButton = view.findViewById(R.id.callButton);
         if (savedInstanceState != null) {
                 requestingLocationUpdates = savedInstanceState.getBoolean("requestingLocationUpdates")   ;
                 startSwitch.setChecked(savedInstanceState.getBoolean("startSwitch"));

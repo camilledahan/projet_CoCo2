@@ -55,7 +55,7 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         holder.startTime.setText(agreement.getTrip().getHeure());
         holder.startLocation.setText(agreement.getTrip().getDepart());
         holder.endLocation.setText(agreement.getTrip().getArrivee());
-        holder.status.setText(agreement.getStatus());
+        //holder.status.setText(agreement.getStatus());
 
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override

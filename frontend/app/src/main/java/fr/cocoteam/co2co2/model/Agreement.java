@@ -7,26 +7,28 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class Agreement extends RealmObject {
-private User userPassager;
-    private String _id;
 
-    private Trip trip;
-    private String status;
-    private RealmList<Day> days;
+    private User userPassager;
+
+    //private RealmList<Day> days;
+    private int lundi;
+    private int mardi;
+    private int mercredi;
+    private int jeudi;
+    private int vendredi;
     private int currentWeek;
 
     public Agreement(){
 
     }
 
-
-    public Agreement(String _id, User userPassager,Trip trip, String status, RealmList<Day> days, int currentWeek) {
-
-        this._id = _id;
-        this.userPassager=userPassager;
-        this.trip = trip;
-        this.status = status;
-        this.days = days;
+    public Agreement(User userPassager, int lundi, int mardi, int mercredi, int jeudi, int vendredi, int currentWeek) {
+        this.userPassager = userPassager;
+        this.lundi = lundi;
+        this.mardi = mardi;
+        this.mercredi = mercredi;
+        this.jeudi = jeudi;
+        this.vendredi = vendredi;
         this.currentWeek = currentWeek;
     }
 
@@ -42,35 +44,52 @@ private User userPassager;
         this.currentWeek = currentWeek;
     }
 
-    public List<Day> getDays() {
-        return days;
-    }
-
-    public void setDays(RealmList<Day> days) {
-        this.days = days;
-    }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
 
     public Trip getTrip() {
-        return trip;
+        return userPassager.getTrip();
     }
 
-    public void setTrip(Trip trip) {
-        this.trip = trip;
+    public void setUserPassager(User userPassager) {
+        this.userPassager = userPassager;
     }
 
-    public String getStatus() {
-        return status;
+    public int getLundi() {
+        return lundi;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setLundi(int lundi) {
+        this.lundi = lundi;
+    }
+
+    public int getMardi() {
+        return mardi;
+    }
+
+    public void setMardi(int mardi) {
+        this.mardi = mardi;
+    }
+
+    public int getMercredi() {
+        return mercredi;
+    }
+
+    public void setMercredi(int mercredi) {
+        this.mercredi = mercredi;
+    }
+
+    public int getJeudi() {
+        return jeudi;
+    }
+
+    public void setJeudi(int jeudi) {
+        this.jeudi = jeudi;
+    }
+
+    public int getVendredi() {
+        return vendredi;
+    }
+
+    public void setVendredi(int vendredi) {
+        this.vendredi = vendredi;
     }
 }
