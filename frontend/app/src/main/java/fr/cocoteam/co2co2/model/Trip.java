@@ -4,28 +4,14 @@ import io.realm.RealmObject;
 
 public class Trip extends RealmObject {
     private String email;
-    private String coords_dep;
-
-    public String getCoords_dep() {
-        return coords_dep;
-    }
-
-    public void setCoords_dep(String coords_dep) {
-        this.coords_dep = coords_dep;
-    }
-
-    public String getCoords_arr() {
-        return coords_arr;
-    }
-
-    public void setCoords_arr(String coords_arr) {
-        this.coords_arr = coords_arr;
-    }
-
     private String coords_arr;
+    private String coords_dep;
     private String address_arr;
     private String address_dep;
     private String heure;
+
+
+
 
     public Trip(){}
 
@@ -46,9 +32,25 @@ public class Trip extends RealmObject {
 
 
     }
+    public String getCoords_dep() {
+        return coords_dep;
+    }
+
+    public void setCoords_dep(String coords_dep) {
+        this.coords_dep = coords_dep;
+    }
+
+    public String getCoords_arr() {
+        return coords_arr;
+    }
+
+    public void setCoords_arr(String coords_arr) {
+        this.coords_arr = coords_arr;
+    }
+
 
     public String getDeparture() {
-        return address_arr;
+        return address_dep;
     }
 
     public void setDeparture(String departure) {

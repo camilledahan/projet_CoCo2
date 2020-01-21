@@ -43,20 +43,23 @@ public class ContractViewModel extends ViewModelInterface {
 
     public void createFakeAgreements(int nb){
         List<Agreement> agreements = new ArrayList<>();
-        for(int i=0;i<nb; i++){
+        for(int i=0;i<nb; i++) {
             RealmList<Day> days = new RealmList<>();
-            days.add(new Day("Monday",true));
-            days.add(new Day("Tuesday",true));
-            days.add(new Day("Wednesday",false));
-            days.add(new Day("Thurday",false));
-            days.add(new Day("Friday",true));
+            days.add(new Day("Monday", true));
+            days.add(new Day("Tuesday", true));
+            days.add(new Day("Wednesday", false));
+            days.add(new Day("Thurday", false));
+            days.add(new Day("Friday", true));
+            User userPassager = new User("5e26b6ef85ad6a0046e51818", "celine.dechandon@gmail.com", "Céline Déchandon", "Déchandon", "0626060981", "23", 1, "cc");
+
             Agreement tmpAgr = new Agreement(
                     Integer.toString(nb),
-                    new Trip("paul","45.804418, 4.853231","45.781730,4.872297","Marseille","Lyon","15:20"),
-                    EnumContractStatus.TODO.toString(),
-                    days,
-                    54
-            );
+                    userPassager,
+                                            new Trip("celine.dechandon@gmail.com", "45.804418, 4.853231", "45.781730,4.872297", "Collonges", "Lyon", "15:20"),
+                                            EnumContractStatus.TODO.toString(),
+                                            days,
+                                            54
+                                    );
             agreements.add(tmpAgr);
         }
         currentAgreements.postValue(agreements);

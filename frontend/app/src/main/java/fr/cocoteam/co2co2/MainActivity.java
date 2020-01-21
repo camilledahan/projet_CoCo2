@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             } else {
                 // No explanation needed; request the permission
                 ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_EXTERNAL_STORAGE},
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE},
                         MY_PERMISSIONS_REQUEST_LOCATION);
 
             }

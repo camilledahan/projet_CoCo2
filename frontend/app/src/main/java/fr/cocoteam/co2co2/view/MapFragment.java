@@ -2,12 +2,15 @@ package fr.cocoteam.co2co2.view;
 
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -77,6 +80,7 @@ public class MapFragment extends Fragment {
     private DatabaseReference refOtherUserState;
     private     Switch startSwitch;
     private ContractViewModel contractViewModel;
+    private Button callButton;
 
     public MapFragment() {
         // Required empty public constructor
@@ -97,6 +101,7 @@ public class MapFragment extends Fragment {
         };
         contractViewModel.getCurrentAgreement().observe(this,currentAgreementObserver);
          startSwitch = view.findViewById(R.id.startCovoiturage);
+         callButton = view.findViewById(R.id.call_button);
         if (savedInstanceState != null) {
                 requestingLocationUpdates = savedInstanceState.getBoolean("requestingLocationUpdates")   ;
                 startSwitch.setChecked(savedInstanceState.getBoolean("startSwitch"));
@@ -115,6 +120,13 @@ public class MapFragment extends Fragment {
             fetchDirections( origin, destination);
             getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
             getFireBaseref();
+            callButton.setVisibility(View.VISIBLE);
+            callButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callPhoneNumber(agreement.getPassager().getPhone());
+                }
+            });
         }
         else {
             Toast.makeText(getContext()," vous n'avez pas de covoiturage , allez dans vos contrats pour commencer un covoiturage",Toast.LENGTH_LONG).show();
@@ -122,14 +134,6 @@ public class MapFragment extends Fragment {
 
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if(locationCallback!=null){
-           // stopLocationUpdate();
-        }
-
-    }
 
     private void createMap(Trip trip){
 
@@ -237,6 +241,14 @@ public class MapFragment extends Fragment {
         refOtherUserState= database.getReference(otherId+"/State");
         myRefState.setValue(requestingLocationUpdates);
 
+    }
+
+    public void callPhoneNumber(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
 
