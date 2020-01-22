@@ -49,30 +49,6 @@ public class ContractViewModel extends ViewModelInterface {
     }
 
 
-    /*public void createFakeAgreements(int nb){
-        List<Agreement> agreements = new ArrayList<>();
-        for(int i=0;i<nb; i++) {
-            RealmList<Day> days = new RealmList<>();
-            days.add(new Day("Monday", true));
-            days.add(new Day("Tuesday", true));
-            days.add(new Day("Wednesday", false));
-            days.add(new Day("Thurday", false));
-            days.add(new Day("Friday", true));
-            User userPassager = new User("5e2700804d1d12004ddb5780", "celine.dechandon@gmail.com", "Céline Déchandon", "Déchandon", "0626060981", "23", 1, "cc");
-
-            Agreement tmpAgr = new Agreement(
-                    Integer.toString(nb),
-                    userPassager,
-                    new Trip("celine.dechandon@gmail.com", "45.804418, 4.853231", "45.781730,4.872297", "Collonges", "Lyon", "15:20"),
-                    EnumContractStatus.TODO.toString(),
-                    days,
-                    54
-            );
-            agreements.add(tmpAgr);
-        }
-        currentAgreements.postValue(agreements);
-    }*/
-
 //to start covoiturage
     public void updateCurrentAgreement(Agreement agreement) {
 
@@ -81,8 +57,8 @@ public class ContractViewModel extends ViewModelInterface {
 
 
 
-    public void getAllAgreement(){
-        Call<List<Agreement>> call = retrofit.getAgreements("1@gmail.com");
+    public void getAllAgreement(String email){
+        Call<List<Agreement>> call = retrofit.getAgreements(email);
         call.enqueue(new Callback<List<Agreement>>() {
             @Override
             public void onResponse(Call<List<Agreement>> call, Response<List<Agreement>> response) {

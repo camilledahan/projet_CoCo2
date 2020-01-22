@@ -38,6 +38,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -88,6 +89,7 @@ public class MapFragment extends Fragment {
     private ProfilViewModel mViewModel;
     private User currentUser;
     private Agreement currentAgreement;
+    Polyline polyline;
     public MapFragment() {
         // Required empty public constructor
     }
@@ -108,7 +110,6 @@ public class MapFragment extends Fragment {
                 createMap();
                 if(user.getTrip()!=null){
                     fetchDirections(user.getTrip().getCoords_dep(),user.getTrip().getCoords_arr(),R.color.purple,R.drawable.home,R.drawable.travail);
-
                 }
 
 
@@ -212,6 +213,9 @@ public class MapFragment extends Fragment {
                     markerOtherLocation.remove();
                 }
                 myRefState.setValue(requestingLocationUpdates);
+                if(polyline!=null){
+                    polyline.remove();
+                }
 
 
             }
@@ -250,7 +254,7 @@ public class MapFragment extends Fragment {
             try {
                 for (Route routes : route) {
 
-                    mMap.addPolyline(new PolylineOptions().addAll(routes.points).color(color));
+                    polyline = mMap.addPolyline(new PolylineOptions().addAll(routes.points).color(color));
                     mMap.addMarker(new MarkerOptions().position(stringToLatLng(origin)).icon(BitmapDescriptorFactory.fromResource(sourceOrigine)));
                     mMap.addMarker(new MarkerOptions().position(stringToLatLng(destination)).icon(BitmapDescriptorFactory.fromResource(sourceDestination)));
 

@@ -60,8 +60,7 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
         holder.bind(userMatch);
 
         holder.matchName.setText(userMatch.getName());
-        //TODO Get trip with adress
-        holder.matchTrip.setText(userMatch.getTrip().getDepart() + " à " );
+        holder.matchTrip.setText(userMatch.getTrip().getDepart() + " à " +userMatch.getTrip().getArrivee());
         holder.horraireTrip.setText(userMatch.getTrip().getHeure());
         holder.matchDescription.setText(userMatch.getDescription());
         holder.matchAge.setText(String.valueOf(userMatch.getAge()) + " ans");

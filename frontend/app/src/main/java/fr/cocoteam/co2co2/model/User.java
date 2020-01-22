@@ -32,32 +32,6 @@ public class User extends RealmObject  {
 
 
 
-    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description ) {
-        this._id = _id;
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
-        this.age = age;
-        this.is_driver = is_driver;
-        this.description = description;
-
-    }
-
-
-
-    public User(String _id, String email, String name, String surname, String phone, String age, int is_driver, String description, UserMatch userMatch) {
-        this._id = _id;
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
-        this.age = age;
-        this.is_driver = is_driver;
-        this.description = description;
-        this.userMatches = userMatches;
-
-    }
 
     public User(String email,String name, String surname, String age, int isDriver, String telephone, String description, RealmList<UserMatch> userMatches, Trip trip) {
         this.name = name;

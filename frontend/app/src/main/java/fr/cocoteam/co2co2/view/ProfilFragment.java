@@ -95,7 +95,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
 
 
-        URL url = null;
+    /*    URL url = null;
         if(acct.getPhotoUrl()!=null){
             try {
                 url = new URL(acct.getPhotoUrl().toString());
@@ -110,7 +110,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
             }
             settingButton.setImageBitmap(bmp);
 
-        }
+        }*/
 
 
 
