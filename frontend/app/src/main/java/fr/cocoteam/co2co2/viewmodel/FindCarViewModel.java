@@ -28,7 +28,7 @@ public class FindCarViewModel extends ViewModelInterface {
 
 
     MutableLiveData<List<UserMatch>> currentMatch;
-    RetrofitInterface retrofit = instantiateRetrofit("http://matchservice.azurewebsites.net");
+    RetrofitInterface retrofit = instantiateRetrofit("http://13.80.79.115:8080/");
     Realm realmInstance = Realm.getDefaultInstance();
 
 

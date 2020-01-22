@@ -4,6 +4,7 @@
         <domain includeSubdomains="true">userprojetmajeur.azurewebsites.net</domain>
         <domain includeSubdomains="true"> busprojetmajeur.azurewebsites.net</domain>
         <domain includeSubdomains="true"> matchservice.azurewebsites.net</domain>
+        <domain includeSubdomains="true">13.80.79.115 </domain>
 
     </domain-config>
 </network-security-config>

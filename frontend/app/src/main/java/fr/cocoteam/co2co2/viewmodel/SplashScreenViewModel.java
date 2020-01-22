@@ -21,7 +21,7 @@ import retrofit2.Retrofit;
 
 public class SplashScreenViewModel extends ViewModelInterface {
 
-    RetrofitInterface retrofit = instantiateRetrofit("http://userprojetmajeur.azurewebsites.net");
+    RetrofitInterface retrofit = instantiateRetrofit("http://13.80.79.115:8081/");
     Realm realmInsance = Realm.getDefaultInstance();
     MutableLiveData<User> currentUser;
 

@@ -28,7 +28,7 @@ public interface RetrofitInterface {
     @GET("trip/{email}")
     Call<Trip> getTrip(@Path("email") String email);
 
-    @GET("/user/{email}/")
+    @GET("user/{email}/")
     Call<User> getUser(@Path("email") String mail);
 
     @GET("/match/{email}")

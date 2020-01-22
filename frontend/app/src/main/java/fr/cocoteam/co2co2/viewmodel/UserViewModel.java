@@ -28,8 +28,8 @@ public class UserViewModel extends ViewModel {
     private Retrofit retrofitTrip;
     private RetrofitInterface retrofitInterface;
     private RetriofitInterfaceTrip retrofitInterfaceTrip;
-    private String BASE_URL_TRIP = "https://busprojetmajeur.azurewebsites.net/";
-    private String BASE_URL_USER = "http://userprojetmajeur.azurewebsites.net/";
+    private String BASE_URL_TRIP = "http://13.80.79.115:8082/";
+    private String BASE_URL_USER = "http://13.80.79.115:8081/";
 
     private MutableLiveData<Boolean> isUserPost;
 

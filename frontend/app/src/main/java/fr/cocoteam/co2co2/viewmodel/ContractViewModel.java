@@ -29,7 +29,7 @@ public class ContractViewModel extends ViewModelInterface {
     MutableLiveData<List<Agreement>> currentAgreements;
     MutableLiveData<Agreement> currentAgreement= new MutableLiveData<>();
 
-    RetrofitInterface retrofit = instantiateRetrofit("http://matchservice.azurewebsites.net");
+    RetrofitInterface retrofit = instantiateRetrofit("http://13.80.79.115:8080/");
 
     public LiveData<List<Agreement>> getCurrentAgreements() {
         if (currentAgreements == null) {
