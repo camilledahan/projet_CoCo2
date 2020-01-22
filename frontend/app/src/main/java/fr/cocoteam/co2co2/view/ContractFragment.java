@@ -83,7 +83,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
         mViewModel.getCurrentAgreements().observe(this,currentAgreementsObserver);
 
         //get all agreements
-        mViewModel.createFakeAgreements(10);
+        mViewModel.getAllAgreement();
 
         return view;
     }
@@ -102,7 +102,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        mViewModel.createFakeAgreements(5);
+        mViewModel.getAllAgreement();
     }
 
     @Override
