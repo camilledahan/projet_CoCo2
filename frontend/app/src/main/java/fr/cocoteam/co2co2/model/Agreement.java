@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 
 public class Agreement extends RealmObject {
 
-    private User userPassager;
+    private User user;
 
     //private RealmList<Day> days;
     private int lundi;
@@ -23,7 +23,7 @@ public class Agreement extends RealmObject {
     }
 
     public Agreement(User userPassager, int lundi, int mardi, int mercredi, int jeudi, int vendredi, int currentWeek) {
-        this.userPassager = userPassager;
+        this.user = userPassager;
         this.lundi = lundi;
         this.mardi = mardi;
         this.mercredi = mercredi;
@@ -33,7 +33,7 @@ public class Agreement extends RealmObject {
     }
 
     public User getPassager() {
-        return this.userPassager;
+        return this.user;
     }
 
     public int getCurrentWeek() {
@@ -46,11 +46,11 @@ public class Agreement extends RealmObject {
 
 
     public Trip getTrip() {
-        return userPassager.getTrip();
+        return user.getTrip();
     }
 
     public void setUserPassager(User userPassager) {
-        this.userPassager = userPassager;
+        this.user = userPassager;
     }
 
     public int getLundi() {
