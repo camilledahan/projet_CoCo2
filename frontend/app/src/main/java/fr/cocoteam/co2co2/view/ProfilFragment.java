@@ -85,7 +85,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
         buttonlogout = view.findViewById(R.id.button_logout);
 
         name = view.findViewById(R.id.user_name);
-        surname =view.findViewById(R.id.user_surname);
+
         age = view.findViewById(R.id.user_age);
         email = view.findViewById(R.id.user_email);
         phone = view.findViewById(R.id.user_phone);
@@ -94,23 +94,6 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
      //   ImageView imageView =view.findViewById(R.id.imageButtonSetting);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
 
-
-    /*    URL url = null;
-        if(acct.getPhotoUrl()!=null){
-            try {
-                url = new URL(acct.getPhotoUrl().toString());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            Bitmap bmp = null;
-            try {
-                bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            settingButton.setImageBitmap(bmp);
-
-        }*/
 
 
 
@@ -165,12 +148,14 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
 
     private void updateUI(User user){
         name.setText(user.getName());
-        surname.setText(user.getSurname());
         age.setText(user.getAge());
         email.setText(user.getEmail());
         phone.setText(user.getPhone());
         description.setText(user.getDescription());
-        trip.setText(user.getTrip().getDepart()+ " to "+ user.getTrip().getArrivee());
+        if(user.getTrip()!=null){
+            trip.setText(user.getTrip().getDepart()+ " to "+ user.getTrip().getArrivee());
+        }
+
     }
 
 

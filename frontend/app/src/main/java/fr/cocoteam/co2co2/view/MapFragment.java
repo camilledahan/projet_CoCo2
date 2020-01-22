@@ -23,6 +23,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.ebanx.swipebtn.OnStateChangeListener;
+import com.ebanx.swipebtn.SwipeButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -85,13 +87,13 @@ public class MapFragment extends Fragment {
    private  Marker markerOtherLocation;
     private DatabaseReference myRefState;
     private DatabaseReference refOtherUserState;
-    private     Switch startSwitch;
     private ContractViewModel contractViewModel;
     private ImageButton callButton;
     private ProfilViewModel mViewModel;
     private User currentUser;
     private Agreement currentAgreement;
     Polyline polyline;
+    SwipeButton enableButton;
     public MapFragment() {
         // Required empty public constructor
     }
@@ -140,11 +142,11 @@ public class MapFragment extends Fragment {
 
 
         mViewModel.getCurrentUserProfil();
-         startSwitch = view.findViewById(R.id.startCovoiturage);
+         enableButton = (SwipeButton) view.findViewById(R.id.swipe_btn);
          callButton = view.findViewById(R.id.callButton);
         if (savedInstanceState != null) {
                 requestingLocationUpdates = savedInstanceState.getBoolean("requestingLocationUpdates")   ;
-                startSwitch.setChecked(savedInstanceState.getBoolean("startSwitch"));
+
         }
 
         //handle start and sotp covoiturage
@@ -160,7 +162,7 @@ public class MapFragment extends Fragment {
             destination=agreement.getTrip().getCoords_arr();
             fetchDirections( origin, destination,Color.BLACK,R.drawable.meeting_point,R.drawable.destination);
             callButton.setVisibility(View.VISIBLE);
-            startSwitch.setVisibility(View.VISIBLE);
+            enableButton.setVisibility(View.VISIBLE);
             callButton.setOnClickListener(view -> callPhoneNumber(agreement.getPassager().getPhone()));
         }
 
@@ -202,26 +204,29 @@ public class MapFragment extends Fragment {
 
     private void startAndStop() {
 
-        startSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-            if(isChecked){
-                startLocationUpdates();
-                requestingLocationUpdates=true;
-                myRefState.setValue(requestingLocationUpdates);
-                showUsersLocation();
+
+
+        enableButton.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+        if(active){
+            startLocationUpdates();
+            requestingLocationUpdates=true;
+            myRefState.setValue(requestingLocationUpdates);
+            showUsersLocation();
+
+        }
+        else {
+            requestingLocationUpdates=false;
+            stopLocationUpdate();
+            if(markerOtherLocation !=null){
+                markerOtherLocation.remove();
             }
-            else
-            {
-                requestingLocationUpdates=false;
-                stopLocationUpdate();
-                if(markerOtherLocation !=null){
-                    markerOtherLocation.remove();
-                }
-                myRefState.setValue(requestingLocationUpdates);
-                if(polyline!=null){
-                    polyline.remove();
-                }
-
-
+            myRefState.setValue(requestingLocationUpdates);
+            if(polyline!=null){
+                polyline.remove();
+            }
+        }
             }
         });
     }
@@ -366,7 +371,7 @@ public class MapFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean("requestingLocationUpdates",requestingLocationUpdates);
-        outState.putBoolean("switchState",startSwitch.isActivated());
+        outState.putBoolean("switchState",enableButton.isActivated());
 
     }
 }
