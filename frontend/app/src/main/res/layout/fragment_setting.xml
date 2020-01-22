@@ -40,7 +40,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="-20dp"
                 android:paddingLeft="250dp"
-                android:src="@drawable/ic_edit1_black_24dp" />
+                app:srcCompat="@drawable/ic_edit1_black_24dp" />
 
             <EditText
 
