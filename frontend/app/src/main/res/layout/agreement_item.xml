@@ -154,7 +154,7 @@
                     android:layout_height="35dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/startblue"
-                    android:text="Validate"
+                    android:text="GO COVOIT!"
                     android:textColor="#fff" />
 
             </LinearLayout>

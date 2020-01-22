@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
     private SwipeRefreshLayout swipeRefreshLayout;
     private CarPooRecyclerViewAdapter carPooRecyclerViewAdapter;
     public List<Agreement> userAgreements = new ArrayList<>();
+    GoogleSignInAccount acct ;
 
     public ContractFragment.OnHeadlineSelectedListener callback;
 
@@ -51,7 +55,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
         View view = inflater.inflate(R.layout.fragment_contract, container, false);
 
         mViewModel = ViewModelProviders.of(getActivity()).get(ContractViewModel.class);
-
+        acct = GoogleSignIn.getLastSignedInAccount(getActivity());
         //BIND
         noAgreementTextView = view.findViewById(R.id.noCarPoolTextView);
 
@@ -83,7 +87,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
         mViewModel.getCurrentAgreements().observe(this,currentAgreementsObserver);
 
         //get all agreements
-        mViewModel.getAllAgreement();
+        mViewModel.getAllAgreement(acct.getEmail());
 
         return view;
     }
@@ -102,7 +106,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        mViewModel.getAllAgreement();
+        mViewModel.getAllAgreement(acct.getEmail());
     }
 
     @Override

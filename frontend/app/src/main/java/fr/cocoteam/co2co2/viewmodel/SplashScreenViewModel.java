@@ -62,7 +62,6 @@ public class SplashScreenViewModel extends ViewModelInterface {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                currentUser.postValue(null);
                 Log.e("Error getting user :", t.getMessage());
             }
         });

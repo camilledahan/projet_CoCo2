@@ -17,9 +17,10 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
                 android:text="Please fill your informations"
-                android:textSize="18sp"></TextView>
+                android:textSize="50dp"
+                android:textColor="@color/purple"></TextView>
 
             <EditText
                 android:id="@+id/email"
@@ -81,9 +82,14 @@
 
             <TimePicker
                 android:id="@+id/timePicker1"
-                android:layout_width="match_parent"
-                android:layout_height="346dp"
-                android:tooltipText="heure de depart" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tooltipText="heure de depart"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:timePickerMode="spinner"
+                />
+
 
             <EditText
                 android:id="@+id/age"
@@ -93,11 +99,10 @@
                 android:hint="Age"
                 android:inputType="number" />
 
-
             <AutoCompleteTextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="125dp"
                 android:hint="Description" />
 
             <Button

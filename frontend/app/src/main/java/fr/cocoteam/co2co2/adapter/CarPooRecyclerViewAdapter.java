@@ -97,10 +97,6 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         holder.checkThursday.setOnClickListener(clickListener);
         holder.checkFriday.setOnClickListener(clickListener);
 
-        holder.cancelButton.setOnClickListener(view -> {
-
-        });
-
         holder.startButton.setOnClickListener(view -> {
             viewmodel.updateCurrentAgreement(agreement);
             callback.onAgreementSelected();
@@ -123,7 +119,7 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         private TextView startLocation;
         private TextView endLocation;
         private Button startButton;
-        private Button cancelButton;
+
 
         private CheckBox checkMonday,checkTusday,checkWednesday,checkThursday,checkFriday;
         private TextView status;
@@ -142,7 +138,6 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
 
             startButton.setOnClickListener(this);
-
             this.checkMonday = itemView.findViewById(R.id.checkBoxMonday);
             this.checkTusday = itemView.findViewById(R.id.checkBoxTueday);
             this.checkWednesday = itemView.findViewById(R.id.checkBoxWednesday);

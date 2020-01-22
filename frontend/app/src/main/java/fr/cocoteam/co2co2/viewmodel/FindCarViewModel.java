@@ -41,13 +41,13 @@ public class FindCarViewModel extends ViewModelInterface {
         return currentMatch;
     }
 
-    public void updateMatchStatus(UserMatch match){
-        Call<ResponseBody> call = retrofit.updateMatch("celine@gmail.com", match);
+    public void updateMatchStatus(UserMatch match,String email){
+        Call<ResponseBody> call = retrofit.updateMatch(email, match);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.i("update user","Response");
-                getAllMatches();
+                getAllMatches(email);
             }
 
             @Override
@@ -72,8 +72,8 @@ public class FindCarViewModel extends ViewModelInterface {
     }
 
 
-    public void getAllMatches(){
-        Call<List<UserMatch>> call = retrofit.getMatches("celine@gmail.com");
+    public void getAllMatches(String email){
+        Call<List<UserMatch>> call = retrofit.getMatches(email);
         call.enqueue(new Callback<List<UserMatch>>() {
             @Override
             public void onResponse(Call<List<UserMatch>> call, Response<List<UserMatch>> response) {
