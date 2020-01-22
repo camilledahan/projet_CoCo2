@@ -2,6 +2,7 @@ package fr.cocoteam.co2co2.service;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.cocoteam.co2co2.model.Agreement;
 import fr.cocoteam.co2co2.model.Trip;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.UserMatch;
@@ -36,5 +37,6 @@ public interface RetrofitInterface {
     @PUT("/match/updatematch/{email}")
     Call<ResponseBody> updateMatch(@Path("email") String mail, @Body UserMatch userMatch);
 
-
+    @GET("/agreement/{email}")
+    Call<List<Agreement>> getAgreements(@Path("email") String mail);
 }

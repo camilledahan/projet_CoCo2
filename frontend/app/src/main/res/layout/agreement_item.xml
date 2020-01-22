@@ -110,7 +110,7 @@
 
                 <TextView
                     android:id="@+id/startLocation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="LYON"
@@ -119,9 +119,10 @@
 
                 <TextView
                     android:id="@+id/endLocation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_marginTop="50dp"
+                    android:gravity="bottom"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="55dp"
                     android:text="PARIS"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -130,7 +131,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
                 android:gravity="center"
@@ -144,7 +145,6 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Wait for confirmation"
-
                     android:textSize="18sp" />
 
                 <Button
@@ -157,23 +157,19 @@
                     android:text="Validate"
                     android:textColor="#fff" />
 
-                <Button
-                    android:id="@+id/cancelButton"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="80dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/startblue"
-                    android:text="Cancel"
-                    android:textColor="#fff" />
-
-
             </LinearLayout>
 
 
 
 
         </LinearLayout>
+
+        <TableRow
+            android:layout_marginTop="15dp"
+            android:id="@+id/hr"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#444"></TableRow>
 
 
     </LinearLayout>
