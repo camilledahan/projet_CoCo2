@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -79,7 +80,7 @@ public class MapFragment extends Fragment {
     private DatabaseReference refOtherUserState;
     private     Switch startSwitch;
     private ContractViewModel contractViewModel;
-    private Button callButton;
+    private ImageButton callButton;
     private ProfilViewModel mViewModel;
     private User currentUser;
     private Agreement currentAgreement;
