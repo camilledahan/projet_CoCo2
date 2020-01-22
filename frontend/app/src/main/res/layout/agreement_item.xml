@@ -9,55 +9,57 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:layout_marginHorizontal= "20dp"
         android:layout_marginBottom="30dp">
 
         <LinearLayout
+            android:layout_marginTop="60dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="143dp"
                 android:layout_height="wrap_content"
-                android:text="Days selected :"/>
+                android:text="Days selected :"
+                android:textSize="18sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxMonday"
-                android:layout_width="match_parent"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:text="M"
-                android:onClick="onCheckBoxClicked"/>
+                android:onClick="onCheckBoxClicked"
+                android:text="M" />
 
             <CheckBox
                 android:id="@+id/checkBoxTueday"
-                android:layout_width="match_parent"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:text="T"
-                android:onClick="onCheckBoxClicked"/>
+                android:onClick="onCheckBoxClicked"
+                android:text="T" />
 
             <CheckBox
                 android:id="@+id/checkBoxWednesday"
-                android:layout_width="match_parent"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:text="W"
-                android:onClick="onCheckBoxClicked"/>
+                android:onClick="onCheckBoxClicked"
+                android:text="W" />
 
             <CheckBox
                 android:id="@+id/checkBoxThursday"
-                android:layout_width="match_parent"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:text="T"
-                android:onClick="onCheckBoxClicked"/>
+                android:onClick="onCheckBoxClicked"
+                android:text="T" />
 
             <CheckBox
                 android:id="@+id/checkBoxFriday"
-                android:layout_width="match_parent"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:text="F"
-                android:onClick="onCheckBoxClicked"/>
+                android:onClick="onCheckBoxClicked"
+                android:text="F" />
 
         </LinearLayout>
 
@@ -78,13 +80,19 @@
                     android:id="@+id/startTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="18:51"/>
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:text="18:51"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/endTime"
-                    android:layout_marginTop="85dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="19:45"/>
+                    android:layout_marginTop="55dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    tools:text="19:45" />
 
 
             </LinearLayout>
@@ -93,17 +101,18 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/trip_icon"/>
+                android:src="@drawable/trip_icon" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="99dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/startLocation"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="LYON"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -122,44 +131,38 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_gravity="right"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
 
                 <TextView
-                    android:layout_gravity="center"
                     android:id="@+id/carpool_status"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Waiting for confirmation"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    />
+                    android:text="Wait for confirmation"
+                    android:textSize="18sp" />
 
-                <Button style="@style/Widget.AppCompat.Button.Colored"
-                   android:id="@+id/validateButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Go covoit !"
-                    />
-
-                <Button style="@style/Widget.AppCompat.Button.Colored"
-                    android:id="@+id/cancelButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:text="Cancel"
-                    />
-
+                <Button
+                    android:id="@+id/validateButton"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/startblue"
+                    android:text="Validate"
+                    android:textColor="#fff" />
 
             </LinearLayout>
 
+
+
+
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>

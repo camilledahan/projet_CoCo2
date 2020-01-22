@@ -180,8 +180,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/buttonstyleithgradient"
                 android:text="    LOG  OUT"
+                android:background="@drawable/buttonstyleithgradient"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
