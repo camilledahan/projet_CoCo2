@@ -35,6 +35,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -187,7 +188,9 @@ public class MapFragment extends Fragment {
             googleMap.setMyLocationEnabled(true);
             if(currentUser.getTrip()!=null){
                 final LatLng latLngOrigin = MapFragment.this.stringToLatLng(currentUser.getTrip().getCoords_dep());
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin, 13));
+
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin, 12));
+
             }
 
         });
