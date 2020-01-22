@@ -29,15 +29,14 @@ import io.realm.RealmConfiguration;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
 
-public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener,
-        SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener,
-        NewUserFragment.OnHeadlineSelectedListener,SettingFragment.OnHeadlineSelectedListener,ProfilFragment.OnHeadlineSelectedListener {
+public class MainActivity extends AppCompatActivity implements OnNavigationItemSelectedListener, ConnectionFragment.OnHeadlineSelectedListener, SplashScreenFragment.OnHeadlineSelectedListener, MatchUserRecyclerViewAdapter.OnHeadlineSelectedListener, NewUserFragment.OnHeadlineSelectedListener, SettingFragment.OnHeadlineSelectedListener, ProfilFragment.OnHeadlineSelectedListener, ContractFragment.OnHeadlineSelectedListener {
 
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private Boolean permissionsAccepted;
     public BottomNavigationView navigation;
     public Fragment mapFragment;
     private ConnectionFragment connectionFragment;
+    ContractFragment contractFragment;
 
 
     @Override
@@ -54,10 +53,13 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
-        updateMenuVisibility(false);
+        //updateMenuVisibility(false);
         connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
+        //loadFragment(connectionFragment, R.id.startContainer);
+        loadFragment(new ContractFragment(),R.id.fragment_container);
         loadFragment(connectionFragment, R.id.startContainer);
+        contractFragment = new ContractFragment();
     }
 
     private void askPermissions() {
@@ -156,7 +158,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 break;
 
             case R.id.nav_contract:
-                fragment = new ContractFragment();
+                fragment = contractFragment;
+                contractFragment.setOnHeadlineSelectedListener(this);
+
+
                 break;
 
             case R.id.nav_profil:
@@ -266,6 +271,16 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
     @Override
     public void onItemClicked(UserMatch userMatch) {
         loadFragment(new UserMatchDescriptionFragment(), R.id.fragment_container);
+    }
+
+    @Override
+    public void onAgreementSelected() {
+        loadFragment(mapFragment,R.id.fragment_container);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        
     }
 }
 

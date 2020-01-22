@@ -21,6 +21,7 @@ import java.util.List;
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.Agreement;
 import fr.cocoteam.co2co2.model.UserMatch;
+import fr.cocoteam.co2co2.view.ProfilFragment;
 import fr.cocoteam.co2co2.viewmodel.ContractViewModel;
 import fr.cocoteam.co2co2.viewmodel.FindCarViewModel;
 
@@ -29,6 +30,11 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
     List<Agreement> agreements;
     ContractViewModel viewmodel;
     Agreement agreement;
+    CarPooRecyclerViewAdapter.OnHeadlineSelectedListener callback;
+
+    public void setOnHeadlineSelectedListener(CarPooRecyclerViewAdapter.OnHeadlineSelectedListener callback) {
+        this.callback = callback;
+    }
 
 
     public CarPooRecyclerViewAdapter(List<Agreement> agreements, ContractViewModel contractViewModel){
@@ -55,23 +61,54 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         holder.startTime.setText(agreement.getTrip().getHeure());
         holder.startLocation.setText(agreement.getTrip().getDepart());
         holder.endLocation.setText(agreement.getTrip().getArrivee());
-        holder.status.setText(agreement.getStatus());
+        //holder.status.setText(agreement.getStatus());
 
-        holder.cancelButton.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.checkBoxMonday:
+                        Log.i("Clicked","MOnday check box");
+                        break;
 
+                    case R.id.checkBoxTueday:
+                        Log.i("Clicked","Tusday check box");
+                        break;
+
+                    case R.id.checkBoxWednesday:
+                        Log.i("Clicked","Wedenesday check box");
+                        break;
+
+                    case R.id.checkBoxThursday:
+                        Log.i("Clicked","Thursday check box");
+                        break;
+
+                    case R.id.checkBoxFriday:
+                        Log.i("Clicked","Friday check box");
+                        break;
+
+                }
             }
+        };
+
+        holder.checkMonday.setOnClickListener(clickListener);
+        holder.checkTusday.setOnClickListener(clickListener);
+        holder.checkWednesday.setOnClickListener(clickListener);
+        holder.checkThursday.setOnClickListener(clickListener);
+        holder.checkFriday.setOnClickListener(clickListener);
+
+        holder.cancelButton.setOnClickListener(view -> {
+
         });
 
-        holder.startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewmodel.updateCurrentAgreement(agreement);
-                //TODO viewmodel.yourmethod()
-            }
+        holder.startButton.setOnClickListener(view -> {
+            viewmodel.updateCurrentAgreement(agreement);
+            callback.onAgreementSelected();
         });
 
+    }
+    public interface OnHeadlineSelectedListener {
+       void  onAgreementSelected();
     }
 
     @Override
@@ -88,11 +125,7 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
         private Button startButton;
         private Button cancelButton;
 
-        /*private CheckBox checkMonday;
-        private CheckBox checkTusday;
-        private CheckBox checkWednesday;
-        private CheckBox checkThursday;
-        private CheckBox checkFriday;*/
+        private CheckBox checkMonday,checkTusday,checkWednesday,checkThursday,checkFriday;
         private TextView status;
 
 
@@ -111,12 +144,12 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
             startButton.setOnClickListener(this);
             cancelButton.setOnClickListener(this);
 
-            /*this.checkMonday = itemView.findViewById(R.id.checkBoxMonday);
+            this.checkMonday = itemView.findViewById(R.id.checkBoxMonday);
             this.checkTusday = itemView.findViewById(R.id.checkBoxTueday);
             this.checkWednesday = itemView.findViewById(R.id.checkBoxWednesday);
             this.checkThursday = itemView.findViewById(R.id.checkBoxThursday);
             this.checkFriday = itemView.findViewById(R.id.checkBoxFriday);
-            */
+
             this.status = itemView.findViewById(R.id.carpool_status);
 
         }

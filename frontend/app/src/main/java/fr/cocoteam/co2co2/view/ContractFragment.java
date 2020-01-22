@@ -25,7 +25,7 @@ import fr.cocoteam.co2co2.adapter.CarPooRecyclerViewAdapter;
 import fr.cocoteam.co2co2.model.Agreement;
 import fr.cocoteam.co2co2.viewmodel.ContractViewModel;
 
-public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,CarPooRecyclerViewAdapter.OnHeadlineSelectedListener {
 
     private ContractViewModel mViewModel;
 
@@ -35,6 +35,11 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
     private CarPooRecyclerViewAdapter carPooRecyclerViewAdapter;
     public List<Agreement> userAgreements = new ArrayList<>();
 
+    public ContractFragment.OnHeadlineSelectedListener callback;
+
+    public void setOnHeadlineSelectedListener(ContractFragment.OnHeadlineSelectedListener callback) {
+        this.callback = callback;
+    }
 
     public ContractFragment() {
         // Required empty public constructor
@@ -59,7 +64,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         carPooRecyclerViewAdapter = new CarPooRecyclerViewAdapter(userAgreements, mViewModel);
         recyclerView.setAdapter(carPooRecyclerViewAdapter);
-
+        carPooRecyclerViewAdapter.setOnHeadlineSelectedListener(this);
 
         Observer<List<Agreement>> currentAgreementsObserver = agrs -> {
             if (agrs!=null){
@@ -78,7 +83,7 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
         mViewModel.getCurrentAgreements().observe(this,currentAgreementsObserver);
 
         //get all agreements
-        mViewModel.createFakeAgreements(10);
+        mViewModel.getAllAgreement();
 
         return view;
     }
@@ -97,6 +102,15 @@ public class ContractFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        mViewModel.createFakeAgreements(5);
+        mViewModel.getAllAgreement();
+    }
+
+    @Override
+    public void onAgreementSelected() {
+        callback.onAgreementSelected();
+
+    }
+    public interface OnHeadlineSelectedListener {
+        void onAgreementSelected();
     }
 }
