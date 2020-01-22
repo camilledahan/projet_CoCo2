@@ -53,11 +53,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
-        //updateMenuVisibility(false);
+        updateMenuVisibility(false);
         connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
-        //loadFragment(connectionFragment, R.id.startContainer);
-        loadFragment(new ContractFragment(),R.id.fragment_container);
+        loadFragment(connectionFragment, R.id.startContainer);
         loadFragment(connectionFragment, R.id.startContainer);
         contractFragment = new ContractFragment();
     }

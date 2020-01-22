@@ -28,7 +28,8 @@
         android:showText="true"
         android:textOff="Start"
         android:textOn="Stop"
-        tools:checked="false" />
+        tools:checked="false"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/callButton"

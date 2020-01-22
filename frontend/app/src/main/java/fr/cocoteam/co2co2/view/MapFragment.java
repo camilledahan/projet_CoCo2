@@ -2,12 +2,14 @@ package fr.cocoteam.co2co2.view;
 
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +35,10 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,6 +57,8 @@ import fr.cocoteam.co2co2.listener.DirectionsServiceListener;
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.viewmodel.ContractViewModel;
 import fr.cocoteam.co2co2.viewmodel.ProfilViewModel;
+
+import static com.android.volley.VolleyLog.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +89,7 @@ public class MapFragment extends Fragment {
     private ProfilViewModel mViewModel;
     private User currentUser;
     private Agreement currentAgreement;
+    Polyline polyline;
     public MapFragment() {
         // Required empty public constructor
     }
@@ -102,8 +109,7 @@ public class MapFragment extends Fragment {
             currentUser=user;
                 createMap();
                 if(user.getTrip()!=null){
-                    fetchDirections(user.getTrip().getCoords_dep(),user.getTrip().getCoords_arr(),Color.BLUE);
-
+                    fetchDirections(user.getTrip().getCoords_dep(),user.getTrip().getCoords_arr(),R.color.purple,R.drawable.home,R.drawable.travail);
                 }
 
 
@@ -150,8 +156,9 @@ public class MapFragment extends Fragment {
         if(agreement.getTrip()!=null){
             origin=agreement.getTrip().getCoords_dep();
             destination=agreement.getTrip().getCoords_arr();
-            fetchDirections( origin, destination,Color.BLACK);
+            fetchDirections( origin, destination,Color.BLACK,R.drawable.meeting_point,R.drawable.destination);
             callButton.setVisibility(View.VISIBLE);
+            startSwitch.setVisibility(View.VISIBLE);
             callButton.setOnClickListener(view -> callPhoneNumber(agreement.getPassager().getPhone()));
         }
 
@@ -163,8 +170,22 @@ public class MapFragment extends Fragment {
         mapFragment = SupportMapFragment.newInstance();
         mapFragment.getMapAsync(googleMap -> {
             mMap = googleMap;
+            try {
+                // Customise the styling of the base map using a JSON object defined
+                // in a raw resource file.
+                boolean success = googleMap.setMapStyle(
+                        MapStyleOptions.loadRawResourceStyle(
+                                getContext(), R.raw.style_json_map));
+
+                if (!success) {
+                    Log.e(TAG, "Style parsing failed.");
+                }
+            } catch (Resources.NotFoundException e) {
+                Log.e(TAG, "Can't find style. Error: ", e);
+            }
+
             googleMap.setMyLocationEnabled(true);
-            if(currentUser!=null){
+            if(currentUser.getTrip()!=null){
                 final LatLng latLngOrigin = MapFragment.this.stringToLatLng(currentUser.getTrip().getCoords_dep());
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOrigin, 13));
             }
@@ -192,6 +213,9 @@ public class MapFragment extends Fragment {
                     markerOtherLocation.remove();
                 }
                 myRefState.setValue(requestingLocationUpdates);
+                if(polyline!=null){
+                    polyline.remove();
+                }
 
 
             }
@@ -225,14 +249,14 @@ public class MapFragment extends Fragment {
     }
 
 
-    private void fetchDirections(String origin, String destination, int color) {
+    private void fetchDirections(String origin, String destination, int color, int sourceOrigine, int sourceDestination) {
         DirectionsServiceListener directionsServiceListener = route -> {
             try {
                 for (Route routes : route) {
 
-                    mMap.addPolyline(new PolylineOptions().addAll(routes.points).color(color));
-                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(origin)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(destination)));
+                    polyline = mMap.addPolyline(new PolylineOptions().addAll(routes.points).color(color));
+                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(origin)).icon(BitmapDescriptorFactory.fromResource(sourceOrigine)));
+                    mMap.addMarker(new MarkerOptions().position(stringToLatLng(destination)).icon(BitmapDescriptorFactory.fromResource(sourceDestination)));
 
 
                 }
@@ -262,7 +286,7 @@ public class MapFragment extends Fragment {
                     if(markerMyLocation !=null){
                         markerMyLocation.remove();
                     }
-                    markerMyLocation=     mMap.addMarker(new MarkerOptions().position(lastKnownLocation).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                    markerMyLocation=     mMap.addMarker(new MarkerOptions().position(lastKnownLocation).icon(BitmapDescriptorFactory.fromResource(R.drawable.voiture)));
 
 
                 }
@@ -275,9 +299,6 @@ public class MapFragment extends Fragment {
                 Looper.getMainLooper());
     }
     private void showUsersLocation(){
-
-
-
     //Location state
         refOtherUserState.addValueEventListener(new ValueEventListener() {
 
@@ -298,7 +319,7 @@ public class MapFragment extends Fragment {
                                 }
                                 if (requestingLocationUpdates) {
                                     otherLastKnownLocation = dataSnapshot.getValue().toString();
-                                    markerOtherLocation = mMap.addMarker(new MarkerOptions().position(stringToLatLng(otherLastKnownLocation)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                                    markerOtherLocation = mMap.addMarker(new MarkerOptions().position(stringToLatLng(otherLastKnownLocation)).icon(BitmapDescriptorFactory.fromResource(R.drawable.passager)));
 
                                 }
                             }
@@ -342,7 +363,6 @@ public class MapFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putBoolean("requestingLocationUpdates",requestingLocationUpdates);
         outState.putBoolean("switchState",startSwitch.isActivated());
-
 
     }
 }

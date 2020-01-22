@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,6 +40,7 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private MatchUserRecyclerViewAdapter matchUserRecyclerViewAdapter;
     public List<UserMatch> userMatches = new ArrayList<>();
     private TextView noMatchFoundTextView;
+    GoogleSignInAccount acct;
 
     public FindCarFragment() {
         // Required empty public constructor
@@ -46,6 +50,7 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_find_car, container, false);
+      acct = GoogleSignIn.getLastSignedInAccount(getActivity());
 
         //VIEWMODEL
         findCarViewModel = ViewModelProviders.of(getActivity()).get(FindCarViewModel.class);
@@ -53,7 +58,7 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
         //BIND
         recyclerView = view.findViewById(R.id.matchRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        matchUserRecyclerViewAdapter = new MatchUserRecyclerViewAdapter(userMatches, findCarViewModel);
+        matchUserRecyclerViewAdapter = new MatchUserRecyclerViewAdapter(userMatches, findCarViewModel,acct);
         recyclerView.setAdapter(matchUserRecyclerViewAdapter);
 
         noMatchFoundTextView = view.findViewById(R.id.noMatchFoundTextView);
@@ -81,14 +86,14 @@ public class FindCarFragment extends Fragment implements SwipeRefreshLayout.OnRe
         findCarViewModel.getCurrentUserMatch().observe(this,currentUserMatchObserver);
 
         //Get matches
-        findCarViewModel.getAllMatches();
+        findCarViewModel.getAllMatches(acct.getEmail());
 
         return view;
     }
 
     @Override
     public void onRefresh() {
-        findCarViewModel.getAllMatches();
+        findCarViewModel.getAllMatches(acct.getEmail());
     }
 
 
