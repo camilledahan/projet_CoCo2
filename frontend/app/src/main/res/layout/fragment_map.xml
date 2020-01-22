@@ -32,7 +32,7 @@
         android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/call_button"
+        android:id="@+id/callButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Call"

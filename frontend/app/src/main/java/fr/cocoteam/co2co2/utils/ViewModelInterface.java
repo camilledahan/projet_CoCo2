@@ -11,8 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ViewModelInterface extends ViewModel {
 
-    private String BASE_URL = "http://userprojetmajeur.azurewebsites.net";
-
 
     public RetrofitInterface instantiateRetrofit(String baseUrl){
         Gson gson = new GsonBuilder()

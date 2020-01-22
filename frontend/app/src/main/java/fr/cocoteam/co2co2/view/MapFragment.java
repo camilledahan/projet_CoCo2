@@ -138,7 +138,7 @@ public class MapFragment extends Fragment {
 
         mViewModel.getCurrentUserProfil();
          startSwitch = view.findViewById(R.id.startCovoiturage);
-         callButton = view.findViewById(R.id.call_button);
+         callButton = view.findViewById(R.id.callButton);
         if (savedInstanceState != null) {
                 requestingLocationUpdates = savedInstanceState.getBoolean("requestingLocationUpdates")   ;
                 startSwitch.setChecked(savedInstanceState.getBoolean("startSwitch"));
