@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,9 @@ import com.google.android.gms.tasks.Task;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.EventListener;
 
 import fr.cocoteam.co2co2.R;
@@ -47,7 +53,7 @@ import static android.content.ContentValues.TAG;
 
 public class ProfilFragment extends Fragment implements View.OnClickListener{
 
-    private ImageButton settingButton;
+    private ImageView settingButton;
     private Button buttonlogout;
     private ProfilViewModel mViewModel;
     private Context context;
@@ -85,6 +91,27 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
         phone = view.findViewById(R.id.user_phone);
         description = view.findViewById(R.id.user_description);
         trip = view.findViewById(R.id.user_trip);
+     //   ImageView imageView =view.findViewById(R.id.imageButtonSetting);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+
+
+        URL url = null;
+        if(acct.getPhotoUrl()!=null){
+            try {
+                url = new URL(acct.getPhotoUrl().toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            Bitmap bmp = null;
+            try {
+                bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            settingButton.setImageBitmap(bmp);
+
+        }
+
 
 
 

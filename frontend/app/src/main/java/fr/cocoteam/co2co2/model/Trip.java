@@ -26,8 +26,8 @@ public class Trip extends RealmObject {
 
     public Trip(String address_dep, String address_arr, String email, String heure) {
         this.email =email;
-        this.address_arr = address_dep;
-        this.address_dep = address_arr;
+        this.address_dep = address_dep;
+        this.address_arr = address_arr;
         this.heure=heure;
 
 

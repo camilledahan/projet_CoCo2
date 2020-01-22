@@ -14,6 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+
 import fr.cocoteam.co2co2.R;
 import fr.cocoteam.co2co2.model.User;
 import fr.cocoteam.co2co2.model.UserMatch;
@@ -27,14 +32,16 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
 
     OnHeadlineSelectedListener callback;
     FindCarViewModel findCarViewModel;
+    GoogleSignInAccount acct;
 
     public void setOnHeadlineSelectedListener(OnHeadlineSelectedListener callback) {
         this.callback = callback;
     }
 
-    public MatchUserRecyclerViewAdapter(List<UserMatch> matchUsers, FindCarViewModel findCarViewModel){
+    public MatchUserRecyclerViewAdapter(List<UserMatch> matchUsers, FindCarViewModel findCarViewModel, GoogleSignInAccount acct){
         this.matchUsers = matchUsers;
         this.findCarViewModel = findCarViewModel;
+        this.acct=acct;
     }
 
     @Override
@@ -72,7 +79,7 @@ public class MatchUserRecyclerViewAdapter extends RecyclerView.Adapter<MatchUser
                  holder.likeMatchSwitcher.setImageResource(R.drawable.like);
                  userMatch.setMe_has_accepted_user(1);
             }
-            findCarViewModel.updateMatchStatus(userMatch);
+            findCarViewModel.updateMatchStatus(userMatch,acct.getEmail());
             //findCarViewModel.getFriends();
         });
 
