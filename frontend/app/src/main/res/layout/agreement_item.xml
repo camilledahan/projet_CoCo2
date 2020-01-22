@@ -30,35 +30,30 @@
                 android:id="@+id/checkBoxMonday"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:onClick="onCheckBoxClicked"
                 android:text="M" />
 
             <CheckBox
                 android:id="@+id/checkBoxTueday"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:onClick="onCheckBoxClicked"
                 android:text="T" />
 
             <CheckBox
                 android:id="@+id/checkBoxWednesday"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:onClick="onCheckBoxClicked"
                 android:text="W" />
 
             <CheckBox
                 android:id="@+id/checkBoxThursday"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:onClick="onCheckBoxClicked"
                 android:text="T" />
 
             <CheckBox
                 android:id="@+id/checkBoxFriday"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:onClick="onCheckBoxClicked"
                 android:text="F" />
 
         </LinearLayout>

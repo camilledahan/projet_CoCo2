@@ -22,7 +22,7 @@
                 android:id="@+id/imageButtonback2"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_arrow_back_black_24dp" />
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
 
             <ImageView
@@ -93,7 +93,7 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_email_black_24dp" />
+            android:src="@drawable/email_icon" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_phone_android_black_24dp"/>
+            app:srcCompat="@drawable/ic_phone_android_black_24dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -139,7 +139,7 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_forum_black_24dp"/>
+            app:srcCompat="@drawable/ic_forum_black_24dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -161,7 +161,7 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_home_black_24dp"/>
+            app:srcCompat="@drawable/ic_home_black_24dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -184,7 +184,7 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_payment_black_24dp"/>
+            app:srcCompat="@drawable/ic_payment_black_24dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -200,7 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
-            android:src="@drawable/ic_edit_black_24dp" />
+            app:srcCompat="@drawable/ic_edit_black_24dp" />
 
     </LinearLayout>
 
