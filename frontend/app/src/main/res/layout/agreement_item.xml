@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal= "20dp"
+        android:layout_marginBottom="30dp">
+
+        <LinearLayout
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left">
+
+            <TextView
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:text="Days selected :"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxMonday"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckBoxClicked"
+                android:text="M" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTueday"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckBoxClicked"
+                android:text="T" />
+
+            <CheckBox
+                android:id="@+id/checkBoxWednesday"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckBoxClicked"
+                android:text="W" />
+
+            <CheckBox
+                android:id="@+id/checkBoxThursday"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckBoxClicked"
+                android:text="T" />
+
+            <CheckBox
+                android:id="@+id/checkBoxFriday"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckBoxClicked"
+                android:text="F" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="left">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/startTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:text="18:51"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/endTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    tools:text="19:45" />
+
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/trip_icon" />
+
+            <LinearLayout
+                android:layout_width="99dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/startLocation"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="LYON"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/endLocation"
+                    android:layout_width="120dp"
+                    android:layout_marginTop="50dp"
+                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:text="PARIS"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/carpool_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Wait for confirmation"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/validateButton"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/startblue"
+                    android:text="GO COVOIT!"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <TableRow
+            android:layout_marginTop="15dp"
+            android:id="@+id/hr"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#444"></TableRow>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
