@@ -89,7 +89,7 @@
                     android:id="@+id/endTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="55dp"
+                    android:layout_marginTop="50dp"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     tools:text="19:45" />

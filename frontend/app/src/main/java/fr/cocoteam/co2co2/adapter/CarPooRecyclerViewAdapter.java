@@ -138,8 +138,6 @@ public class CarPooRecyclerViewAdapter extends RecyclerView.Adapter<CarPooRecycl
 
 
             startButton.setOnClickListener(this);
-
-
             this.checkMonday = itemView.findViewById(R.id.checkBoxMonday);
             this.checkTusday = itemView.findViewById(R.id.checkBoxTueday);
             this.checkWednesday = itemView.findViewById(R.id.checkBoxWednesday);

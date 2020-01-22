@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         connectionFragment = new ConnectionFragment();
         connectionFragment.setOnHeadlineSelectedListener(this);
         loadFragment(connectionFragment, R.id.startContainer);
-        loadFragment(connectionFragment, R.id.startContainer);
         contractFragment = new ContractFragment();
     }
 
