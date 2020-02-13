@@ -8,6 +8,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="API_Key">AIzaSyBGo7-H0aIO_KTtZGGez8vPxuShRHeV8AA</string>
+    <string name="API_Key"></string>
     <string name="userConnected">Welcome %1$s, have a nice trip</string>
 </resources>
