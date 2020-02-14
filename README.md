@@ -2,5 +2,11 @@
 Developpement d'une application android. 
 Application de covoiturage mettant en relation automatiquement les utilisateurs effetcuant des trajets similaires.
 
+Démonstration : 
 
-![alt text](https://dev.azure.com/paulmea69/14f4c169-896c-4fda-b83c-fb3fdb540a2f/_apis/git/repositories/c3a99cdd-a54c-40cd-a4e5-2172c0b8ccb0/items?path=%2Fresources%2FArchi%20Coco.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0)
+https://youtu.be/qoFGYaPbLIY
+
+Détails: 
+
+https://drive.google.com/drive/folders/1S8Uh9ErkQcwFJzr6rpaZrR329v7iFtf9?usp=sharing
+
